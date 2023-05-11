@@ -4,52 +4,54 @@ using UnityEngine;
 
 public class ThirdPersonMovement : MonoBehaviour
 {
-
-    public CharacterController cController;
-    //What we aim to transform
+    public CharacterController controller;
     public Transform cam;
-
-    public float speed = 1f;
-    public float smoothingRotationBy = 0.1f;
-
-    //Ref type of object (Not explained what for but necessary)
+    public float speed = 6f;
     private float rotVelocity;
+    public float smoothAmount = 0.1f;
+    public bool stealth = false;
 
-    // Update is called once per frame
-    void Update()
+    public void Start()
     {
-        //Whatever key input assigned in the Hor and Ver will be stored in the variables
+        TryGetComponent(out controller);
+    }
+
+    public void Update()
+    {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
-        //creating a vector
         Vector3 dir = Vector3.zero;
 
-        //assigning the values from the vars to the Vector default directions and normalizing to 1 each time. 
-        dir.z = vertical;
         dir.x = horizontal;
+        dir.z = vertical;
         dir = dir.normalized;
 
-        //if the object{s magnitude (or movement) is different than 0, then:
-        if(dir.magnitude >= 0.1f) 
+        if (dir.magnitude >= 0.1f)
         {
-            //assign the Target angle to the product of the calculated angle in Degs plus the rotation face the camara has
             float targetAngle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float currentAngle = transform.eulerAngles.y;
 
-            float smoothedAngle = Mathf.SmoothDampAngle(currentAngle, targetAngle, ref rotVelocity, smoothingRotationBy);
+            float actualAnlge = Mathf.SmoothDampAngle(currentAngle, targetAngle, ref rotVelocity, smoothAmount);
 
-            Vector3 angleForLooking = Vector3.up * smoothedAngle;
+            Vector3 anglesForLooking = Vector3.up * actualAnlge;
+            transform.eulerAngles = anglesForLooking;
 
-            transform.eulerAngles = angleForLooking;
-
-            Vector3 angleForMovement = Vector3.up * targetAngle;
-            var movDir = Quaternion.Euler(angleForMovement) * Vector3.forward;
-
-            cController.Move(movDir.normalized * speed * Time.deltaTime);
-
-            
-
+            Vector3 anglesForMov = Vector3.up * targetAngle;
+            var movDir = Quaternion.Euler(anglesForMov) * Vector3.forward;
+            controller.Move(movDir.normalized * speed * Time.deltaTime);
         }
+        if (Input.GetKey(KeyCode.Q))
+        {
+            Vector3 newScale = Vector3.one + Vector3.up * -0.5f;
+            //transform.localScale = newScale;
+            stealth = true;
+        }
+        else
+        {
+            transform.localScale = Vector3.one;
+            stealth = false;
+        }
+
     }
 }
