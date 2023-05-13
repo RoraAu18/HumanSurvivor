@@ -6,6 +6,7 @@ public class ThirdPersonMovement : MonoBehaviour
 {
     public CharacterController controller;
     public Transform cam;
+    public Vector3 dir;
     public float speed = 6f;
     private float rotVelocity;
     public float smoothAmount = 0.1f;
@@ -21,7 +22,7 @@ public class ThirdPersonMovement : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
-        Vector3 dir = Vector3.zero;
+        dir = Vector3.zero;
 
         dir.x = horizontal;
         dir.z = vertical;
