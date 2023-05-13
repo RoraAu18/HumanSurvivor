@@ -20,9 +20,9 @@ public class SMNodeSelect : SMNode
     {
         for (int i = 0; i < nodes.Length; i++)
         {
-            if (nodes[i].Run(context) == SMNodeStates.Succed)
+            if (nodes[i].Run(context) == SMNodeStates.Succeed)
             {
-                state= SMNodeStates.Succed;
+                state= SMNodeStates.Succeed;
                 return state;
             }
         }

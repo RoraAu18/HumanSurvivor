@@ -28,7 +28,7 @@ public class SMNodeSequence : SMNode
             }
         }
         //If none of the Nodes fail, then it´ll managed to succed
-        state = SMNodeStates.Succed;
+        state = SMNodeStates.Succeed;
         return state;
     }
 

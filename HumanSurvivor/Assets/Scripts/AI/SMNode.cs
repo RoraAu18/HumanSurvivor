@@ -27,7 +27,8 @@ public class SMContext
     public NavMeshAgent agentToMove;
     public Transform movingTarget;
     public ColisionController collisionControler;
-  
+    public WaypointTest waypointTest;
+    public EnemyAIContoller enemy;
 }
 
 public enum SMNodeStates
@@ -35,6 +36,6 @@ public enum SMNodeStates
     //represents the name (string) of a state and the number that corresponds to that name
     Off = 0,
     Running = 1,
-    Succed = 2,
+    Succeed = 2,
     Failed = 3
 }

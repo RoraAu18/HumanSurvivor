@@ -22,7 +22,7 @@ public class SMNodeTargetDetectionRange : SMNode
     {
         context.movingTarget = null;
         state = SMNodeStates.Failed;
-        //var sneakyButton = 
+        
 
         var currentCollisions = context.collisionControler.currentFrameCollissions;
         for (int i = 0; i < currentCollisions.Count; i++)
@@ -30,6 +30,7 @@ public class SMNodeTargetDetectionRange : SMNode
             var currentCollis = currentCollisions[i];
             if (currentCollis.TryGetComponent(out player))
             {
+                context.waypointTest.RemoveUser(context.enemy.GetComponent<WaypointUser>());
                 break;
             }
         }
@@ -50,9 +51,10 @@ public class SMNodeTargetDetectionRange : SMNode
         var hitCount = Physics.RaycastNonAlloc(context.agentToMove.transform.position, dir, hits, dir.magnitude, maskLayer);
         if (hitCount > 0) return state;
 
-
+        Debug.Log("Follow Player");
+        context.enemy.SetState(EnemyStates.Walking);
         context.movingTarget = player.transform;
-        state = SMNodeStates.Succed;
+        state = SMNodeStates.Succeed;
         return state;
 
 

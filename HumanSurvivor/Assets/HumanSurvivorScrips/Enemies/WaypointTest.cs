@@ -40,6 +40,10 @@ public class WaypointTest : MonoBehaviour
             waypointUsers.Add(user);
         }
     }
+    public void RemoveUser(IWaypointUser user)
+    {
+        waypointUsers.Remove(user);
+    }
 
     // Update is called once per frame
     void Update()

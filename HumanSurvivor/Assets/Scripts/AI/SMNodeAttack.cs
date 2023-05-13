@@ -5,11 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Attack", menuName = "StateMachine/Nodes/Attack")]
 public class SMNodeAttack: SMNode
 {
-    public float lifeSpan = 10;
-    public float damageCounter = 10;
-    public float damage = 1;
-    public float attackDetectionRadius= 3;
-    DamageController damageController;
+    public float attackDetectionRadius = 1;
+    public AIEnemyController player;
     
     public override SMNodeStates Run(SMContext context)
     {
@@ -17,11 +14,11 @@ public class SMNodeAttack: SMNode
 
         var deltaPosition = context.agentToMove.transform.position - context.movingTarget.transform.position;
     
-        if (deltaPosition.magnitude <= attackDetectionRadius && context.movingTarget.TryGetComponent(out damageController))
+        if (deltaPosition.magnitude <= attackDetectionRadius && context.movingTarget.TryGetComponent(out player))
         {
-            damageController.GetDamage(damage);
-            //damageCounter -= damage;
-            state = SMNodeStates.Succed;
+            context.enemy.SetState(EnemyStates.CatchingPlayer);
+            Debug.Log("game over bitches");
+            state = SMNodeStates.Succeed;
             return state;
         }
         return state;

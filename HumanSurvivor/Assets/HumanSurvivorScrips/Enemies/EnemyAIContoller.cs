@@ -30,7 +30,7 @@ public class EnemyAIContoller : MonoBehaviour, IWaypointUser
         
     }
 
-    void SetState(EnemyStates newState)
+    public void SetState(EnemyStates newState)
     {
         if (enemyStates == newState) return;
         enemyStates = newState;
@@ -56,6 +56,7 @@ public class EnemyAIContoller : MonoBehaviour, IWaypointUser
 public enum EnemyStates
 {
     Idle,
+    Walking,
     Distracted,
     Surprised,
     Running,

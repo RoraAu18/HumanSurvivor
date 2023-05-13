@@ -10,11 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 39a086bb7e4e5b74a95573f46f7077b3, type: 3}
-  m_Name: Sequence
+  m_Name: FindPlayer_FindDistractionSl
   m_EditorClassIdentifier: 
-  state: 3
+  state: 0
   nodes:
-  - {fileID: 11400000, guid: 9a60e477a8182004b896b765319cfa76, type: 2}
   - {fileID: 11400000, guid: dc15ffb55b5090e42a79f970bbfc4df2, type: 2}
-  - {fileID: 11400000, guid: d9be4041fd6e741488bac0457e6757c5, type: 2}
   - {fileID: 11400000, guid: 0aadbde12b7909f488eff56c6e008ca5, type: 2}

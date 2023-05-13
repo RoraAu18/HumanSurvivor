@@ -17,7 +17,7 @@ public class SMNodeSneakyMode : SMNode
 
         if (sneakyButton)
         {
-            state = SMNodeStates.Succed;
+            state = SMNodeStates.Succeed;
             Debug.Log("I'm in Sneaky mode");
         }
         //23 may pasar a servi med normanndia lun a vie 8 a 4
