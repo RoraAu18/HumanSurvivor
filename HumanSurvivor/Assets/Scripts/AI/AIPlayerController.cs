@@ -5,41 +5,93 @@ using System;
 
 public class AIPlayerController : MonoBehaviour, iLifeController 
 {
-    public bool OnSneakyMode;
-    public ThirdPersonMovement playerItem;
+    public bool onStealhMode;
+   
+    public ThirdPersonMovement movement;
+    public StealthMode stealthMode;
+    public DistractMode distractMode;
+    public Jump jump;
+    private PlayerStates oldPlayerState;
+
+    public Action<PlayerStates> OnStatePlayerChange;
+
     public MeshRenderer mesh;
     public PlayerStates playerState;
-    public ConfigurationsPerPlayerState[] configOnPlayerSatate = new ConfigurationsPerPlayerState[(int) PlayerStates.COUNT];
-    public float impactForce = 30;
-
-
+    public ConfigurationsPerPlayerState[] configOnPlayerSatate = new ConfigurationsPerPlayerState[(int) PlayerStates.count];
+   
     private void OnValidate()
     {
-        var statesCount = (int)PlayerStates.COUNT;
+        var statesCount = (int)PlayerStates.count;
         if(configOnPlayerSatate.Length != statesCount)
         {
             Array.Resize(ref configOnPlayerSatate, statesCount);
         }
     }
+
+    void Start()
+    {
+        TryGetComponent<Jump>(out Jump jump);
+        TryGetComponent<ThirdPersonMovement>(out ThirdPersonMovement movement);
+        TryGetComponent<StealthMode>(out StealthMode stealthMode);
+        TryGetComponent<DistractMode>(out DistractMode distractMode);
+        playerState = PlayerStates.idle;
+    }
     void Update()
     {
-        OnSneakyMode = Input.GetKey(KeyCode.Q);
+        RefreshState();
+    }
 
-        if (OnSneakyMode)
+    private void RefreshState()
+    {
+        if (jump.isGrounded == false)
         {
-
-            Debug.Log("I'm in Sneaky mode");
-
+            if (oldPlayerState != PlayerStates.jump)
+            {
+                SetState(PlayerStates.jump);                
+            }
         }
 
+        else if (stealthMode.stealth && movement.dir.magnitude != 0)
+        {
+            if (oldPlayerState != PlayerStates.stealth)
+            {
+                SetState(PlayerStates.stealth);
+            }
+        }
+        else if (distractMode.distract)
+        {
+            if (oldPlayerState != PlayerStates.distract)
+            {
+                SetState(PlayerStates.distract);
+            }
+        }
+
+        else if (movement.dir.magnitude != 0)
+        {
+            if (oldPlayerState != PlayerStates.run)
+            {
+                SetState(PlayerStates.run);
+            }
+        }
+
+        else
+        {
+            if (oldPlayerState != PlayerStates.idle)
+            {
+                SetState(PlayerStates.idle);
+            }
+        }
+
+        oldPlayerState = playerState;
     }
+
 
     public void SetState(PlayerStates newState)
     {
-        if (newState == playerState) return;
-        playerItem.speed = configOnPlayerSatate[(int)newState].speed;
-        mesh.sharedMaterial.color = configOnPlayerSatate[(int)newState].color;
+        movement.speed = configOnPlayerSatate[(int)newState].speed;
+        onStealhMode = configOnPlayerSatate[(int)newState].onStealthMode;
         playerState = newState;
+        OnStatePlayerChange?.Invoke(newState);
     }
 
     public void OnDamage()
@@ -52,19 +104,21 @@ public class AIPlayerController : MonoBehaviour, iLifeController
         GameManager.OnlyInstance.AddDeaths(1);
     }
 
-   //executes every time a change happens in the inspector
 }
 public enum PlayerStates
 {
-    Normal = 0,
-    Stealth = 1,
-    COUNT = 3
+    idle = 0,
+    run = 1,
+    jump = 2,
+    stealth = 3,
+    distract = 4,
+    count = 5
 }
 
 [Serializable]
 public class ConfigurationsPerPlayerState
 {
     public float speed;
-    public Color color;
+    public bool onStealthMode;
 }
 

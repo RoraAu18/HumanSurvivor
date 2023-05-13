@@ -38,7 +38,7 @@ public class SMNodeTargetDetectionRange : SMNode
         var dir = player.transform.position - context.agentToMove.transform.position;
 
         var selectedDetectionRadius = innerDetectionRadius;
-        if (player.OnSneakyMode)
+        if (player.onStealhMode)
         {
             selectedDetectionRadius = sneakerDetectionRadius;
         }
