@@ -50,7 +50,7 @@ public class SMNodeTargetDetectionRange : SMNode
         //avoid walls blinding when encountering walls
         var hitCount = Physics.RaycastNonAlloc(context.agentToMove.transform.position, dir, hits, dir.magnitude, maskLayer);
         if (hitCount > 0) return state;
-
+        //turn into a method that recives a target
         Debug.Log("Follow Player");
         context.enemy.SetState(EnemyStates.Walking);
         context.movingTarget = player.transform;
