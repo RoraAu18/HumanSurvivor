@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class WaypointUser : MonoBehaviour, IWaypointUser
 {
-    [SerializeField]
-    WaypointTest waypointSystem;
+    public WaypointTest<WaypointUser> waypointTest;
+    public Transform[] myWaypoints = new Transform[6];
+    public bool systemActive;
     [SerializeField]
     bool shouldMove;
     [SerializeField]
     bool shouldStartOver;
-    public float timeToMove;
+    [SerializeField]
+    float timer;
+    public float timeToMove = 2;
     public bool ShouldChangeWaypoint()
     {
         return shouldMove;
@@ -26,17 +29,31 @@ public class WaypointUser : MonoBehaviour, IWaypointUser
         return timeToMove += Time.deltaTime;
     }
 
-
+    public void Init()
+    {
+        waypointTest.Init(this, myWaypoints);
+        waypointTest.AddNewUser(this);
+    }
     // Start is called before the first frame update
     void Start()
     {
-        TryGetComponent(out waypointSystem);
-        waypointSystem.AddNewUser(this);
+        systemActive = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (systemActive)
+        {
+            waypointTest.Move(this);
+            
+            timer += Time.deltaTime;
+            /*
+            if (timer >= timeToMove)
+            {
+                waypointTest.GetNextWayPoint(timeToMove, 1);
+                timer = 0;
+            }*/
+        }
     }
 }

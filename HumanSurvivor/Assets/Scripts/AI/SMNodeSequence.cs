@@ -17,17 +17,19 @@ public class SMNodeSequence : SMNode
     }
     public override SMNodeStates Run(SMContext context)
     {
+        if (GameManager.OnlyInstance.gameStates == GameStates.GameOver) return state = SMNodeStates.Succeed;
         for (int i = 0; i < nodes.Length; i++)
         {
             //From the Run of the SMNode check if it failed 
             if (nodes[i].Run(context) == SMNodeStates.Failed)
             {
                 //Return the status of the sequence as failed
+                //Debug.Log(nodes[i] + " " + nodes[i].state);
                 state = SMNodeStates.Failed;
                 return state;
             }
         }
-        //If none of the Nodes fail, then it´ll managed to succed
+        //If none of the Nodes fail, then it´ll managed to succeed
         state = SMNodeStates.Succeed;
         return state;
     }
