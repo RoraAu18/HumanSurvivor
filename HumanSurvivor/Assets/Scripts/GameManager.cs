@@ -12,6 +12,9 @@ public interface IGameEventsUser
 }
 public class GameManager : MonoBehaviour
 {
+    public EnemyAIContoller enemy;
+    public AIPlayerController player;
+       
     private static GameManager instance;
     public int currentScore;
     public int currentDeaths;
@@ -28,6 +31,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void OnDistractMode(Transform posForDistract)
+    {
+        enemy.gotDistraction = true;
+    }
     //Awakes is set even before the first frame is played, we normally set references and instances here
     private void Awake()
     {
