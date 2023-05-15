@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class EnemyAIContoller : MonoBehaviour
+public class EnemyAIContoller : MonoBehaviour, IWaypointUser
 {
+    [SerializeField]
     public SMNode mainNode;
-    public bool gotDistraction;
     [SerializeField]
     SMContext context;
     [SerializeField]
     EnemyStates enemyStates;
-    EnemyStates oldEnemyStates;
     Rigidbody rb;
     public Action<EnemyStates> onEnemyStateChange;
     void Start()
@@ -33,17 +32,24 @@ public class EnemyAIContoller : MonoBehaviour
 
     public void SetState(EnemyStates newState)
     {
-        if (enemyStates == newState) { Debug.Log("going through " + enemyStates); return; }
-        enemyStates = newState;
-        ActivateAnims(enemyStates);
-    }
-
-    void ActivateAnims(EnemyStates newState)
-    {
-        if (oldEnemyStates == newState) return;
+        if (enemyStates == newState) return;
         enemyStates = newState;
         onEnemyStateChange?.Invoke(enemyStates);
-        oldEnemyStates = enemyStates;
+    }
+
+    public bool ShouldChangeWaypoint()
+    {
+        throw new NotImplementedException();
+    }
+
+    public float TimeToMove()
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool ShouldStartOver()
+    {
+        throw new NotImplementedException();
     }
 }
 
@@ -52,7 +58,6 @@ public enum EnemyStates
     Idle,
     Walking,
     Distracted,
-    Confused,
     Surprised,
     Running,
     CatchingPlayer

@@ -15,21 +15,12 @@ public class SMNodeRunAround : SMNode
     public override SMNodeStates Run(SMContext context)
     {
         Debug.Log("calling RunAround");
-        context.movingTarget = null;
         if (!context.enemy.TryGetComponent(out WaypointUser waypointUser))
         {
             state = SMNodeStates.Failed;
             return state;
         }
-        if (!context.enteringWayPoint)
-        {
-            context.waypointUser.Init();
-            context.waypointUser.systemActive = true;
-            context.enteringWayPoint = true;
-            context.enemy.SetState(EnemyStates.Running);
-
-        }
-
+        context.waypointTest.AddNewUser(context.enemy.GetComponent<WaypointUser>());
         state = SMNodeStates.Succeed;
         return state;
     }

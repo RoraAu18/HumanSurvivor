@@ -8,6 +8,7 @@ public class SMNodeIdle : SMNode
     //Assign the method here (not before as it was an abstract one) it always has to return a state
     public override SMNodeStates Run(SMContext context)
     {
+        context.enemy.SetState(EnemyStates.Idle);
         state = SMNodeStates.Succeed;
         return state;
     }

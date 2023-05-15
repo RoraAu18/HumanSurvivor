@@ -20,17 +20,17 @@ public class GUIManager : MonoBehaviour, IGameEventsUser
         deathsTxt.SetText("0");
         coinsTxt.SetText("0");
     }
-    public void OnMoodChanged(int newScore)
+    public void OnDeathsCountChanged(int newScore)
     {
         deathsTxt.SetText(newScore.ToString());
     }
 
-    public void TimerRecord(int newScore)
+    public void OnScoreChanged(int newScore)
     {
         scoreTxt.SetText(newScore.ToString());
     }
 
-    public void OnObjectsCollected(int newScore)
+    public void OnCoinsCollected(int newScore)
     {
         coinsTxt.SetText(newScore.ToString());
     }

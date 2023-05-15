@@ -43,7 +43,7 @@ public class ColisionController : MonoBehaviour
     //We set the instance of the object we  created
     public void Start()
     {
-        //TryGetComponent(out theCollider);
+        TryGetComponent(out theCollider);
     }
 
     public void Update()

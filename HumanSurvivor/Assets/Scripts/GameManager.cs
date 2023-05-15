@@ -5,9 +5,9 @@ public interface IGameEventsUser
 {
     //This will help control and check on the general changes and modify them from here
     //There are several programming <frameworks/Stablished methods> in which we can notify the Game Manager,the observation, getting the Minager to check on the processes, the benefit of that one is that we only have to modify this code if necessary. we cna also get the functions and methods to noticy the manager. The most optimal way was to create an interface as below.
-    public void TimerRecord(int newScore);
-    public void OnMoodChanged(int newScore);
-    public void OnObjectsCollected(int newScore);
+    public void OnScoreChanged(int newScore);
+    public void OnDeathsCountChanged(int newScore);
+    public void OnCoinsCollected(int newScore);
 
 }
 public class GameManager : MonoBehaviour
@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public int currentScore;
     public int currentDeaths;
     public int currentCoin;
-    public GameStates gameStates;
+
     public List<IGameEventsUser> gameEventUsers = new List<IGameEventsUser>();
    
     public static GameManager OnlyInstance
@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         currentScore += amount;
         for (int i = 0; i < gameEventUsers.Count; i++)
         {
-            gameEventUsers[i].TimerRecord(currentScore);
+            gameEventUsers[i].OnScoreChanged(currentScore);
         }
     }
 
@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
         currentDeaths += amount;
         for (int i = 0; i < gameEventUsers.Count; i++)
         {
-            gameEventUsers[i].OnMoodChanged(currentDeaths);
+            gameEventUsers[i].OnDeathsCountChanged(currentDeaths);
         }
     }
 
@@ -64,15 +64,9 @@ public class GameManager : MonoBehaviour
         currentCoin += amount;
         for (int i = 0; i < gameEventUsers.Count; i++)
         {
-            gameEventUsers[i].OnObjectsCollected(currentCoin);
+            gameEventUsers[i].OnCoinsCollected(currentCoin);
         }
     }
-}
-public enum GameStates
-{
-    GameStart,
-    GameOver,
-    GameRunning
 }
 
 

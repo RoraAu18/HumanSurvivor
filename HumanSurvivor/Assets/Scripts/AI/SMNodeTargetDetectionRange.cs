@@ -9,16 +9,14 @@ public class SMNodeTargetDetectionRange : SMNode
     public float limitAngle = 45;
     public LayerMask maskLayer;
     public RaycastHit[] hits = new RaycastHit[5];
-    public float innerDetectionRadius = 7;
-    public float sneakerDetectionRadius = 0.5f;
-    public float OuterDetectionRadius = 0;
+    public float innerDetectionRadius = 4;
+    public float sneakerDetectionRadius = 2;
+    public float OuterDetectionRadius = 10;
 
     public override void Init(SMContext context)
     {
         base.Init(context);
         context.collisionControler.theCollider.radius = OuterDetectionRadius;
-        innerDetectionRadius = 4;
-        sneakerDetectionRadius = 2.5f;
     }
     public override SMNodeStates Run(SMContext context)
     {
@@ -32,7 +30,7 @@ public class SMNodeTargetDetectionRange : SMNode
             var currentCollis = currentCollisions[i];
             if (currentCollis.TryGetComponent(out player))
             {
-                context.waypointUser.systemActive = false;
+                context.waypointTest.RemoveUser(context.enemy.GetComponent<WaypointUser>());
                 break;
             }
         }
@@ -52,7 +50,9 @@ public class SMNodeTargetDetectionRange : SMNode
         //avoid walls blinding when encountering walls
         var hitCount = Physics.RaycastNonAlloc(context.agentToMove.transform.position, dir, hits, dir.magnitude, maskLayer);
         if (hitCount > 0) return state;
-
+        //turn into a method that recives a target
+        Debug.Log("Follow Player");
+        context.enemy.SetState(EnemyStates.Walking);
         context.movingTarget = player.transform;
         state = SMNodeStates.Succeed;
         return state;

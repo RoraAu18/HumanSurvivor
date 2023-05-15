@@ -15,7 +15,7 @@ public class EnemyAnimatorController : MonoBehaviour
     }
     void OnStateChange(EnemyStates states)
     {
-        Debug.Log("entering anim " + states);
+        Debug.Log("entering anim");
         switch (states )
         {
             case EnemyStates.Idle:
@@ -23,13 +23,7 @@ public class EnemyAnimatorController : MonoBehaviour
                 break;            
             case EnemyStates.Distracted:
                 animator.SetTrigger("Distracted");
-                break;
-            case EnemyStates.Walking:
-                animator.SetTrigger("Walking");
-                break;
-            case EnemyStates.Confused:
-                animator.SetTrigger("Confused");
-                break;
+                break;            
             case EnemyStates.Surprised:
                 animator.SetTrigger("Surprised");
                 break;            

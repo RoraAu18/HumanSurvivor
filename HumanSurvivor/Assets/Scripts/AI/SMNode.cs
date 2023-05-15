@@ -27,14 +27,8 @@ public class SMContext
     public NavMeshAgent agentToMove;
     public Transform movingTarget;
     public ColisionController collisionControler;
-    public WaypointUser waypointUser;
+    public WaypointTest waypointTest;
     public EnemyAIContoller enemy;
-    public Transform distractionTarget;
-    public bool encounteredPlayer = false;
-    public bool gotToDistraction = false;
-    public bool enteringWayPoint = false;
-    public float lungeTargetDetection;
-    //public speed var
 }
 
 public enum SMNodeStates
