@@ -22,8 +22,9 @@ public class DistractMode : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftControl))
         {
             distract = true;
-            GameManager.OnlyInstance.OnDistractMode();
             posForDistract.position = transform.position;
+            GameManager.OnlyInstance.OnDistractMode(posForDistract);
+
         }
         else
         {
