@@ -10,9 +10,9 @@ public interface IWaypointUser
     public bool ShouldStartOver();
 }
 [Serializable]
-public class WaypointTest : MonoBehaviour
+public class WaypointTest<WaypointUser> where WaypointUser : Component
 {
-    public Transform[] waypoints ;
+    public Transform[] waypoints;
     Transform currentWaypoint;
     [SerializeField]
     float moveSpeed;    
@@ -22,16 +22,19 @@ public class WaypointTest : MonoBehaviour
     [SerializeField]
     float targetTime;
     float timer;
+    WaypointUser owner;
     [SerializeField]
     public List<IWaypointUser> waypointUsers = new List<IWaypointUser>();
     bool goBack = false;
-
-
-    void Start()
+    public void Init(WaypointUser _owner, Transform[] ownerWaypoints)
     {
+        owner = _owner;
+        Debug.Log(owner + " " + waypoints.Length);
+        waypoints = ownerWaypoints;
+        waypoints[0].position = owner.transform.position;
         waypointPosIndex = 0;
         currentWaypoint = waypoints[waypointPosIndex];
-        transform.position = currentWaypoint.position;
+        owner.transform.position = currentWaypoint.position;
     }
     public void AddNewUser(IWaypointUser user)
     {
@@ -45,22 +48,18 @@ public class WaypointTest : MonoBehaviour
         waypointUsers.Remove(user);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        Move();
-    }
-
-    void Move()
+    public void Move(WaypointUser owner)
     {
         currentWaypoint = waypoints[waypointPosIndex];
-        transform.LookAt(currentWaypoint.transform);
-        Vector3 dir = currentWaypoint.position - transform.position;
-        transform.position += dir * moveSpeed * Time.deltaTime;
+        Debug.Log(currentWaypoint);
+        owner.transform.LookAt(currentWaypoint.transform);
+        Vector3 dir = currentWaypoint.position - owner.transform.position;
+        owner.transform.position += dir * moveSpeed * Time.deltaTime;
         Quaternion lookTo = Quaternion.LookRotation(currentWaypoint.position);
-        Quaternion.Slerp(transform.rotation, lookTo, rotSpeed * Time.deltaTime);
-        if (Vector3.Distance(transform.position, currentWaypoint.transform.position) < 1)
+        Quaternion.Slerp(owner.transform.rotation, lookTo, rotSpeed * Time.deltaTime);
+        if(dir.magnitude < 1f)
         {
+            /*
             if (waypointUsers.Count <= 0)
             {
                 GetNextWayPoint(targetTime, 0);
@@ -74,13 +73,18 @@ public class WaypointTest : MonoBehaviour
                         GetNextWayPoint(waypointUsers[i].TimeToMove(), waypointUsers.IndexOf(waypointUsers[i]));
                     }
                 }
+            }*/
+            for (int i = 0; i < waypointUsers.Count; i++)
+            {
+                if (waypointUsers[i].ShouldChangeWaypoint())
+                {
+                    GetNextWayPoint(waypointUsers[i].TimeToMove(), waypointUsers.IndexOf(waypointUsers[i]));
+                }
             }
         }
-
-
     }
 
-    void GetNextWayPoint(float time, int userIdx)
+    public void GetNextWayPoint(float time, int userIdx)
     {
         if (waypointUsers[userIdx].ShouldStartOver())
         {
@@ -117,6 +121,7 @@ public class WaypointTest : MonoBehaviour
                 goBack = false;
             }
         }
+
         currentWaypoint = waypoints[waypointPosIndex];
     }
 
