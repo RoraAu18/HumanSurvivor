@@ -14,7 +14,8 @@ public class SMNodeCloseToDistraction : SMNode
     {
         state = SMNodeStates.Failed;
         var deltaPosition = context.agentToMove.transform.position - context.movingTarget.transform.position;
-        if (deltaPosition.magnitude <= context.lungeTargetDetection && context.movingTarget.transform == context.distractionTarget.transform)
+        if(deltaPosition.magnitude <= context.lungeTargetDetection)
+        //if (deltaPosition.magnitude <= context.lungeTargetDetection && context.movingTarget.transform == context.distractionTarget.transform)
         {
             Debug.Log("close to distraction");
 
