@@ -18,6 +18,6 @@ public class CoinSpawner : MonoBehaviour, iSpawnerUsers<Collectable>
 
     public void OnSpawnedCustomizable(Collectable newItem, Pool<Collectable> pool)
     {
-        newItem.Init(pool);
+        //newItem.Init(pool);
     }
 }

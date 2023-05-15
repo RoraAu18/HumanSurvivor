@@ -16,7 +16,7 @@ public class SMNodeTargetDetectionRange : SMNode
     public override void Init(SMContext context)
     {
         base.Init(context);
-        context.collisionControler.theCollider.radius = OuterDetectionRadius;
+        //context.collisionControler.theCollider.radius = OuterDetectionRadius;
         innerDetectionRadius = 4;
         sneakerDetectionRadius = 2.5f;
     }

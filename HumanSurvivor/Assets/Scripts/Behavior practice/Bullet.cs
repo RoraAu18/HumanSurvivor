@@ -31,7 +31,7 @@ public class Bullet: MonoBehaviour
         //TryGetComponent<ColisionController>(out CController);
         //Hereby we should subscribe the Actions in case we need to
         Debug.Log("se esta llamando el collider?");
-        CController.collisionEnter += HandlingCollider;
+        //CController.collisionEnter += HandlingCollider;
         //Debug.Log(CController.collisionEnter + "holi");
         countTime = 0;
     }

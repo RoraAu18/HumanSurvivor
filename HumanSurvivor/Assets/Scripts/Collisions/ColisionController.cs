@@ -23,12 +23,12 @@ public class ColisionController : MonoBehaviour
     public List<Collider> lastFrameCollissions = new List<Collider>();
     //Arraly to store
     Collider[] collisions = new Collider[10];
-    public SphereCollider theCollider;
-    public LayerMask layerCollider;
+    public Collider theCollider;
+   
     public bool foundOnCurrentCollision = false;
-
+    public LayerMask layerMask;
     public int amountOfObjectsHit = 0;
-    public QueryTriggerInteraction triggerConfi = QueryTriggerInteraction.Collide;
+    
 
     //Actions are in the using System import, we make them public.
     //Actions are call-to-execute-method-with-no-instance-required operators 
@@ -53,11 +53,38 @@ public class ColisionController : MonoBehaviour
         //Clearing the list
         currentFrameCollissions.Clear();
         //Non alloc means that unity is not saving space in  the memory
-        
-        amountOfObjectsHit = Physics.OverlapSphereNonAlloc(transform.position, theCollider.radius, collisions, layerCollider, triggerConfi);
+
+        int objsHittedAmount = 0;
+       
         //Debug.Log("Estoy guardandome" + gameObject.name + " " + amountOfObjectsHit);
 
-        for (int i= 0; i< amountOfObjectsHit; i++)
+        if (theCollider is CapsuleCollider myCapsuleCollider)
+        {
+            objsHittedAmount = Physics.OverlapSphereNonAlloc(transform.position, myCapsuleCollider.radius, collisions, layerMask);
+        }
+
+        if (theCollider is BoxCollider myBoxCollider)
+        {
+            objsHittedAmount = Physics.OverlapBoxNonAlloc(transform.position, myBoxCollider.size / 2, collisions, transform.rotation, layerMask);
+        }
+        else if (theCollider is CharacterController myCharacterCollider)
+        {
+            var center = myCharacterCollider.transform.position;
+            var point1 = (myCharacterCollider.height / 2) * Vector3.up + center;
+            var point0 = (myCharacterCollider.height / 2) * Vector3.down + center;
+
+            objsHittedAmount = Physics.OverlapCapsuleNonAlloc(point0, point1, myCharacterCollider.radius, collisions, layerMask);
+        }
+        else if (theCollider is SphereCollider sphereCollider)
+        {
+            var pos = sphereCollider.transform.position;
+            var rad = sphereCollider.radius;
+
+            objsHittedAmount = Physics.OverlapSphereNonAlloc(pos, rad, collisions, layerMask);
+        }
+
+
+        for (int i= 0; i< objsHittedAmount; i++)
         {
             var collidedObject = collisions[i];
             if (collidedObject == theCollider) continue;
