@@ -17,7 +17,7 @@ public class SMNodeSequence : SMNode
     }
     public override SMNodeStates Run(SMContext context)
     {
-        if (GameManager.OnlyInstance.gameStates == GameStates.GameOver) return state = SMNodeStates.Succeed;
+        //if (GameManager.OnlyInstance.gameStates == GameStates.GameOver) return state = SMNodeStates.Failed;
         for (int i = 0; i < nodes.Length; i++)
         {
             //From the Run of the SMNode check if it failed 

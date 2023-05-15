@@ -5,7 +5,9 @@ using UnityEngine;
 public class WaypointUser : MonoBehaviour, IWaypointUser
 {
     public WaypointTest<WaypointUser> waypointTest;
+    public Transform[] houserooms;
     public Transform[] myWaypoints = new Transform[6];
+    public Transform currentHouseRoom;
     public bool systemActive;
     [SerializeField]
     bool shouldMove;
@@ -56,4 +58,26 @@ public class WaypointUser : MonoBehaviour, IWaypointUser
             }*/
         }
     }
+    /*
+    private void OnCollisionEnter(Collision collision)
+    {
+        var currentObjColl = collision.gameObject;
+        switch (currentHouseRoom)
+        {
+            case CompareTag("OrangeRoom"):
+                currentHouseRoom = collision.transform;
+                break;          
+            case collision.gameObject.CompareTag("RedRoom"):
+                currentHouseRoom = collision.transform;
+                break;          
+            case collision.gameObject.CompareTag("GreenRoom"):
+                currentHouseRoom = collision.transform;
+                break;          
+            case collision.gameObject.CompareTag("WhiteRoom"):
+                currentHouseRoom = collision.transform;
+
+                break;
+        }
+    
+    }*/
 }
