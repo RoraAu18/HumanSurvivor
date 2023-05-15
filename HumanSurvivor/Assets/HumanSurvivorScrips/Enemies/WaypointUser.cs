@@ -58,13 +58,30 @@ public class WaypointUser : MonoBehaviour, IWaypointUser
             }*/
         }
     }
-    /*
+
     private void OnCollisionEnter(Collision collision)
     {
         var currentObjColl = collision.gameObject;
-        switch (currentHouseRoom)
+        if (currentObjColl.CompareTag("OrangeRoom"))
         {
-            case CompareTag("OrangeRoom"):
+
+        }
+        else if (currentObjColl.CompareTag("RedRoom"))
+        {
+
+        }
+        else if (currentObjColl.CompareTag("GreenRoom"))
+        {
+
+        }
+        else if (currentObjColl.CompareTag("WhiteRoom"))
+        {
+
+        } }
+        /*
+        switch (currentObjColl)
+        {
+            case currentObjColl.gameObject.CompareTag("OrangeRoom"):
                 currentHouseRoom = collision.transform;
                 break;          
             case collision.gameObject.CompareTag("RedRoom"):
@@ -77,7 +94,7 @@ public class WaypointUser : MonoBehaviour, IWaypointUser
                 currentHouseRoom = collision.transform;
 
                 break;
-        }
+        }*/
     
-    }*/
-}
+    }
+

@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public int currentScore;
     public int currentDeaths;
     public int currentCoin;
+    public Transform currentDistraction;
     public GameStates gameStates;
     public List<IGameEventsUser> gameEventUsers = new List<IGameEventsUser>();
    
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
     public void OnDistractMode(Transform posForDistract)
     {
         enemy.gotDistraction = true;
+        currentDistraction = posForDistract;
     }
     //Awakes is set even before the first frame is played, we normally set references and instances here
     private void Awake()

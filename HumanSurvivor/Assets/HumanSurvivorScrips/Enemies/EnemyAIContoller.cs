@@ -28,7 +28,7 @@ public class EnemyAIContoller : MonoBehaviour
             SetState(EnemyStates.Distracted);
         }
         mainNode.Run(context);
-        
+        context.distractionTarget = GameManager.OnlyInstance.currentDistraction;
     }
 
     public void SetState(EnemyStates newState)
