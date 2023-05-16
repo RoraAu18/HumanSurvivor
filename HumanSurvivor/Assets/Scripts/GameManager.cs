@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void AddCoins(int amount)
+    public void AddItemCollected(int amount)
     {
         currentCoin += amount;
         for (int i = 0; i < gameEventUsers.Count; i++)
