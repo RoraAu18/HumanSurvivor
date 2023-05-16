@@ -4327,7 +4327,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &185142617
 Transform:
   m_ObjectHideFlags: 0
@@ -11858,7 +11858,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &456126833
 Transform:
   m_ObjectHideFlags: 0
@@ -36867,9 +36867,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 954e4961006c1e745ad9d4a8779f278b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
+  player: {fileID: 0}
   currentScore: 0
   currentDeaths: 0
   currentCoin: 0
+  currentDistraction: {fileID: 0}
   gameStates: 0
 --- !u!4 &1588278168
 Transform:
@@ -49691,7 +49694,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &513576597520166119
 MeshRenderer:
   m_ObjectHideFlags: 0
