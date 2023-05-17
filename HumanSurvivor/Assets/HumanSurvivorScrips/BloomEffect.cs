@@ -5,10 +5,12 @@ using UnityEngine;
 public class BloomEffect : MonoBehaviour
 {
     public Renderer myRender;
-    private Color targetColor=Color.white*8;
+    private Color targetColor=Color.white*6;
     private Color inicialColor;
     public float transitionDuration;
-   
+    public ParticleSystem particle;
+
+
 
     void Update()
     {
@@ -27,7 +29,9 @@ public class BloomEffect : MonoBehaviour
     {
         while (true)
         {
+            particle.Play();
             yield return ColorTransition(targetColor);
+            particle.Stop();
             yield return ColorTransition(inicialColor);
             yield return new WaitForSeconds(3);
 
@@ -41,6 +45,7 @@ public class BloomEffect : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
             myRender.material.color = Color.Lerp(myRender.material.color, targetColor, elapsedTime / transitionDuration);
+            
             yield return null;
         }
     }
