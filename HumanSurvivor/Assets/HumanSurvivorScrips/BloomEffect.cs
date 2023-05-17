@@ -9,6 +9,7 @@ public class BloomEffect : MonoBehaviour
     private Color inicialColor;
     public float transitionDuration;
     public ParticleSystem particle;
+    public float waitTime;
 
 
 
@@ -33,7 +34,7 @@ public class BloomEffect : MonoBehaviour
             yield return ColorTransition(targetColor);
             particle.Stop();
             yield return ColorTransition(inicialColor);
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(waitTime);
 
         }
     }
