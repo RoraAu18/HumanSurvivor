@@ -19,6 +19,10 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
 
     public GameObject winLoseMenuParent;
     public TextMeshProUGUI winLoseText;
+    public Image firstStarPos;
+    public Image secondStarPos;
+    public Image thirdStarPos;
+    public Sprite startIcon;
     
     public void Awake()
     {
@@ -52,10 +56,6 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
         }
     }
 
-    public void TimerRecord(int newScore)
-    {
-      
-    }
 
     public void OnObjectsCollected(int indexObjectCollected)
     {      
@@ -64,7 +64,18 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
 
     public void WinLoseEvent(bool youWin)
     {
-        winLoseMenuParent.SetActive(true);
+        if (GameManager.OnlyInstance.allItemsCollected)
+        {
+            firstStarPos.sprite = startIcon;
+        }
+        if (GameManager.OnlyInstance.onTime)
+        {
+            secondStarPos.sprite = startIcon;
+        }
+        if (GameManager.OnlyInstance.wasntDetected)
+        {
+            thirdStarPos.sprite = startIcon;
+        }
         if (youWin)
         {
             winLoseText.text = "VICTORY";
@@ -74,6 +85,8 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
             winLoseText.text = "DEFEAT";
 
         }
+        winLoseMenuParent.SetActive(true);
+
     }
 
 }

@@ -21,6 +21,12 @@ public class GameManager : MonoBehaviour
 
     public int itemsToCollect;
     public int currItemsCollected;
+    public float maxTime;
+    private float time;
+    public bool wasntDetected=true;
+    public bool onTime = true;
+    public bool allItemsCollected = false;
+    
 
     public Transform currentDistraction;
     public GameStates gameStates;
@@ -51,6 +57,12 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
+    private void Update()
+    {
+        time += Time.deltaTime;
+        
+    }
+
     public void AddScore(int amount)
     {
         //currentScore += amount;
@@ -79,6 +91,7 @@ public class GameManager : MonoBehaviour
     {
         currEnemyState = stateEnemy;
         player.amAfraid = (stateEnemy == EnemyStates.CatchingPlayer);
+        wasntDetected = !(stateEnemy == EnemyStates.CatchingPlayer);
 
         for (int i = 0; i < gameEventUsers.Count; i++)
         {
@@ -96,15 +109,30 @@ public class GameManager : MonoBehaviour
         }
         if (currItemsCollected==itemsToCollect)
         {
+            allItemsCollected = true;
             OnWinLoseState(true);
         }
     }
 
     public void OnWinLoseState(bool youWin)
     {
+        onTime = CheckTime();
         for (int i = 0; i < gameEventUsers.Count; i++)
         {
             winLoseStateUser[i].WinLoseEvent(youWin);
+        }
+    }
+
+    public bool CheckTime()
+    {
+        Debug.Log(time + " " + maxTime);
+        if (time < maxTime)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
