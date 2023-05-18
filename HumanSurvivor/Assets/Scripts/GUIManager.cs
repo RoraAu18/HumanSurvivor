@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 using TMPro;
 
-public class GUIManager : MonoBehaviour, IGameEventsUser
+public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
 {
     public TextMeshProUGUI scoreTxt;
     public TextMeshProUGUI deathsTxt;
@@ -17,16 +16,18 @@ public class GUIManager : MonoBehaviour, IGameEventsUser
     public Sprite fearPlayerSprite;
     public Sprite stealthPlayerSprite;
     public Sprite distractPlayerSprite;
-    
 
+    public GameObject winLoseMenuParent;
+    public TextMeshProUGUI winLoseText;
+    
     public void Awake()
     {
-        //We must subscribe this class to the gameeventusers list
-        GameManager.OnlyInstance.gameEventUsers.Add(this);
+       GameManager.OnlyInstance.gameEventUsers.Add(this);
+       GameManager.OnlyInstance.winLoseStateUser.Add(this);
     }
     void Start()
     {
-  
+        winLoseMenuParent.SetActive(false);
     }
     public void OnMoodChanged(PlayerStates newState)
     {
@@ -59,12 +60,20 @@ public class GUIManager : MonoBehaviour, IGameEventsUser
     public void OnObjectsCollected(int indexObjectCollected)
     {      
           objectsToCollect[indexObjectCollected].sprite = iconsObjectsCollected[indexObjectCollected];
-
-
     }
 
-    private void ChangeMyIcon()
+    public void WinLoseEvent(bool youWin)
     {
+        winLoseMenuParent.SetActive(true);
+        if (youWin)
+        {
+            winLoseText.text = "VICTORY";
+        }
+        else
+        {
+            winLoseText.text = "DEFEAT";
 
+        }
     }
+
 }
