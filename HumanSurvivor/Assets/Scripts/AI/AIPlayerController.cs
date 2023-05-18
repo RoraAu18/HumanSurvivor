@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class AIPlayerController : MonoBehaviour, iLifeController 
+public class AIPlayerController : MonoBehaviour 
 {
     public bool onStealhMode;
+    public bool amAfraid;
+    
    
     public ThirdPersonMovement movement;
     public StealthMode stealthMode;
@@ -92,16 +94,7 @@ public class AIPlayerController : MonoBehaviour, iLifeController
         onStealhMode = configOnPlayerSatate[(int)newState].onStealthMode;
         playerState = newState;
         OnStatePlayerChange?.Invoke(newState);
-    }
-
-    public void OnDamage()
-    {
-        
-    }
-
-    public void OnDeath()
-    {
-        GameManager.OnlyInstance.AddDeaths(1);
+        GameManager.OnlyInstance.PlayerChangeMood(newState);
     }
 
 }
@@ -119,6 +112,6 @@ public enum PlayerStates
 public class ConfigurationsPerPlayerState
 {
     public float speed;
-    public bool onStealthMode;
+    public bool onStealthMode;    
 }
 

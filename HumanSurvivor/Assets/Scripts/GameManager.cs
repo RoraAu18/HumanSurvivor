@@ -6,8 +6,8 @@ public interface IGameEventsUser
     //This will help control and check on the general changes and modify them from here
     //There are several programming <frameworks/Stablished methods> in which we can notify the Game Manager,the observation, getting the Minager to check on the processes, the benefit of that one is that we only have to modify this code if necessary. we cna also get the functions and methods to noticy the manager. The most optimal way was to create an interface as below.
     public void TimerRecord(int newScore);
-    public void OnMoodChanged(int newScore);
-    public void OnObjectsCollected(int newScore);
+    public void OnMoodChanged(PlayerStates statePlayer);
+    public void OnObjectsCollected(int indexObjectCollected);
 
 }
 public class GameManager : MonoBehaviour
@@ -21,23 +21,20 @@ public class GameManager : MonoBehaviour
     public int currentCoin;
     public Transform currentDistraction;
     public GameStates gameStates;
+    private PlayerStates currPlayerState;
+    private EnemyStates currEnemyState;
+    private iconPlayerStates iconPlayerStates;
+
     public List<IGameEventsUser> gameEventUsers = new List<IGameEventsUser>();
    
     public static GameManager OnlyInstance
-    {
-        //like get set, but we just want to get, we do not want the instance to be able to set anything anywhere else
+    {        
         get
         {
             return instance; 
         }
     }
 
-    public void OnDistractMode(Transform posForDistract)
-    {
-        enemy.gotDistraction = true;
-        currentDistraction = posForDistract;
-    }
-    //Awakes is set even before the first frame is played, we normally set references and instances here
     private void Awake()
     {
         if(instance != this)
@@ -59,23 +56,56 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void AddDeaths(int amount)
+    public void OnDistractMode(Transform posForDistract)
     {
-        currentDeaths += amount;
+        enemy.gotDistraction = true;
+        currentDistraction = posForDistract;
+    }
+
+    public void PlayerChangeMood(PlayerStates statePlayer)
+    {
+        currPlayerState = statePlayer;
+
         for (int i = 0; i < gameEventUsers.Count; i++)
         {
-            gameEventUsers[i].OnMoodChanged(currentDeaths);
+            gameEventUsers[i].OnMoodChanged(statePlayer);
+        }
+    }
+    public void EnemyChangeMood(EnemyStates stateEnemy)
+    {
+        currEnemyState = stateEnemy;
+        player.amAfraid = (stateEnemy == EnemyStates.CatchingPlayer);
+
+        for (int i = 0; i < gameEventUsers.Count; i++)
+        {
+           // gameEventUsers[i].OnMoodChanged(statePlayer);
         }
     }
 
-    public void AddCoins(int amount)
+    public void GlobalState()
     {
-        currentCoin += amount;
-        for (int i = 0; i < gameEventUsers.Count; i++)
+        if (currEnemyState==EnemyStates.CatchingPlayer)
         {
-            gameEventUsers[i].OnObjectsCollected(currentCoin);
+
         }
     }
+
+
+    public void AddItemCollected(int indexObjectCollected)
+    {        
+        for (int i = 0; i < gameEventUsers.Count; i++)
+        {
+            gameEventUsers[i].OnObjectsCollected(indexObjectCollected);
+        }
+    }
+}
+public enum iconPlayerStates
+{
+    Happy,
+    Sad,
+    Stealth,
+    Distract,
+    Death
 }
 public enum GameStates
 {
