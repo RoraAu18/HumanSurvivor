@@ -6,29 +6,58 @@ using UnityEngine;
 public class SMNodeSelect : SMNode
 {
     public SMNode[] nodes;
-
+    public int currNodeIdx;
     public override void Init(SMContext context)
     {
         base.Init(context);
+        currNodeIdx = 0;
         for (int i = 0; i < nodes.Length; i++)
         {
-            Init(context);
+            nodes[i].Init(context);
         }
     }
 
     public override SMNodeStates Run(SMContext context)
     {
-        for (int i = 0; i < nodes.Length; i++)
-        {
-            if (nodes[i].Run(context) == SMNodeStates.Succeed)
-            {
-                state= SMNodeStates.Succeed;
-                return state;
-            }
-        }
+
+        RunCurrentNode(ref currNodeIdx, context);
         state = SMNodeStates.Failed;
         return state;
 
-
     }
+
+    SMNodeStates RunCurrentNode(ref int nodeToRun, SMContext context)
+    {
+        //Debug.Log("Running Node idx " + nodeToRun, this);
+        var nodeState = nodes[nodeToRun].Run(context);
+        if(nodeState == SMNodeStates.Succeed)
+        {
+            nodeToRun = 0;
+            return state = SMNodeStates.Succeed;
+        }
+        else if(nodeState == SMNodeStates.Running)
+        {
+            state = SMNodeStates.Running;
+            return state;
+        }
+        else if(nodeState == SMNodeStates.Failed)
+        {
+            nodeToRun++;
+            if(nodeToRun >= nodes.Length)
+            {
+                nodeToRun = 0;
+                return state = SMNodeStates.Failed;
+            }
+            else
+            {
+                return RunCurrentNode(ref nodeToRun, context);
+            }
+        }
+        else
+        {
+            return state = SMNodeStates.Off;
+
+        }
+    }
+
 }

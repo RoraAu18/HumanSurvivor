@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 754fc108d1356a847bcad0085cd5cc92, type: 3}
-  m_Name: Confused
+  m_Script: {fileID: 11500000, guid: 203ebb4ffc92a554f9d4a972a23984b6, type: 3}
+  m_Name: GoToEntrance
   m_EditorClassIdentifier: 
-  state: 2
-  targetDetectionRange: {fileID: 11400000, guid: dc15ffb55b5090e42a79f970bbfc4df2, type: 2}
-  timeSpan: 3
+  state: 0

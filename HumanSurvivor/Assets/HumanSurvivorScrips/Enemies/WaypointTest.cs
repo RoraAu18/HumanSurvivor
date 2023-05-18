@@ -22,16 +22,18 @@ public class WaypointTest<WaypointUser> where WaypointUser : Component
     [SerializeField]
     float targetTime;
     float timer;
+    Vector3 currentVelocity;
     WaypointUser owner;
     [SerializeField]
     public List<IWaypointUser> waypointUsers = new List<IWaypointUser>();
     bool goBack = false;
-    public void Init(WaypointUser _owner, Transform[] ownerWaypoints)
+    public void Init(WaypointUser _owner, Transform[] ownerWaypoints, Transform currentEntrance)
     {
         owner = _owner;
         Debug.Log(owner + " " + waypoints.Length);
         waypoints = ownerWaypoints;
         waypoints[0].position = owner.transform.position;
+        waypoints[1].position = currentEntrance.GetComponentInChildren<HouseRoom>().transform.position;
         waypointPosIndex = 0;
         currentWaypoint = waypoints[waypointPosIndex];
         owner.transform.position = currentWaypoint.position;
@@ -54,37 +56,25 @@ public class WaypointTest<WaypointUser> where WaypointUser : Component
         Debug.Log(currentWaypoint);
         owner.transform.LookAt(currentWaypoint.transform);
         Vector3 dir = currentWaypoint.position - owner.transform.position;
-        owner.transform.position += dir * moveSpeed * Time.deltaTime;
+        //owner.transform.position += dir * moveSpeed * Time.deltaTime;
+
+        var smoothVec = Vector3.SmoothDamp(owner.transform.position, currentWaypoint.transform.position, ref currentVelocity, 0.8f);
+        owner.transform.position = Vector3.Lerp(smoothVec, currentWaypoint.transform.position, moveSpeed);
         Quaternion lookTo = Quaternion.LookRotation(currentWaypoint.position);
         Quaternion.Slerp(owner.transform.rotation, lookTo, rotSpeed * Time.deltaTime);
-        if(dir.magnitude < 1f)
+        if(Vector3.Distance(currentWaypoint.position, owner.transform.position) < 1f)
         {
-            /*
-            if (waypointUsers.Count <= 0)
-            {
-                GetNextWayPoint(targetTime, 0);
-            }
-            else
-            {
-                for (int i = 0; i < waypointUsers.Count; i++)
-                {
-                    if (waypointUsers[i].ShouldChangeWaypoint())
-                    {
-                        GetNextWayPoint(waypointUsers[i].TimeToMove(), waypointUsers.IndexOf(waypointUsers[i]));
-                    }
-                }
-            }*/
             for (int i = 0; i < waypointUsers.Count; i++)
             {
                 if (waypointUsers[i].ShouldChangeWaypoint())
                 {
-                    GetNextWayPoint(waypointUsers[i].TimeToMove(), waypointUsers.IndexOf(waypointUsers[i]));
+                    GetNextWayPoint(waypointUsers.IndexOf(waypointUsers[i]));
                 }
             }
         }
     }
 
-    public void GetNextWayPoint(float time, int userIdx)
+    public int GetNextWayPoint(int userIdx)
     {
         if (waypointUsers[userIdx].ShouldStartOver())
         {
@@ -121,8 +111,8 @@ public class WaypointTest<WaypointUser> where WaypointUser : Component
                 goBack = false;
             }
         }
-
         currentWaypoint = waypoints[waypointPosIndex];
+        return waypointPosIndex;
     }
 
 }

@@ -6,15 +6,18 @@ public class WaypointUser : MonoBehaviour, IWaypointUser
 {
     public WaypointTest<WaypointUser> waypointTest;
     public Transform[] houserooms;
-    public Transform[] myWaypoints = new Transform[6];
+    public Transform[] myWaypoints;
+    [SerializeField]
+    Transform waypointSource;
+    
     public Transform currentHouseRoom;
+    public ColisionController colisionController;
     public bool systemActive;
     [SerializeField]
     bool shouldMove;
     [SerializeField]
     bool shouldStartOver;
-    [SerializeField]
-    float timer;
+    public int currentWP;
     public float timeToMove = 2;
     public bool ShouldChangeWaypoint()
     {
@@ -33,13 +36,16 @@ public class WaypointUser : MonoBehaviour, IWaypointUser
 
     public void Init()
     {
-        waypointTest.Init(this, myWaypoints);
+        waypointTest.Init(this, myWaypoints, currentHouseRoom);
         waypointTest.AddNewUser(this);
     }
     // Start is called before the first frame update
     void Start()
     {
         systemActive = false;
+        TryGetComponent(out colisionController);
+        myWaypoints = waypointSource.GetComponentsInChildren<Transform>();
+
     }
 
     // Update is called once per frame
@@ -48,53 +54,17 @@ public class WaypointUser : MonoBehaviour, IWaypointUser
         if (systemActive)
         {
             waypointTest.Move(this);
-            
-            timer += Time.deltaTime;
-            /*
-            if (timer >= timeToMove)
+        }
+
+        for (int i = 0; i < colisionController.currentFrameCollissions.Count; i++)
+        {
+            var currColl = colisionController.currentFrameCollissions[i];
+            if (currColl.GetComponentInChildren<HouseRoom>())
             {
-                waypointTest.GetNextWayPoint(timeToMove, 1);
-                timer = 0;
-            }*/
+                currentHouseRoom = currColl.GetComponentInChildren<HouseRoom>().transform;
+            }
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        var currentObjColl = collision.gameObject;
-        if (currentObjColl.CompareTag("OrangeRoom"))
-        {
-
-        }
-        else if (currentObjColl.CompareTag("RedRoom"))
-        {
-
-        }
-        else if (currentObjColl.CompareTag("GreenRoom"))
-        {
-
-        }
-        else if (currentObjColl.CompareTag("WhiteRoom"))
-        {
-
-        } }
-        /*
-        switch (currentObjColl)
-        {
-            case currentObjColl.gameObject.CompareTag("OrangeRoom"):
-                currentHouseRoom = collision.transform;
-                break;          
-            case collision.gameObject.CompareTag("RedRoom"):
-                currentHouseRoom = collision.transform;
-                break;          
-            case collision.gameObject.CompareTag("GreenRoom"):
-                currentHouseRoom = collision.transform;
-                break;          
-            case collision.gameObject.CompareTag("WhiteRoom"):
-                currentHouseRoom = collision.transform;
-
-                break;
-        }*/
-    
-    }
+}
 

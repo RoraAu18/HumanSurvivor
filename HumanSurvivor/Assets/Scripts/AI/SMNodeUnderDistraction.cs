@@ -19,8 +19,8 @@ public class SMNodeUnderDistraction : SMNode
         if (context.enemy.gotDistraction)
         {
             distractionTarget = context.distractionTarget;
-            context.waypointUser.systemActive = false;
             context.movingTarget = distractionTarget.transform;
+            Debug.Log("distraction target is " + distractionTarget);
             state = SMNodeStates.Succeed;
         }
         return state;
