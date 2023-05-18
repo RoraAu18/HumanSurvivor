@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 using TMPro;
 
 public class GUIManager : MonoBehaviour, IGameEventsUser
@@ -8,6 +10,14 @@ public class GUIManager : MonoBehaviour, IGameEventsUser
     public TextMeshProUGUI scoreTxt;
     public TextMeshProUGUI deathsTxt;
     public TextMeshProUGUI coinsTxt;
+    public List<Image> objectsToCollect;
+    public List<Sprite> iconsObjectsCollected;
+    public Image iconPlayer;
+    public Sprite happyPlayerSprite;
+    public Sprite fearPlayerSprite;
+    public Sprite stealthPlayerSprite;
+    public Sprite distractPlayerSprite;
+    
 
     public void Awake()
     {
@@ -16,23 +26,45 @@ public class GUIManager : MonoBehaviour, IGameEventsUser
     }
     void Start()
     {
-        scoreTxt.SetText("0");
-        deathsTxt.SetText("0");
-        coinsTxt.SetText("0");
+  
     }
-    public void OnMoodChanged(int newScore)
+    public void OnMoodChanged(PlayerStates newState)
     {
-        deathsTxt.SetText(newScore.ToString());
+        if (GameManager.OnlyInstance.player.amAfraid)
+        {
+            iconPlayer.sprite = fearPlayerSprite;
+        }
+        else
+        {
+            switch (newState)
+            {
+                case PlayerStates.distract:
+                    iconPlayer.sprite = distractPlayerSprite;
+                    break;
+                case PlayerStates.stealth:
+                    iconPlayer.sprite = stealthPlayerSprite;
+                    break;
+                default:
+                    iconPlayer.sprite = happyPlayerSprite;
+                    break;
+            }
+        }
     }
 
     public void TimerRecord(int newScore)
     {
-        scoreTxt.SetText(newScore.ToString());
+      
     }
 
-    public void OnObjectsCollected(int newScore)
+    public void OnObjectsCollected(int indexObjectCollected)
+    {      
+          objectsToCollect[indexObjectCollected].sprite = iconsObjectsCollected[indexObjectCollected];
+
+
+    }
+
+    private void ChangeMyIcon()
     {
-        coinsTxt.SetText(newScore.ToString());
-    }
 
+    }
 }

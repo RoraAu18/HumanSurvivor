@@ -7,6 +7,7 @@ public class EnemyAIContoller : MonoBehaviour
 {
     public SMNode mainNode;
     public bool gotDistraction;
+
     [SerializeField]
     SMContext context;
     [SerializeField]
@@ -36,6 +37,7 @@ public class EnemyAIContoller : MonoBehaviour
         if (enemyStates == newState) { Debug.Log("going through " + enemyStates); return; }
         enemyStates = newState;
         ActivateAnims(enemyStates);
+        GameManager.OnlyInstance.EnemyChangeMood(newState);
     }
 
     void ActivateAnims(EnemyStates newState)

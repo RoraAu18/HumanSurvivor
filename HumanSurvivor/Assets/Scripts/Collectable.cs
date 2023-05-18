@@ -6,21 +6,22 @@ public class Collectable : MonoBehaviour
 {
     public ColisionController colisionController;
     public Collider myCollider;
+    public GameObject myIconImage;
+    public int myIndexObject;
     void Start()
     {
         TryGetComponent<ColisionController>(out colisionController);
         TryGetComponent<Collider>(out myCollider);
-        colisionController.collisionEnter += colletObject;
+        colisionController.collisionEnter += ColletObject;
     }
 
-    void colletObject(Collider collectableObj)
+    void ColletObject(Collider collectableObj)
     {
         if (collectableObj.TryGetComponent<AIPlayerController>(out _))
         {
             gameObject.SetActive(false);
-            GameManager.OnlyInstance.AddItemCollected(1);
+            GameManager.OnlyInstance.AddItemCollected(myIndexObject);
         }
     }
-
 
 }
