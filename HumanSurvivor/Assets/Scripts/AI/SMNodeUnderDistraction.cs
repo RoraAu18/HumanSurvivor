@@ -20,6 +20,7 @@ public class SMNodeUnderDistraction : SMNode
         {
             distractionTarget = context.distractionTarget;
             context.movingTarget = distractionTarget.transform;
+            Debug.Log("distraction target is " + distractionTarget);
             state = SMNodeStates.Succeed;
         }
         return state;

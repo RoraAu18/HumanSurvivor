@@ -191,6 +191,10 @@ PrefabInstance:
       value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 3034868524298199518, guid: ff8a75bfc0e4186489501532b9bcb10d, type: 3}
+      propertyPath: gotDistraction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3034868524298199518, guid: ff8a75bfc0e4186489501532b9bcb10d, type: 3}
       propertyPath: context.closestEntrance
       value: 
       objectReference: {fileID: 837408482}

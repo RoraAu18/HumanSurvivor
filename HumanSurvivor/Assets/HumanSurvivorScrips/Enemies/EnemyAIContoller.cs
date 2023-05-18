@@ -18,7 +18,7 @@ public class EnemyAIContoller : MonoBehaviour
     void Start()
     {
         TryGetComponent(out rb);
-        
+        mainNode.Init(context);
     }
 
     // Update is called once per frame
