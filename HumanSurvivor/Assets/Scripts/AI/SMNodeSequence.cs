@@ -6,32 +6,41 @@ using UnityEngine;
 public class SMNodeSequence : SMNode
 {
     public SMNode[] nodes;
-
+    int currentIdx;
     public override void Init(SMContext context)
     {
         base.Init(context);
+        currentIdx = 0;
         for (int i = 0; i < nodes.Length; i++)
         {
-            Init(context);
+            nodes[i].Init(context);
         }
     }
     public override SMNodeStates Run(SMContext context)
     {
-        //if (GameManager.OnlyInstance.gameStates == GameStates.GameOver) return state = SMNodeStates.Failed;
-        for (int i = 0; i < nodes.Length; i++)
-        {
-            //From the Run of the SMNode check if it failed 
-            if (nodes[i].Run(context) == SMNodeStates.Failed)
-            {
-                //Return the status of the sequence as failed
-                //Debug.Log(nodes[i] + " " + nodes[i].state);
-                state = SMNodeStates.Failed;
-                return state;
-            }
-        }
-        //If none of the Nodes fail, then it´ll managed to succeed
-        state = SMNodeStates.Succeed;
-        return state;
-    }
+        return RunCurrentNode(ref currentIdx, context);
 
+    }
+    SMNodeStates RunCurrentNode(ref int nodeToRun, SMContext context)
+    {
+        SMNodeStates nodeState = nodes[nodeToRun].Run(context);
+        switch (nodeState)
+        {
+            case SMNodeStates.Failed:
+                return state = SMNodeStates.Failed;
+            case SMNodeStates.Succeed:
+                nodeToRun++;
+                if (nodeToRun < nodes.Length)
+                {
+                    return RunCurrentNode(ref nodeToRun, context);
+                }
+                nodeToRun = 0;
+                return SMNodeStates.Succeed;
+            case SMNodeStates.Running:
+                return SMNodeStates.Running;
+            default:
+                return SMNodeStates.Off;
+
+        }
+    }
 }

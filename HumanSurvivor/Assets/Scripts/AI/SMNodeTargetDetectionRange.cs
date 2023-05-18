@@ -32,7 +32,7 @@ public class SMNodeTargetDetectionRange : SMNode
             var currentCollis = currentCollisions[i];
             if (currentCollis.TryGetComponent(out player))
             {
-                context.waypointUser.systemActive = false;
+                //context.waypointUser.systemActive = false;
                 break;
             }
         }

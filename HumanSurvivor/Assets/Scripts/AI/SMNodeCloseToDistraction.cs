@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class SMNodeCloseToDistraction : SMNode
 {
-    Dictionary<int, GameObject> sksk = new Dictionary<int, GameObject>();
     public override void Init(SMContext context)
     {
         base.Init(context);
@@ -13,12 +12,9 @@ public class SMNodeCloseToDistraction : SMNode
     public override SMNodeStates Run(SMContext context)
     {
         state = SMNodeStates.Failed;
-        var deltaPosition = context.agentToMove.transform.position - context.movingTarget.transform.position;
+        var deltaPosition = context.agentToMove.transform.position - context.distractionTarget.transform.position;
         if(deltaPosition.magnitude <= context.lungeTargetDetection)
-        //if (deltaPosition.magnitude <= context.lungeTargetDetection && context.movingTarget.transform == context.distractionTarget.transform)
         {
-            Debug.Log("close to distraction");
-
             context.gotToDistraction = true;
             context.enemy.gotDistraction = false;
             context.encounteredPlayer = false;
