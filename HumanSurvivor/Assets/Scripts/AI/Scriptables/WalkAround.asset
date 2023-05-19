@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a1900230811514e894209fa9465d1e, type: 3}
   m_Name: WalkAround
   m_EditorClassIdentifier: 
-  state: 2
+  state: 0
+  targetDetectionRange: {fileID: 11400000, guid: dc15ffb55b5090e42a79f970bbfc4df2, type: 2}
   walkFor: 20

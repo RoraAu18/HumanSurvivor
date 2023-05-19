@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41c5b5da6e1b3304e8152302504190ad, type: 3}
   m_Name: WorriedWalk
   m_EditorClassIdentifier: 
-  state: 0
+  state: 2
+  targetDetectionRange: {fileID: 11400000, guid: dc15ffb55b5090e42a79f970bbfc4df2, type: 2}

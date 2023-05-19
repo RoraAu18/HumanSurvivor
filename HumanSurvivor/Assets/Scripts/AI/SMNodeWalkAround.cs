@@ -6,6 +6,8 @@ using UnityEngine;
 public class SMNodeWalkAround : SMNode
 {
     [SerializeField]
+    SMNodeTargetDetectionRange targetDetectionRange;
+    [SerializeField]
     float walkFor;
     float timer;
     public override void Init(SMContext context)
@@ -16,6 +18,8 @@ public class SMNodeWalkAround : SMNode
     public override SMNodeStates Run(SMContext context)
     {
         context.movingTarget = null;
+        var detectionNode = targetDetectionRange.Run(context);
+        if (detectionNode == SMNodeStates.Succeed) return state = SMNodeStates.Failed;
         if (!context.enemy.TryGetComponent(out WaypointStm waypointStm))
         {
             state = SMNodeStates.Failed;
@@ -23,11 +27,12 @@ public class SMNodeWalkAround : SMNode
         }
         if(timer == 0) context.enemy.SetState(EnemyStates.Walking);
         timer += Time.deltaTime;
+        context.agentToMove.speed = 3f;
         context.agentToMove.SetDestination(context.waypointSystem.currentWaypoint.position);
-        //context.agentToMove.velocity
         state = SMNodeStates.Running;
         if(timer >= walkFor)
         {
+            context.enemyAnimsStateInfo.isConfused = false;
             state = SMNodeStates.Succeed;
         }
         return state;

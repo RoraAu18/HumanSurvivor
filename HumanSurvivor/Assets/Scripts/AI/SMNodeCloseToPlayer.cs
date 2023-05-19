@@ -7,7 +7,8 @@ using UnityEngine;
 public class SMNodeCloseToPlayer : SMNode
 {
     public AIPlayerController player;
-
+    [SerializeField]
+    SMNodeWorriedWalk worriedWalk;
     public override void Init(SMContext context)
     {
         base.Init(context);
@@ -16,11 +17,11 @@ public class SMNodeCloseToPlayer : SMNode
     {
         state = SMNodeStates.Failed;
         var deltaPosition = context.agentToMove.transform.position - context.movingTarget.transform.position;
-        if (deltaPosition.magnitude <= 2 && context.movingTarget.TryGetComponent(out player))
+        deltaPosition.y = 0;
+        if (deltaPosition.magnitude <= 0.5f && context.movingTarget.TryGetComponent(out player))
         {
             Debug.Log("close to player");
             context.encounteredPlayer = true;
-            context.enteringWayPoint = false;
             state = SMNodeStates.Succeed;
             return state;
         }

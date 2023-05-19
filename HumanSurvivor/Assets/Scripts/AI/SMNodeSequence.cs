@@ -23,10 +23,12 @@ public class SMNodeSequence : SMNode
     }
     SMNodeStates RunCurrentNode(ref int nodeToRun, SMContext context)
     {
+
         SMNodeStates nodeState = nodes[nodeToRun].Run(context);
         switch (nodeState)
         {
             case SMNodeStates.Failed:
+                nodeToRun = 0;
                 return state = SMNodeStates.Failed;
             case SMNodeStates.Succeed:
                 nodeToRun++;

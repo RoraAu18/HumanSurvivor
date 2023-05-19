@@ -6,6 +6,8 @@ using UnityEngine;
 public class SMNodeRunAround : SMNode
 {
     [SerializeField]
+    SMNodeTargetDetectionRange targetDetectionRange;
+    [SerializeField]
     float runFor;
     float timer;
     public override void Init(SMContext context)
@@ -15,7 +17,8 @@ public class SMNodeRunAround : SMNode
 
     public override SMNodeStates Run(SMContext context)
     {
-        context.movingTarget = null;
+        var detectionNode = targetDetectionRange.Run(context);
+        if (detectionNode == SMNodeStates.Succeed) return state = SMNodeStates.Failed;
         if (!context.encounteredPlayer)
         {
             state = SMNodeStates.Failed;
@@ -23,8 +26,8 @@ public class SMNodeRunAround : SMNode
         }
         if (timer == 0) context.enemy.SetState(EnemyStates.Running);
         timer += Time.deltaTime;
+        context.agentToMove.speed = 10f;
         context.agentToMove.SetDestination(context.waypointSystem.currentWaypoint.position);
-        //context.agentToMove.velocity
         state = SMNodeStates.Running;
         if (timer >= runFor)
         {

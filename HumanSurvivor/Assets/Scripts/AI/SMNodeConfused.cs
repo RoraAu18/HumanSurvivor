@@ -19,12 +19,13 @@ public class SMNodeConfused : SMNode
     }
     public override SMNodeStates Run(SMContext context)
     {
-        //   state = SMNodeStates.Failed;
+        context.enemyAnimsStateInfo.isConfused = false;
         var detectionNode = targetDetectionRange.Run(context);
         if (detectionNode == SMNodeStates.Succeed) return state = SMNodeStates.Failed;
         if (timer == 0)
         {
             context.enemy.SetState(EnemyStates.Confused);
+            context.enemyAnimsStateInfo.isConfused = true;
         }
         state = SMNodeStates.Running;
         timer += Time.deltaTime;
@@ -32,8 +33,6 @@ public class SMNodeConfused : SMNode
         {
             state = SMNodeStates.Succeed;
         }
-        context.enteringWayPoint = false;
-        //context.movingTarget = null;
         
         Debug.Log("Confused and should go back to idle");
         return state;

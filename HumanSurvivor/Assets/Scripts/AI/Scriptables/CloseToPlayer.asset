@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CloseToPlayer
   m_EditorClassIdentifier: 
   state: 0
-  lungeDetectionRadius: 1
   player: {fileID: 0}
+  worriedWalk: {fileID: 11400000, guid: ec2ddbea7b2b624468a153c9bf024c4f, type: 2}

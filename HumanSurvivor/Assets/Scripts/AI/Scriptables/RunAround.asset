@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: RunAround
   m_EditorClassIdentifier: 
   state: 0
-  runSpeed: 0
+  targetDetectionRange: {fileID: 11400000, guid: dc15ffb55b5090e42a79f970bbfc4df2, type: 2}
+  runFor: 0

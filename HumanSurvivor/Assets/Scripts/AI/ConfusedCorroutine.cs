@@ -9,7 +9,6 @@ public class ConfusedCorroutine : MonoBehaviour
     }
     public IEnumerator ConfusedSeq(SMContext context, SMNodeStates states)
     {
-        context.enemy.SetState(EnemyStates.Confused);
         yield return new WaitForSeconds(10);
         states = SMNodeStates.Succeed;
     }

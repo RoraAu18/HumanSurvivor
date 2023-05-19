@@ -17,7 +17,6 @@ public class SMNodeCloseToDistraction : SMNode
         {
             context.gotToDistraction = true;
             context.enemy.gotDistraction = false;
-            context.encounteredPlayer = false;
             state = SMNodeStates.Succeed;
             return state;
         }

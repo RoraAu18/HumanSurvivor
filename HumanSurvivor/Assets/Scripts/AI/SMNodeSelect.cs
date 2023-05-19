@@ -28,7 +28,6 @@ public class SMNodeSelect : SMNode
 
     SMNodeStates RunCurrentNode(ref int nodeToRun, SMContext context)
     {
-        //Debug.Log("Running Node idx " + nodeToRun, this);
         var nodeState = nodes[nodeToRun].Run(context);
         if(nodeState == SMNodeStates.Succeed)
         {

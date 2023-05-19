@@ -13,25 +13,15 @@ public class SMNodeWorriedWalk : SMNode
         if (context.movingTarget == null)
         {
             state = SMNodeStates.Failed;
-            context.agentToMove.isStopped = true;
             return state;
         }
-
         var targetPostNormalized = context.movingTarget.position;
         targetPostNormalized.y = context.agentToMove.transform.position.y;
         context.agentToMove.transform.LookAt(targetPostNormalized);
-        Debug.Log("walking");
         context.agentToMove.SetDestination(context.movingTarget.transform.position);
-        if (!context.encounteredPlayer)
-        {
-            context.enemy.SetState(EnemyStates.Running);
-            context.gotToDistraction = false;
-        }
-        var dis = context.agentToMove.transform.position - context.movingTarget.transform.position;
-        if (dis.magnitude > context.lungeTargetDetection)
-        {
-            state = SMNodeStates.Succeed;
-        }
+        context.enemy.SetState(EnemyStates.Running);
+        context.agentToMove.speed = 5;
+        state = SMNodeStates.Succeed;
         return state;
     }
 }

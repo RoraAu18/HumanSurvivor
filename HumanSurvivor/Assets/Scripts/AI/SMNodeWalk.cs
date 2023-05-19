@@ -18,6 +18,8 @@ public class SMNodeWalk : SMNode
         targetPostNormalized.y = context.agentToMove.transform.position.y;
         context.agentToMove.transform.LookAt(targetPostNormalized);
         Debug.Log("walking");
+        context.agentToMove.speed = 3f;
+
         context.agentToMove.SetDestination(context.movingTarget.transform.position);
         if (!context.gotToDistraction)
         {

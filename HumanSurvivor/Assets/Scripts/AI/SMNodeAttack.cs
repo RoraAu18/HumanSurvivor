@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Attack", menuName = "StateMachine/Nodes/Attack")]
 public class SMNodeAttack: SMNode
 {
-    AIEnemyController player;
     public override void Init(SMContext context)
     {
         base.Init(context);
@@ -13,11 +12,13 @@ public class SMNodeAttack: SMNode
 
     public override SMNodeStates Run(SMContext context)
     {
+        context.enemyAnimsStateInfo.isAttacking = false;
         state = SMNodeStates.Failed;
         var deltaPosition = context.agentToMove.transform.position - context.movingTarget.transform.position;
-        if (deltaPosition.magnitude <= context.lungeTargetDetection && context.movingTarget.TryGetComponent(out player))
+        if (deltaPosition.magnitude <= context.lungeTargetDetection)
         {
             context.enemy.SetState(EnemyStates.CatchingPlayer);
+            context.enemyAnimsStateInfo.isAttacking = true;
             Debug.Log("game over bitches");
             state = SMNodeStates.Succeed;
             return state;
