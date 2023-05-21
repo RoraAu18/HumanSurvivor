@@ -5,18 +5,23 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "TargetDetection", menuName = "StateMachine/Nodes/TargetDetection")]
 public class SMNodeTargetDetectionRange : SMNode
 {
-    public AIPlayerController player;
-    public float limitAngle = 45;
-    public LayerMask maskLayer;
-    public RaycastHit[] hits = new RaycastHit[5];
-    public float innerDetectionRadius = 7;
-    public float sneakerDetectionRadius = 0.5f;
-    public float OuterDetectionRadius = 0;
+    AIPlayerController player;
+    [SerializeField]
+    float limitAngle = 45;
+    [SerializeField]
+    LayerMask maskLayer;
+    [SerializeField]
+    RaycastHit[] hits = new RaycastHit[5];
+    [SerializeField]
+    float innerDetectionRadius = 7;
+    [SerializeField]
+    float sneakerDetectionRadius = 0.5f;
+
+
 
     public override void Init(SMContext context)
     {
         base.Init(context);
-        //context.collisionControler.theCollider.radius = OuterDetectionRadius;
         innerDetectionRadius = 4;
         sneakerDetectionRadius = 2.5f;
     }
@@ -24,7 +29,7 @@ public class SMNodeTargetDetectionRange : SMNode
     {
         context.movingTarget = null;
         state = SMNodeStates.Failed;
-        
+
 
         var currentCollisions = context.collisionControler.currentFrameCollissions;
         for (int i = 0; i < currentCollisions.Count; i++)
@@ -32,7 +37,6 @@ public class SMNodeTargetDetectionRange : SMNode
             var currentCollis = currentCollisions[i];
             if (currentCollis.TryGetComponent(out player))
             {
-                //context.waypointUser.systemActive = false;
                 break;
             }
         }
@@ -52,13 +56,8 @@ public class SMNodeTargetDetectionRange : SMNode
         //avoid walls blinding when encountering walls
         var hitCount = Physics.RaycastNonAlloc(context.agentToMove.transform.position, dir, hits, dir.magnitude, maskLayer);
         if (hitCount > 0) return state;
-
         context.movingTarget = player.transform;
         state = SMNodeStates.Succeed;
         return state;
-
-
     }
-    
-
 }

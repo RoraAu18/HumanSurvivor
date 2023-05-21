@@ -51,6 +51,10 @@ public class EnemyAIContoller : MonoBehaviour
             ActivateAnims(EnemyStates.CatchingPlayer);
             return;
         }
+        if (context.enemyAnimsStateInfo.isSurprised)
+        {
+            ActivateAnims(EnemyStates.Surprised);
+        }
         if (aiAgent.velocity.magnitude > 0.2f)
         {
             if(aiAgent.speed > 4f)
@@ -79,6 +83,7 @@ public class EnemyAnimsStateInfo
 {
     public bool isConfused;
     public bool isAttacking;
+    public bool isSurprised;
 
 }
 public enum EnemyStates

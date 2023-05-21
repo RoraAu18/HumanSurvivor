@@ -9,14 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af5670780c8b942478b34b1150e81f07, type: 3}
-  m_Name: PlayerDetection
+  m_Script: {fileID: 11500000, guid: cd9dfcb55ad514548bf4edd2490a48dc, type: 3}
+  m_Name: Surprised
   m_EditorClassIdentifier: 
-  state: 2
-  limitAngle: 90
-  maskLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  innerDetectionRadius: 4
-  sneakerDetectionRadius: 2.5
-  surprisedDelayTime: 1
+  state: 0
+  surprisedTimerDelay: 1
