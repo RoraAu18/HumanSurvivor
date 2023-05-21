@@ -40,6 +40,7 @@ public class AIPlayerController : MonoBehaviour
     }
     void Update()
     {
+        if (GameManager.OnlyInstance.gameStates == GameStates.GameOver) return;
         RefreshState();
     }
 

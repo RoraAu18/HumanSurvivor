@@ -27,6 +27,7 @@ public class EnemyAIContoller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.OnlyInstance.gameStates == GameStates.GameOver) return;
         mainNode.Run(context);
         RefreshAnimState();
         //context.distractionTarget = GameManager.OnlyInstance.currentDistraction;

@@ -24,6 +24,8 @@ public class Jump : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.OnlyInstance.gameStates == GameStates.GameOver) return;
+
         var direction = transform.up;
         var offset = playerCC.height / 2 - playerCC.radius;
         var localPoint0 = playerCC.transform.position - direction * offset;

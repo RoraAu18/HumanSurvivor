@@ -183,17 +183,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3034868524298199518, guid: ff8a75bfc0e4186489501532b9bcb10d, type: 3}
-      propertyPath: context.closestEntrance
-      value: 
-      objectReference: {fileID: 837408482}
-    - target: {fileID: 3034868524298199518, guid: ff8a75bfc0e4186489501532b9bcb10d, type: 3}
       propertyPath: context.distractionTarget
       value: 
       objectReference: {fileID: 837408482}
-    - target: {fileID: 3034868524298199518, guid: ff8a75bfc0e4186489501532b9bcb10d, type: 3}
-      propertyPath: context.lungeTargetDetection
-      value: 0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff8a75bfc0e4186489501532b9bcb10d, type: 3}
 --- !u!1 &87614345
@@ -258,11 +250,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 713534882}
   player: {fileID: 1406583546}
-  currentScore: 0
-  currentDeaths: 0
-  currentCoin: 0
+  itemsToCollect: 0
+  currItemsCollected: 0
+  maxTime: 0
+  wasntDetected: 1
+  onTime: 1
+  allItemsCollected: 0
   currentDistraction: {fileID: 0}
   gameStates: 0
+  iconPlayerStates: 0
 --- !u!4 &93672873
 Transform:
   m_ObjectHideFlags: 0

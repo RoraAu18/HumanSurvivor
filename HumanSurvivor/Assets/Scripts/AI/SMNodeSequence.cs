@@ -23,7 +23,7 @@ public class SMNodeSequence : SMNode
     }
     SMNodeStates RunCurrentNode(ref int nodeToRun, SMContext context)
     {
-
+        Debug.Log("running" + nodeToRun);
         SMNodeStates nodeState = nodes[nodeToRun].Run(context);
         switch (nodeState)
         {

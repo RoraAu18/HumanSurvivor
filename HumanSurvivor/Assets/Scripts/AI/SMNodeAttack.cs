@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Attack", menuName = "StateMachine/Nodes/Attack")]
 public class SMNodeAttack: SMNode
 {
+    float timer;
+    float timeOverSpan;
     public override void Init(SMContext context)
     {
         base.Init(context);
@@ -19,6 +21,7 @@ public class SMNodeAttack: SMNode
         {
             context.enemy.SetState(EnemyStates.CatchingPlayer);
             context.enemyAnimsStateInfo.isAttacking = true;
+            GameManager.OnlyInstance.gameStates = GameStates.GameOver;
             Debug.Log("game over bitches");
             state = SMNodeStates.Succeed;
             return state;

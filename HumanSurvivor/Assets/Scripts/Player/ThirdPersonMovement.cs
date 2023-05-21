@@ -19,6 +19,8 @@ public class ThirdPersonMovement : MonoBehaviour
 
     public void Update()
     {
+        if (GameManager.OnlyInstance.gameStates == GameStates.GameOver) return;
+
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
