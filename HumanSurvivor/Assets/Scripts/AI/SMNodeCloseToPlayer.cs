@@ -7,8 +7,6 @@ using UnityEngine;
 public class SMNodeCloseToPlayer : SMNode
 {
     public AIPlayerController player;
-    [SerializeField]
-    SMNodeWorriedWalk worriedWalk;
     public override void Init(SMContext context)
     {
         base.Init(context);

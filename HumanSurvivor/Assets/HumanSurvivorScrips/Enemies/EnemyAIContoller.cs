@@ -8,6 +8,8 @@ public class EnemyAIContoller : MonoBehaviour
 {
     public SMNode mainNode;
     public bool gotDistraction;
+    [HideInInspector]
+    public bool chasingPlayer;
     [SerializeField]
     NavMeshAgent aiAgent;
     [SerializeField]
@@ -44,6 +46,7 @@ public class EnemyAIContoller : MonoBehaviour
         if (context.enemyAnimsStateInfo.isConfused)
         {
             ActivateAnims(EnemyStates.Confused);
+            Debug.Log("entering anim conf");
             return;
         }
         if (context.enemyAnimsStateInfo.isAttacking)
