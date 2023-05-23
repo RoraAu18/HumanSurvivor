@@ -22,7 +22,7 @@ public class ColisionController : MonoBehaviour
     public List<Collider> currentFrameCollissions = new List<Collider>();
     public List<Collider> lastFrameCollissions = new List<Collider>();
     //Arraly to store
-    Collider[] collisions = new Collider[10];
+    Collider[] collisions = new Collider[30];
     public Collider theCollider;
    
     public bool foundOnCurrentCollision = false;

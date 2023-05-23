@@ -4,7 +4,7 @@ using UnityEngine;
 public interface IGameEventsUser
 {   
     public void OnMoodChanged(PlayerStates statePlayer);
-    public void OnObjectsCollected(int indexObjectCollected); 
+    public void OnObjectsCollected(ObjectsType typeObjectCollected); 
 }
 
 public interface IWinLoseStateUser
@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 {
     public EnemyAIContoller enemy;
     public AIPlayerController player;
+    public SoundManager soundManager;
        
     private static GameManager instance;
 
@@ -100,18 +101,20 @@ public class GameManager : MonoBehaviour
     }     
 
 
-    public void AddItemCollected(int indexObjectCollected)
+    public void AddItemCollected(ObjectsType objectType)
     {
         currItemsCollected += 1;
         for (int i = 0; i < gameEventUsers.Count; i++)
         {
-            gameEventUsers[i].OnObjectsCollected(indexObjectCollected);
+            gameEventUsers[i].OnObjectsCollected(objectType);
         }
         if (currItemsCollected==itemsToCollect)
         {
             allItemsCollected = true;
             OnWinLoseState(true);
         }
+        soundManager.playSoundAddCollectable();
+
     }
 
     public void OnWinLoseState(bool youWin)

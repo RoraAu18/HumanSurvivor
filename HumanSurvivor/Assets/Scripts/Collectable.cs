@@ -5,9 +5,9 @@ using UnityEngine;
 public class Collectable : MonoBehaviour
 {
     public ColisionController colisionController;
-    public Collider myCollider;
-    public GameObject myIconImage;
-    public int myIndexObject;
+    private Collider myCollider;
+    public ObjectsType myObjectype;
+
     void Start()
     {
         TryGetComponent<ColisionController>(out colisionController);
@@ -20,7 +20,7 @@ public class Collectable : MonoBehaviour
         if (collectableObj.TryGetComponent<AIPlayerController>(out _))
         {
             gameObject.SetActive(false);
-            GameManager.OnlyInstance.AddItemCollected(myIndexObject);
+            GameManager.OnlyInstance.AddItemCollected(myObjectype);
         }
     }
 

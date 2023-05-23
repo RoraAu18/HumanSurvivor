@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
+using System;
 
 public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
 {
-    public TextMeshProUGUI scoreTxt;
-    public TextMeshProUGUI deathsTxt;
-    public TextMeshProUGUI coinsTxt;
-    public List<Image> objectsToCollect;
-    public List<Sprite> iconsObjectsCollected;
+    public GameObject gamePlayUI;
+    public ObjectsToCollectDataList objectsToCollectDataList;
+
+    [SerializeField] Button reset;
+    [SerializeField] Button backMenu;
+    public List<ObjectImagePerType> objectsToCollect;
+   
     public Image iconPlayer;
     public Sprite happyPlayerSprite;
     public Sprite fearPlayerSprite;
@@ -18,6 +22,9 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
     public Sprite distractPlayerSprite;
 
     public GameObject winLoseMenuParent;
+    public Image winLoseImage;
+    public Sprite winSprite;
+    public Sprite loseSprite;
     public TextMeshProUGUI winLoseText;
     public Image firstStarPos;
     public Image secondStarPos;
@@ -32,7 +39,21 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
     void Start()
     {
         winLoseMenuParent.SetActive(false);
+        reset.onClick.AddListener(ResetGame);
+        backMenu.onClick.AddListener(BackGame);
     }
+
+    private void ResetGame()
+    {
+
+        SceneManager.LoadScene("LevelTest_2");
+    }
+
+    private void BackGame()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
     public void OnMoodChanged(PlayerStates newState)
     {
         if (GameManager.OnlyInstance.player.amAfraid)
@@ -57,36 +78,57 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
     }
 
 
-    public void OnObjectsCollected(int indexObjectCollected)
-    {      
-          objectsToCollect[indexObjectCollected].sprite = iconsObjectsCollected[indexObjectCollected];
+    public void OnObjectsCollected(ObjectsType typeObjectCollected)
+    {
+        for (int i = 0; i < objectsToCollect.Count; i++)
+        {
+            if (objectsToCollect[i].myType == typeObjectCollected)
+            {
+                objectsToCollect[i].myImage.sprite = objectsToCollectDataList.GetObjectDataByType(typeObjectCollected).myImage;
+                return;
+            }
+        }
+
+        
     }
+
+    
 
     public void WinLoseEvent(bool youWin)
     {
+        gamePlayUI.SetActive(false);
         if (GameManager.OnlyInstance.allItemsCollected)
         {
-            firstStarPos.sprite = startIcon;
+            firstStarPos.color = Color.white;
         }
         if (GameManager.OnlyInstance.onTime)
         {
-            secondStarPos.sprite = startIcon;
+            secondStarPos.color = Color.white;
         }
         if (GameManager.OnlyInstance.wasntDetected)
         {
-            thirdStarPos.sprite = startIcon;
+            thirdStarPos.color = Color.white;
         }
         if (youWin)
         {
-            winLoseText.text = "VICTORY";
+            winLoseImage.sprite=winSprite;
         }
         else
         {
-            winLoseText.text = "DEFEAT";
+            winLoseImage.sprite = loseSprite;
 
         }
         winLoseMenuParent.SetActive(true);
 
     }
 
+    [Serializable]
+    public class ObjectImagePerType
+    {
+        public Image myImage;
+        public ObjectsType myType;
+    }
+
 }
+
+
