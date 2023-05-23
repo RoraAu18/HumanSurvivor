@@ -14,7 +14,6 @@ public class SMNodeFoundPlayerandMiss : SMNode
         state = SMNodeStates.Failed;
         if (context.encounteredPlayer && context.movingTarget == null)
         {
-            Debug.Log("missed player");
             state = SMNodeStates.Succeed;
         }
         return state;

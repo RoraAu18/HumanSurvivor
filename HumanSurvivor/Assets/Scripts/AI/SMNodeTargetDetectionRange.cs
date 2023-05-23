@@ -27,8 +27,6 @@ public class SMNodeTargetDetectionRange : SMNode
     }
     public override SMNodeStates Run(SMContext context)
     {
-        context.enemy.chasingPlayer = false;
-
         context.movingTarget = null;
         state = SMNodeStates.Failed;
 
@@ -58,10 +56,7 @@ public class SMNodeTargetDetectionRange : SMNode
         //avoid walls blinding when encountering walls
         var hitCount = Physics.RaycastNonAlloc(context.agentToMove.transform.position, dir, hits, dir.magnitude, maskLayer);
         if (hitCount > 0) return state;
-
         context.movingTarget = player.transform;
-        context.enemy.chasingPlayer = true;
-
         state = SMNodeStates.Succeed;
         return state;
     }

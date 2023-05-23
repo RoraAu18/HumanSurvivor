@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
     public void EnemyChangeMood(EnemyStates stateEnemy)
     {
         currEnemyState = stateEnemy;
-        player.amAfraid = (enemy.chasingPlayer);
+        player.amAfraid = (stateEnemy == EnemyStates.CatchingPlayer);
         wasntDetected = !(stateEnemy == EnemyStates.CatchingPlayer);
         if (stateEnemy== EnemyStates.CatchingPlayer)
         {
