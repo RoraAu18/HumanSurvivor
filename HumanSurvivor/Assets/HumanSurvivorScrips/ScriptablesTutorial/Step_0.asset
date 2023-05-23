@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd9dfcb55ad514548bf4edd2490a48dc, type: 3}
-  m_Name: Surprised
+  m_Script: {fileID: 11500000, guid: 784c494ebecaf634c955b6e3e445436f, type: 3}
+  m_Name: Step_0
   m_EditorClassIdentifier: 
-  state: 2
-  surprisedTimerDelay: 1
+  idxStep: 0
+  nameStep: WASD & Jumop
+  descriptionStepForUI: Enter the house. Utilize the WASD keys to navigate and press
+    the Space Bar for jumping.
+  isComplete: 0

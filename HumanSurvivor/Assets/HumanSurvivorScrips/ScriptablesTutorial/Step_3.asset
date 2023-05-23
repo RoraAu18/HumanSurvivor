@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 784c494ebecaf634c955b6e3e445436f, type: 3}
+  m_Name: Step_3
+  m_EditorClassIdentifier: 
+  idxStep: 3
+  nameStep: StealthMode
+  descriptionStepForUI: ' Move away until you are no longer detected, then approach
+    again by pressing the Shift key. You''ll move slower, but also more stealthily.
+    He won''t see you!'
+  isComplete: 0
