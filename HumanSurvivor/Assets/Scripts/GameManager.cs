@@ -93,6 +93,10 @@ public class GameManager : MonoBehaviour
         currEnemyState = stateEnemy;
         player.amAfraid = (stateEnemy == EnemyStates.CatchingPlayer);
         wasntDetected = !(stateEnemy == EnemyStates.CatchingPlayer);
+        if (stateEnemy== EnemyStates.CatchingPlayer)
+        {
+            OnWinLoseState(false);
+        }
 
         for (int i = 0; i < gameEventUsers.Count; i++)
         {
