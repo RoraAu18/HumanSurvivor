@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20c3f218dedf5904d9eb915ac4f8c85f, type: 3}
+  m_Name: ManEnemy_CatchPlayer_RunAroundSl
+  m_EditorClassIdentifier: 
+  state: 3
+  nodes:
+  - {fileID: 11400000, guid: bf7c336f1e6b29e4b9c8b131d8bd169c, type: 2}
+  - {fileID: 11400000, guid: 1451b2374c055ac47bebb2bc368f2333, type: 2}
+  - {fileID: 11400000, guid: 7a7c7f6ec40395f4587375e1f351b19b, type: 2}
+  currNodeIdx: 0

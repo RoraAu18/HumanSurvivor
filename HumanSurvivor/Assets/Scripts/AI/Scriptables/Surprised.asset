@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Surprised
   m_EditorClassIdentifier: 
   state: 0
-  surprisedTimerDelay: 1
+  surprisedTimerDelay: 1.5
