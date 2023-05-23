@@ -18,7 +18,7 @@ public class SMNodeCloseToPlayer : SMNode
         state = SMNodeStates.Failed;
         var deltaPosition = context.agentToMove.transform.position - context.movingTarget.transform.position;
         deltaPosition.y = 0;
-        if (deltaPosition.magnitude <= 0.5f && context.movingTarget.TryGetComponent(out player))
+        if (context.movingTarget.TryGetComponent(out player))
         {
             Debug.Log("close to player");
             context.encounteredPlayer = true;

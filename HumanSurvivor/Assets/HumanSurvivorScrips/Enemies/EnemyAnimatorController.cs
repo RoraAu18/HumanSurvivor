@@ -9,6 +9,7 @@ public class EnemyAnimatorController : MonoBehaviour
     Animator animator;
     void Start()
     {
+        if (GameManager.OnlyInstance.gameStates == GameStates.GameOver) return;
         enemy = GetComponentInParent<EnemyAIContoller>();
         TryGetComponent(out animator);
         enemy.onEnemyStateChange += OnStateChange;

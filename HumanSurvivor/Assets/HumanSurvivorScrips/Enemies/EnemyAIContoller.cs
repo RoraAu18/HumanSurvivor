@@ -27,6 +27,7 @@ public class EnemyAIContoller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.OnlyInstance.gameStates == GameStates.GameOver) return;
         mainNode.Run(context);
         RefreshAnimState();
         //context.distractionTarget = GameManager.OnlyInstance.currentDistraction;
@@ -49,6 +50,10 @@ public class EnemyAIContoller : MonoBehaviour
         {
             ActivateAnims(EnemyStates.CatchingPlayer);
             return;
+        }
+        if (context.enemyAnimsStateInfo.isSurprised)
+        {
+            ActivateAnims(EnemyStates.Surprised);
         }
         if (aiAgent.velocity.magnitude > 0.2f)
         {
@@ -78,6 +83,7 @@ public class EnemyAnimsStateInfo
 {
     public bool isConfused;
     public bool isAttacking;
+    public bool isSurprised;
 
 }
 public enum EnemyStates

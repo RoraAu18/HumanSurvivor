@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39a086bb7e4e5b74a95573f46f7077b3, type: 3}
+  m_Name: ManEnemy_It'sATrapSq
+  m_EditorClassIdentifier: 
+  state: 3
+  nodes:
+  - {fileID: 11400000, guid: 1f41fe8f560a5a343ba7e29ce9b4469f, type: 2}
+  - {fileID: 11400000, guid: 5e8dd122de906ae408ff8aeb8ce496ec, type: 2}
+  - {fileID: 11400000, guid: 9b364e272e2b3b74f9ebea76bdd33f80, type: 2}
+  - {fileID: 11400000, guid: 82588346ca194d04a8c8bf26a8c876ba, type: 2}
+  - {fileID: 11400000, guid: 993861075701bd8418dffb88c221cd79, type: 2}
+  - {fileID: 11400000, guid: 56f94440b1c045f46921fbdcc6244d32, type: 2}

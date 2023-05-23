@@ -26,6 +26,8 @@ public class WaypointStm : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.OnlyInstance.gameStates == GameStates.GameOver) return;
+
         timer += Time.deltaTime;
         if(timer >= spanForNextWp)
         {

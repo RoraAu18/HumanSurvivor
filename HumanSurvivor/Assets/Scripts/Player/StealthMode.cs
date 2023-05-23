@@ -17,6 +17,8 @@ public class StealthMode : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.OnlyInstance.gameStates == GameStates.GameOver) return;
+
         if (Input.GetKey(KeyCode.LeftShift))
         {
             stealth = true;

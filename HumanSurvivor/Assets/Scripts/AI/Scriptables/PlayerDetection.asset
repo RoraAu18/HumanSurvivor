@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5670780c8b942478b34b1150e81f07, type: 3}
   m_Name: PlayerDetection
   m_EditorClassIdentifier: 
-  state: 3
-  player: {fileID: 0}
+  state: 2
   limitAngle: 90
   maskLayer:
     serializedVersion: 2
     m_Bits: 64
-  innerDetectionRadius: 7
+  innerDetectionRadius: 4
   sneakerDetectionRadius: 2.5
-  OuterDetectionRadius: 10
+  surprisedDelayTime: 1
