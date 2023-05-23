@@ -19,7 +19,8 @@ public class SMNodeConfused : SMNode
     }
     public override SMNodeStates Run(SMContext context)
     {
-        context.enemyAnimsStateInfo.isConfused = false;
+        //context.enemyAnimsStateInfo.isConfused = false;
+
         var detectionNode = targetDetectionRange.Run(context);
         if (detectionNode == SMNodeStates.Succeed) return state = SMNodeStates.Failed;
         if (timer == 0)
@@ -27,10 +28,13 @@ public class SMNodeConfused : SMNode
             context.enemy.SetState(EnemyStates.Confused);
             context.enemyAnimsStateInfo.isConfused = true;
         }
-        state = SMNodeStates.Running;
         timer += Time.deltaTime;
+
+        state = SMNodeStates.Running;
         if(timer >= timeSpan)
         {
+            context.enemyAnimsStateInfo.isConfused = false;
+
             state = SMNodeStates.Succeed;
         }
         
