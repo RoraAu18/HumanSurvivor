@@ -61,7 +61,7 @@ public class SMNodeTargetDetectionRange : SMNode
 
         context.movingTarget = player.transform;
         context.enemy.chasingPlayer = true;
-
+        Debug.Log("dectect at " + selectedDetectionRadius);
         state = SMNodeStates.Succeed;
         return state;
     }

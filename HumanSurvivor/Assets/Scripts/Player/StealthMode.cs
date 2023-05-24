@@ -21,10 +21,12 @@ public class StealthMode : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
+            playerController.onStealhMode = true;
             stealth = true;
         }
         else
         {
+            playerController.onStealhMode = false;
             stealth = false;
         }
         oldStealth = stealth;

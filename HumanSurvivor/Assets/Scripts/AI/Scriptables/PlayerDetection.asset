@@ -18,5 +18,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   innerDetectionRadius: 4
-  sneakerDetectionRadius: 2.5
-  surprisedDelayTime: 1
+  sneakerDetectionRadius: 1.5
