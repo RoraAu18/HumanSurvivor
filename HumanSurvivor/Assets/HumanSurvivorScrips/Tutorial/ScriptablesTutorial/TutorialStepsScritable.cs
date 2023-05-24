@@ -11,4 +11,6 @@ public class TutorialStepsScritable : ScriptableObject
     public string nameStep;
     public string descriptionStepForUI;
     public bool isComplete;
+  
+
 }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idxStep: 3
   nameStep: StealthMode
-  descriptionStepForUI: ' Move away until you are no longer detected, then approach
-    again by pressing the Shift key. You''ll move slower, but also more stealthily.
-    He won''t see you!'
+  descriptionStepForUI: Hold down the Left Shift key to activate stealth mode. This
+    will decrease the humans' detection range. Give it a try, and then go to the
+    next room.
   isComplete: 0

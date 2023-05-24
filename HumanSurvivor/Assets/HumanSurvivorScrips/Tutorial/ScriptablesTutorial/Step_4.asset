@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Step_4
   m_EditorClassIdentifier: 
   idxStep: 4
-  nameStep: DistractMode1
-  descriptionStepForUI: Enter the next room.
+  nameStep: DistractMode2
+  descriptionStepForUI: Press Left Control to create a distraction. The humans will
+    be drawn to that location, allowing you to deceive them. Try it in different
+    spots and finally collect the new object.
   isComplete: 0

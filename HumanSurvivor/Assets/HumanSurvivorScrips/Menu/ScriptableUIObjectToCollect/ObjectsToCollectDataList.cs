@@ -35,4 +35,5 @@ public enum ObjectsType
     Coffee=0,
     Laptop=1,
     ToiletPaper=2,
+    SodaBottle=3
 }
