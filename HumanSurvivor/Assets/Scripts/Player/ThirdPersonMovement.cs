@@ -32,7 +32,7 @@ public class ThirdPersonMovement : MonoBehaviour
 
         if (dir.magnitude >= 0.1f)
         {
-            float targetAngle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+            float targetAngle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;// + cam.eulerAngles.y;
             float currentAngle = transform.eulerAngles.y;
 
             float actualAnlge = Mathf.SmoothDampAngle(currentAngle, targetAngle, ref rotVelocity, smoothAmount);

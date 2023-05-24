@@ -14,6 +14,9 @@ public interface IWinLoseStateUser
 
 public class GameManager : MonoBehaviour
 {
+    public List<AIPlayerController> players;
+    public Transform placeToBornPlayer;
+
     public EnemyAIContoller enemy;
     public AIPlayerController player;
     public SoundManager soundManager;
@@ -56,6 +59,12 @@ public class GameManager : MonoBehaviour
             }
         }
         instance = this;
+    }
+
+    private void Start()
+    {
+        int idxPlayer = PlayerPrefs.GetInt("idxPlayer",0);
+        player = Instantiate(players[idxPlayer], placeToBornPlayer);
     }
 
     private void Update()

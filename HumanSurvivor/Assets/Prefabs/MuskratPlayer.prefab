@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 1267998566}
   - component: {fileID: 1267998559}
   m_Layer: 9
-  m_Name: Player
+  m_Name: MuskratPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

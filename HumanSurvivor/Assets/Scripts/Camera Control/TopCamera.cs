@@ -15,6 +15,10 @@ public class TopCamera : MonoBehaviour
     private Vector3 _midPlayerDisplayPos;
     private float _MovForwardCam;
 
+    private void Start()
+    {
+        players.Add(GameManager.OnlyInstance.player.transform);
+    }
     void Update()
     {
         _midPlayerDisplayPos = GetMidPointPlayersOnDisplay();
