@@ -65,6 +65,9 @@ public class GameManager : MonoBehaviour
     {
         int idxPlayer = PlayerPrefs.GetInt("idxPlayer",0);
         player = Instantiate(players[idxPlayer], placeToBornPlayer);
+        player.TryGetComponent<AudioSource>(out AudioSource playerAudio);
+        soundManager.player = playerAudio;
+
     }
 
     private void Update()
@@ -82,10 +85,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void OnDistractMode(Transform posForDistract)
+    public void OnDistractMode()
     {
         enemy.gotDistraction = true;
-        currentDistraction = posForDistract;
+        
     }
 
     public void PlayerChangeMood(PlayerStates statePlayer)

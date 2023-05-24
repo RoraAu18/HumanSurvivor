@@ -93,26 +93,26 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
     }
 
     
-
     public void WinLoseEvent(bool youWin)
     {
         gamePlayUI.SetActive(false);
-        if (GameManager.OnlyInstance.allItemsCollected)
-        {
-            firstStarPos.color = Color.white;
-        }
-        if (GameManager.OnlyInstance.onTime)
-        {
-            secondStarPos.color = Color.white;
-        }
-        if (GameManager.OnlyInstance.wasntDetected)
-        {
-            thirdStarPos.color = Color.white;
-        }
+               
         if (youWin)
         {
             winLoseImage.sprite=winSprite;
-        }
+            if (GameManager.OnlyInstance.allItemsCollected)
+            {
+                firstStarPos.color = Color.white;
+            }
+            if (GameManager.OnlyInstance.onTime)
+            {
+                secondStarPos.color = Color.white;
+            }
+            if (GameManager.OnlyInstance.wasntDetected)
+            {
+                thirdStarPos.color = Color.white;
+            }
+        }        
         else
         {
             winLoseImage.sprite = loseSprite;

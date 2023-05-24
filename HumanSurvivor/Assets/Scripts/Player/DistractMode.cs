@@ -9,7 +9,7 @@ public class DistractMode : MonoBehaviour
     public CharacterController cc;
     public bool distract;
     private bool oldDistract;
-    public Transform posForDistract;
+   // public Transform posForDistract;
     void Start()
     {
         TryGetComponent(out cc);
@@ -24,8 +24,10 @@ public class DistractMode : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftControl))
         {
             distract = true;
-            posForDistract.position = transform.position;
-            GameManager.OnlyInstance.OnDistractMode(posForDistract);
+            //posForDistract.position = transform.position;
+            //GameManager.OnlyInstance.OnDistractMode(posForDistract);
+            GameManager.OnlyInstance.OnDistractMode();
+            GameManager.OnlyInstance.currentDistraction.position = transform.position;
 
         }
         else

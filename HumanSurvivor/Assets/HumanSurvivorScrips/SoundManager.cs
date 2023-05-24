@@ -5,7 +5,7 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     public AudioClip soundAddCollectable;
-    [SerializeField] AudioSource player;
+   public AudioSource player;
 
     private void Start()
     {
