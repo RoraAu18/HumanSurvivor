@@ -50,8 +50,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 075278ef601d94b4daa7b1b3b82fa74f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainNode: {fileID: 11400000, guid: a758df8bf6d9ec742aa02cd205be2c74, type: 2}
+  mainNode: {fileID: 11400000, guid: ecbc8ec74a24a8840a276772bbeffaaa, type: 2}
   gotDistraction: 0
+  chasingPlayer: 0
   aiAgent: {fileID: 0}
   context:
     agentToMove: {fileID: 474795047654307638}

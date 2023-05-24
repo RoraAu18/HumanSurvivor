@@ -19,8 +19,6 @@ public class SMNodeConfused : SMNode
     }
     public override SMNodeStates Run(SMContext context)
     {
-        //context.enemyAnimsStateInfo.isConfused = false;
-
         var detectionNode = targetDetectionRange.Run(context);
         if (detectionNode == SMNodeStates.Succeed) return state = SMNodeStates.Failed;
         if (timer == 0)
