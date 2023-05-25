@@ -22,8 +22,6 @@ public class SMNodeTargetDetectionRange : SMNode
     public override void Init(SMContext context)
     {
         base.Init(context);
-        innerDetectionRadius = 4;
-        sneakerDetectionRadius = 2.5f;
     }
     public override SMNodeStates Run(SMContext context)
     {

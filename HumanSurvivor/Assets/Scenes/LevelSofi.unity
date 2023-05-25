@@ -248,8 +248,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 954e4961006c1e745ad9d4a8779f278b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  players: []
+  placeToBornPlayer: {fileID: 0}
   enemy: {fileID: 713534882}
   player: {fileID: 1406583546}
+  soundManager: {fileID: 0}
   itemsToCollect: 0
   currItemsCollected: 0
   maxTime: 0
@@ -1053,20 +1056,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1115766132}
     - target: {fileID: 474795047654307643, guid: 93cca73b2f35e644da6130d33daafd00, type: 3}
-      propertyPath: mainNode
-      value: 
-      objectReference: {fileID: 11400000, guid: ecbc8ec74a24a8840a276772bbeffaaa, type: 2}
-    - target: {fileID: 474795047654307643, guid: 93cca73b2f35e644da6130d33daafd00, type: 3}
       propertyPath: context.distractionTarget
       value: 
       objectReference: {fileID: 837408482}
     - target: {fileID: 474795047654307647, guid: 93cca73b2f35e644da6130d33daafd00, type: 3}
       propertyPath: m_Name
       value: ManEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 474795047654307647, guid: 93cca73b2f35e644da6130d33daafd00, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93cca73b2f35e644da6130d33daafd00, type: 3}

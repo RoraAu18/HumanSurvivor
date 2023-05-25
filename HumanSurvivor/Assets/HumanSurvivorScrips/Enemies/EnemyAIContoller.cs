@@ -68,7 +68,7 @@ public class EnemyAIContoller : MonoBehaviour
             ActivateAnims(EnemyStates.Walking);
             return;
         }
-        else
+        else if(!chasingPlayer)
         {
             ActivateAnims(EnemyStates.Idle);
             return;
