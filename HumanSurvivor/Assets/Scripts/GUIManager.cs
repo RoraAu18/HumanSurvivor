@@ -48,17 +48,20 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
         backToMenuButton.onClick.AddListener(BackGame);
         pauseButton.onClick.AddListener(PauseGame);
         resumeGameButton.onClick.AddListener(ResumeGame);
+        Time.timeScale = 1;
     }
 
     private void ResetGame()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        Time.timeScale = 1;
         SceneManager.LoadScene(currentSceneIndex);
       
     }
 
     private void BackGame()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
     }
 
