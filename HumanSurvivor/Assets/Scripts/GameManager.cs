@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         time += Time.deltaTime;
-        
+        player.amAfraid = (enemy.chasingPlayer);
     }
 
     public void AddScore(int amount)
@@ -106,8 +106,11 @@ public class GameManager : MonoBehaviour
     public void EnemyChangeMood(EnemyStates stateEnemy)
     {
         currEnemyState = stateEnemy;
-        player.amAfraid = (enemy.chasingPlayer);
-        wasntDetected = !(stateEnemy == EnemyStates.CatchingPlayer);
+        //wasntDetected = !(stateEnemy == EnemyStates.Surprised);
+        if (stateEnemy == EnemyStates.Surprised)
+        {
+            wasntDetected = false;
+        }
         if (stateEnemy== EnemyStates.CatchingPlayer)
         {
             OnWinLoseState(false);
