@@ -10,6 +10,13 @@ public class MenuManager : MonoBehaviour
     public GameObject selectMenu;
     public GameObject inicialMenu;
     public List<CharactersToPlay> charactarers;
+    [SerializeField]
+    Button creditsButton;    
+    [SerializeField]
+    Button backToMenu;
+    [SerializeField]
+    GameObject creditsContainer;
+
      
     [SerializeField] Button playButton;
 
@@ -27,13 +34,24 @@ public class MenuManager : MonoBehaviour
 
     void Start()
     {
+        creditsContainer.SetActive(false);
         playButton.onClick.AddListener(SelectGame);
-
+        creditsButton.onClick.AddListener(Credits);
+        backToMenu.onClick.AddListener(Back);
     }
     void SelectGame()
     {
         selectMenu.SetActive(true);
         inicialMenu.SetActive(false);
          
+    }
+    void Credits()
+    {
+        creditsContainer.SetActive(true);
+    }
+    void Back()
+    {
+        creditsContainer.SetActive(false);
+
     }
 }

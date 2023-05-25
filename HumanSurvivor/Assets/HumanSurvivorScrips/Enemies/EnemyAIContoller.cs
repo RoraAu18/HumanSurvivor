@@ -29,7 +29,12 @@ public class EnemyAIContoller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.OnlyInstance.gameStates == GameStates.GameOver) return;
+        if (GameManager.OnlyInstance.gameStates == GameStates.GameOver)
+        {
+            ActivateAnims(EnemyStates.Desperate);
+            return;
+        }
+        
         mainNode.Run(context);
         RefreshAnimState();
         //context.distractionTarget = GameManager.OnlyInstance.currentDistraction;
@@ -97,5 +102,6 @@ public enum EnemyStates
     Confused,
     Surprised,
     Running,
-    CatchingPlayer
+    CatchingPlayer,
+    Desperate
 }
