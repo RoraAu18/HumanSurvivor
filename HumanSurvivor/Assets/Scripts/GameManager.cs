@@ -137,13 +137,13 @@ public class GameManager : MonoBehaviour
     }
 
     public void OnWinLoseState(bool youWin)
-    {
+    {      
         onTime = CheckTime();
         for (int i = 0; i < winLoseStateUser.Count; i++)
         {
             winLoseStateUser[i].WinLoseEvent(youWin);
         }
- 
+        gameStates = GameStates.GameOver;
     }
 
     public bool CheckTime()
