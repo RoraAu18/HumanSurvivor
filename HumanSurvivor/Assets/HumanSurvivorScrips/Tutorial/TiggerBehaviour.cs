@@ -16,9 +16,10 @@ public class TiggerBehaviour : MonoBehaviour
 
     private void NextStep(Collider _)
     {
-        gameObject.SetActive(false);
         tutorialManager.currentStepIndex += 1;
         tutorialManager.ActivateTutorialUI();
+        gameObject.SetActive(false);
+
     }
-   
+
 }

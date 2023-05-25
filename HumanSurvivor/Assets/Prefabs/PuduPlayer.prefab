@@ -82,7 +82,7 @@ MonoBehaviour:
     onStealthMode: 0
   - speed: 5
     onStealthMode: 0
-  - speed: 2
+  - speed: 3.5
     onStealthMode: 0
   - speed: 3
     onStealthMode: 1
@@ -134,8 +134,8 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 0.25
-  m_Radius: 0.25
+  m_Height: 0.83
+  m_Radius: 0.3
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.04
@@ -289,7 +289,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3161298468613301832, guid: 252ba5fa5d8167e42af72cf97baa830e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 3161298468613301832, guid: 252ba5fa5d8167e42af72cf97baa830e, type: 3}
       propertyPath: m_LocalPosition.z

@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 784c494ebecaf634c955b6e3e445436f, type: 3}
-  m_Name: Step_0
+  m_Name: Step
   m_EditorClassIdentifier: 
-  idxStep: 0
-  nameStep: WASD & Jumop
-  descriptionStepForUI: Enter the house. Utilize the WASD keys to navigate and press
-    the Space Bar for jumping.
+  idxStep: -1
+  nameStep: Welcome
+  descriptionStepForUI: Welcome
   isComplete: 1

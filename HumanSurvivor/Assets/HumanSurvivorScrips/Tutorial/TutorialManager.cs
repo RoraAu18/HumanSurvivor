@@ -5,66 +5,48 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using System;
 
-public class TutorialManager : MonoBehaviour
+public class TutorialManager : MonoBehaviour, IWinLoseStateUser
 {
     public List<TutorialStepsScritable> tutorialStepsInOrden;
     public List<Collider> triggerForSteps;
     public TextMeshProUGUI stepText;
     public int currentStepIndex;
     public GameObject tutoriaUIParent;
-    
 
+    private void Awake()
+    {
+        GameManager.OnlyInstance.winLoseStateUser.Add(this);
+
+    }
     void Start()
     {
-        currentStepIndex = -1;    
-        
+        currentStepIndex = 0;
+
         for (int i = 1; i < triggerForSteps.Count; i++)
         {
             triggerForSteps[i].gameObject.SetActive(false);
         }
-       
-    }
-
-
-    void Update()
-    {
-        //if (tutorialStepsInOrden[currentStepIndex].isComplete)
-        //{           
-        //    tutorialStepsInOrden[currentStepIndex].isComplete = true;
-
-        //    ProgressToNextStep();
-        //}
-
-        //if (tutorialStepsInOrden[tutorialStepsInOrden.Count - 1].isComplete)
-        //{
-        //    tutoriaUIParent.SetActive(false);
-        //}
 
     }
 
-    private void ProgressToNextStep()
+    private void Update()
     {
-        
-        if (currentStepIndex < tutorialStepsInOrden.Count - 1)
-        {            
-            currentStepIndex++;
-            ActivateTutorialUI();
-        }
-        else
-        {            
-            //EndTutorial();
-        }
+
     }
 
     public void ActivateTutorialUI()
     {
-        if (currentStepIndex > tutorialStepsInOrden.Count)
+        if (currentStepIndex < tutorialStepsInOrden.Count)
         {
-            tutoriaUIParent.SetActive(false);
+            stepText.text = tutorialStepsInOrden[currentStepIndex].descriptionStepForUI;
+            tutorialStepsInOrden[currentStepIndex - 1].isComplete = true;
+            triggerForSteps[currentStepIndex].gameObject.SetActive(true);
         }
-        stepText.text = tutorialStepsInOrden[currentStepIndex].descriptionStepForUI;
-        tutorialStepsInOrden[currentStepIndex - 1].isComplete = true;
-        triggerForSteps[currentStepIndex+1].gameObject.SetActive(true);
+
     }
 
+    public void WinLoseEvent(bool youWin)
+    {
+        tutoriaUIParent.SetActive(false);
+    }
 }

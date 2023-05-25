@@ -20,11 +20,16 @@ public class BloomEffect : MonoBehaviour
 
     }
 
-    void Start()
+    private void OnEnable()
     {
         inicialColor = myRender.material.color;
         StartCoroutine(ColorLoopCoroutine());
     }
+    //void Start()
+    //{
+    //    inicialColor = myRender.material.color;
+    //    StartCoroutine(ColorLoopCoroutine());
+    //}
 
     private IEnumerator ColorLoopCoroutine()
     {

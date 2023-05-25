@@ -25,6 +25,9 @@ public class LevelImageBehaviour : MonoBehaviour, IPointerEnterHandler, IPointer
         nameText.gameObject.SetActive(false);
         playLevelButton.gameObject.SetActive(false);
 
+       
+
+
         if (levelsToPlayData.isBlocked == true)
         {
             blockImage.gameObject.SetActive(true);

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 public interface IGameEventsUser
 {   
     public void OnMoodChanged(PlayerStates statePlayer);
@@ -65,9 +67,10 @@ public class GameManager : MonoBehaviour
     {
         int idxPlayer = PlayerPrefs.GetInt("idxPlayer",0);
         player = Instantiate(players[idxPlayer], placeToBornPlayer);
+        player.transform.rotation = placeToBornPlayer.transform.rotation;
         player.TryGetComponent<AudioSource>(out AudioSource playerAudio);
         soundManager.player = playerAudio;
-
+        
     }
 
     private void Update()
@@ -136,10 +139,11 @@ public class GameManager : MonoBehaviour
     public void OnWinLoseState(bool youWin)
     {
         onTime = CheckTime();
-        for (int i = 0; i < gameEventUsers.Count; i++)
+        for (int i = 0; i < winLoseStateUser.Count; i++)
         {
             winLoseStateUser[i].WinLoseEvent(youWin);
         }
+ 
     }
 
     public bool CheckTime()

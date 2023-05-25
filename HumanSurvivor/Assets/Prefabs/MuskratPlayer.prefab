@@ -82,7 +82,7 @@ MonoBehaviour:
     onStealthMode: 0
   - speed: 5
     onStealthMode: 0
-  - speed: 2
+  - speed: 3.5
     onStealthMode: 0
   - speed: 3
     onStealthMode: 1

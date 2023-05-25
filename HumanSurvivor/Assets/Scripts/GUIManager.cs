@@ -45,8 +45,9 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
 
     private void ResetGame()
     {
-
-        SceneManager.LoadScene("LevelTest_2");
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
+      
     }
 
     private void BackGame()

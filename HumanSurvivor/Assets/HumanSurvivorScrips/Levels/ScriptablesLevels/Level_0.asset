@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2de254c3770c1ae48ac67a52b3c97db4, type: 3}
-  m_Name: Level_1
+  m_Name: Level_0
   m_EditorClassIdentifier: 
-  sceneNameToLoad: LevelTest_2
-  spriteLevel: {fileID: 21300000, guid: d84346e2be9643d469b17948c61d55ee, type: 3}
-  nameLevel: 'Remote Ruckus: Interrupting the Workday'
-  objectsToCollect: 3
-  maxTimeToCollect: 30
-  isBlocked: 1
+  sceneNameToLoad: Tutorial
+  idxLevel: 0
+  spriteLevel: {fileID: 21300000, guid: ac8b776a73d3c814491675780e8d1a94, type: 3}
+  nameLevel: 'Stealthy Beginnings: The Rookie''s Guide" '
+  objectsToCollect: 0
+  maxTimeToCollect: 0
+  isBlocked: 0

@@ -6,8 +6,9 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "NewLevel", menuName = "HumanSurvivor/Level")]
 
 public class LevelsToPlayData : ScriptableObject
-{
+{    
     public string sceneNameToLoad;
+    public int idxLevel;
     public Sprite spriteLevel;
     public string nameLevel;
     public int objectsToCollect;
