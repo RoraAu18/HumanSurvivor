@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5670780c8b942478b34b1150e81f07, type: 3}
   m_Name: ManPlayerDetection
   m_EditorClassIdentifier: 
-  state: 0
+  state: 2
   limitAngle: 45
   maskLayer:
     serializedVersion: 2
     m_Bits: 64
   innerDetectionRadius: 5
-  sneakerDetectionRadius: 1.5
+  sneakerDetectionRadius: 0.5

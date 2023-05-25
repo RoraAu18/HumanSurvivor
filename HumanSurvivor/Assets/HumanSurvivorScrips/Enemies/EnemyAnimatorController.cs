@@ -40,7 +40,9 @@ public class EnemyAnimatorController : MonoBehaviour
             case EnemyStates.CatchingPlayer:
                 animator.SetTrigger("CatchingPlayer");
                 break;
-
+            case EnemyStates.Desperate:
+                animator.SetTrigger("Desperate");
+                break;
         }
     } 
 

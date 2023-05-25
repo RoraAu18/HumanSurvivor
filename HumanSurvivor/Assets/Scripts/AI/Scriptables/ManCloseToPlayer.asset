@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 754fc108d1356a847bcad0085cd5cc92, type: 3}
-  m_Name: Confused
+  m_Script: {fileID: 11500000, guid: 1f441be76850a5d4586320ca846e4518, type: 3}
+  m_Name: ManCloseToPlayer
   m_EditorClassIdentifier: 
-  state: 2
-  targetDetectionRange: {fileID: 11400000, guid: d7f9d81ef2304e4499918ee69948f05c, type: 2}
-  timeSpan: 3
+  state: 0
+  player: {fileID: 0}
+  worriedWalk: {fileID: 11400000, guid: ec2ddbea7b2b624468a153c9bf024c4f, type: 2}

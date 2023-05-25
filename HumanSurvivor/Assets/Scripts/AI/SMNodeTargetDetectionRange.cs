@@ -13,9 +13,9 @@ public class SMNodeTargetDetectionRange : SMNode
     [SerializeField]
     RaycastHit[] hits = new RaycastHit[5];
     [SerializeField]
-    float innerDetectionRadius = 7;
+    float innerDetectionRadius;
     [SerializeField]
-    float sneakerDetectionRadius = 0.5f;
+    float sneakerDetectionRadius;
 
 
 

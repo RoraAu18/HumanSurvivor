@@ -30,7 +30,10 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
     public Image secondStarPos;
     public Image thirdStarPos;
     public Sprite startIcon;
-    
+    public GameObject pauseMenuContainer;
+    public Button resumeGameButton;
+    public Button backToMenuButton;
+    public Button pauseButton;
     public void Awake()
     {
        GameManager.OnlyInstance.gameEventUsers.Add(this);
@@ -41,6 +44,10 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
         winLoseMenuParent.SetActive(false);
         reset.onClick.AddListener(ResetGame);
         backMenu.onClick.AddListener(BackGame);
+        pauseMenuContainer.SetActive(false);
+        backToMenuButton.onClick.AddListener(BackGame);
+        pauseButton.onClick.AddListener(PauseGame);
+        resumeGameButton.onClick.AddListener(ResumeGame);
     }
 
     private void ResetGame()
@@ -55,6 +62,16 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
         SceneManager.LoadScene("MainMenu");
     }
 
+    void PauseGame()
+    {
+        pauseMenuContainer.SetActive(true);
+        Time.timeScale = 0;
+    }
+    void ResumeGame()
+    {
+        pauseMenuContainer.SetActive(false);
+        Time.timeScale = 1;
+    }
     public void OnMoodChanged(PlayerStates newState)
     {
         if (GameManager.OnlyInstance.player.amAfraid)

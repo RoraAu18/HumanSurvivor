@@ -96,8 +96,8 @@ MonoBehaviour:
   shouldStartOver: 1
   waypointPosIndex: 0
   currentWaypoint: {fileID: 0}
-  timer: 0
-  spanForNextWp: 0
+  timer: 20
+  spanForNextWp: 1
 --- !u!195 &474795047654307638
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -246,7 +246,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 4
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &474795048459249523
 PrefabInstance:
@@ -266,6 +266,18 @@ PrefabInstance:
     - target: {fileID: 2369712856593335393, guid: 730000931cae1454c8083362445e8f75, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369712856593335393, guid: 730000931cae1454c8083362445e8f75, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369712856593335393, guid: 730000931cae1454c8083362445e8f75, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369712856593335393, guid: 730000931cae1454c8083362445e8f75, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 2369712856593335393, guid: 730000931cae1454c8083362445e8f75, type: 3}
       propertyPath: m_LocalPosition.x

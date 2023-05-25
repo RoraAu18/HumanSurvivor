@@ -15,6 +15,6 @@ MonoBehaviour:
   state: 3
   nodes:
   - {fileID: 11400000, guid: 8f3a400a2cb42de4fb68101cb6dce3e6, type: 2}
-  - {fileID: 11400000, guid: 1451b2374c055ac47bebb2bc368f2333, type: 2}
-  - {fileID: 11400000, guid: 7a7c7f6ec40395f4587375e1f351b19b, type: 2}
+  - {fileID: 11400000, guid: f86980da8ea05984392daaa1f2c257ef, type: 2}
+  - {fileID: 11400000, guid: ffcc5317f07f00d4996877ac729dad51, type: 2}
   currNodeIdx: 0
