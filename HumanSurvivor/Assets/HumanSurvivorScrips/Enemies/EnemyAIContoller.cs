@@ -8,7 +8,7 @@ public class EnemyAIContoller : MonoBehaviour
 {
     public SMNode mainNode;
     public bool gotDistraction;
-    [HideInInspector]
+    //[HideInInspector]
     public bool chasingPlayer;
     [SerializeField]
     NavMeshAgent aiAgent;
