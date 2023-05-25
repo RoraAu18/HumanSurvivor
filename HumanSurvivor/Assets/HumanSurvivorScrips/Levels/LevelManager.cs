@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
     {       
         PlayerPrefs.SetInt("Level_0", 1);
         
+        
 
         for (int i = 0; i < levelsToPlayData.Count; i++)
         {            

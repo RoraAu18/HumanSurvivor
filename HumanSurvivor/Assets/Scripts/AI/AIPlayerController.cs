@@ -55,12 +55,21 @@ public class AIPlayerController : MonoBehaviour
         }
 
         else if (stealthMode.stealth && movement.dir.magnitude != 0)
-        {
-            if (oldPlayerState != PlayerStates.stealth)
+       {
+            if (oldPlayerState != PlayerStates.stealthMove)
             {
-                SetState(PlayerStates.stealth);
+                SetState(PlayerStates.stealthMove);
             }
         }
+        
+        else if (stealthMode.stealth)
+        {
+            if (oldPlayerState != PlayerStates.stealthIdle)
+            {
+                SetState(PlayerStates.stealthIdle);
+            }
+        }
+
         else if (distractMode.distract)
         {
             if (oldPlayerState != PlayerStates.distract)
@@ -104,9 +113,10 @@ public enum PlayerStates
     idle = 0,
     run = 1,
     jump = 2,
-    stealth = 3,
+    stealthMove = 3,
     distract = 4,
-    count = 5
+    stealthIdle=5,
+    count = 6
 }
 
 [Serializable]

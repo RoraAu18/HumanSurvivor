@@ -36,8 +36,11 @@ public class AnimationController : MonoBehaviour
             case PlayerStates.jump:
                 animator.SetTrigger("Jump");
                 break;
-            case PlayerStates.stealth:
+            case PlayerStates.stealthMove:
                 animator.SetTrigger("Stealth");
+                break;
+            case PlayerStates.stealthIdle:
+                animator.SetTrigger("Stealth_Idle");
                 break;
             case PlayerStates.distract:
                 animator.SetTrigger("Distract");

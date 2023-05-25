@@ -85,7 +85,10 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
                 case PlayerStates.distract:
                     iconPlayer.sprite = distractPlayerSprite;
                     break;
-                case PlayerStates.stealth:
+                case PlayerStates.stealthMove:
+                    iconPlayer.sprite = stealthPlayerSprite;
+                    break;
+                case PlayerStates.stealthIdle:
                     iconPlayer.sprite = stealthPlayerSprite;
                     break;
                 default:
