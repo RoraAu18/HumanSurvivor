@@ -6,7 +6,9 @@ using UnityEngine;
 public class SMNodeWalkAround : SMNode
 {
     [SerializeField]
-    SMNodeTargetDetectionRange targetDetectionRange;
+    SMNodeTargetDetectionRange targetDetectionRange;    
+    [SerializeField]
+    SMNodeUnderDistraction underDistraction;
     [SerializeField]
     float walkFor;
     float timer;
@@ -20,6 +22,8 @@ public class SMNodeWalkAround : SMNode
         context.movingTarget = null;
         var detectionNode = targetDetectionRange.Run(context);
         if (detectionNode == SMNodeStates.Succeed) return state = SMNodeStates.Failed;
+        var underdist = underDistraction.Run(context);
+        if(underdist == SMNodeStates.Succeed) return state = SMNodeStates.Failed;
         if (!context.enemy.TryGetComponent(out WaypointStm waypointStm))
         {
             state = SMNodeStates.Failed;

@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: ManWalkAround
   m_EditorClassIdentifier: 
   state: 0
-  targetDetectionRange: {fileID: 11400000, guid: dc15ffb55b5090e42a79f970bbfc4df2, type: 2}
+  targetDetectionRange: {fileID: 11400000, guid: d7f9d81ef2304e4499918ee69948f05c, type: 2}
+  underDistraction: {fileID: 11400000, guid: f63d0b7379bd21c46a9b7caecf8613d6, type: 2}
   walkFor: 20

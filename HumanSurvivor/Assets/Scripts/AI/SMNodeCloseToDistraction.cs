@@ -5,20 +5,28 @@ using UnityEngine;
 
 public class SMNodeCloseToDistraction : SMNode
 {
+    [SerializeField]
+    float confusedTime;
+    float timer;
     public override void Init(SMContext context)
     {
         base.Init(context);
+        timer = 0;
+
     }
     public override SMNodeStates Run(SMContext context)
     {
         state = SMNodeStates.Failed;
-        var deltaPosition = context.agentToMove.transform.position - context.distractionTarget.transform.position;
-        if(deltaPosition.magnitude <= context.lungeTargetDetection)
+        timer += Time.deltaTime;
+        var deltaPosition = context.agentToMove.transform.position - GameManager.OnlyInstance.currentDistraction.position;
+        if(deltaPosition.magnitude <= context.lungeTargetDetection || timer >= confusedTime)
         {
             context.gotToDistraction = true;
             context.enemy.gotDistraction = false;
+            timer = 0;
             state = SMNodeStates.Succeed;
             return state;
+            
         }
         return state;
     }

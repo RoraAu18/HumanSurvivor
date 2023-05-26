@@ -8,6 +8,8 @@ public class SMNodeRunAround : SMNode
     [SerializeField]
     SMNodeTargetDetectionRange targetDetectionRange;
     [SerializeField]
+    SMNodeUnderDistraction underDistraction;
+    [SerializeField]
     float runFor;
     float timer;
     public override void Init(SMContext context)
@@ -19,6 +21,8 @@ public class SMNodeRunAround : SMNode
     {
         var detectionNode = targetDetectionRange.Run(context);
         if (detectionNode == SMNodeStates.Succeed) return state = SMNodeStates.Failed;
+        var underdist = underDistraction.Run(context);
+        if (underdist == SMNodeStates.Succeed) return state = SMNodeStates.Failed;
         if (!context.encounteredPlayer)
         {
             state = SMNodeStates.Failed;

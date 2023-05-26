@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Man CloseToDistraction
   m_EditorClassIdentifier: 
   state: 0
+  confusedTime: 50

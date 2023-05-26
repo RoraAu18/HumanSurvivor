@@ -17,7 +17,9 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     AudioSource confusedSound;    
     [SerializeField]
-    AudioSource ahaSound;
+    AudioSource ahaSound;    
+    [SerializeField]
+    AudioSource distractionCall;
 
     private void Start()
     {
@@ -55,5 +57,10 @@ public class SoundManager : MonoBehaviour
             case EnemyStates.Desperate:
                 break;
         }
+    }
+
+    public void DistractingEnemySound()
+    {
+        distractionCall.PlayOneShot(distractionCall.clip);
     }
 }

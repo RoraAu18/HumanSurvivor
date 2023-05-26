@@ -5,8 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "UnderDistraction", menuName = "StateMachine/Nodes/UnderDistraction")]
 public class SMNodeUnderDistraction : SMNode
 {
-    [SerializeField]
-    Transform distractionTarget;
     public override void Init(SMContext context)
     {
         base.Init(context);
@@ -14,13 +12,15 @@ public class SMNodeUnderDistraction : SMNode
 
     public override SMNodeStates Run(SMContext context)
     {
+        if(context.movingTarget == null)
+        {
+            state = SMNodeStates.Failed;
+        }
         state = SMNodeStates.Failed;
-        //partial condition
         if (context.enemy.gotDistraction)
         {
-            distractionTarget = context.distractionTarget;
-            context.movingTarget = distractionTarget.transform;
-            Debug.Log("distraction target is " + distractionTarget);
+            context.movingTarget = GameManager.OnlyInstance.currentDistraction;
+            Debug.Log("distraction target is " + GameManager.OnlyInstance.currentDistraction);
             state = SMNodeStates.Succeed;
         }
         return state;

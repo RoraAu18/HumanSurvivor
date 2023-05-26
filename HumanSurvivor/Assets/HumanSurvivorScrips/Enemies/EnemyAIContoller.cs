@@ -37,7 +37,7 @@ public class EnemyAIContoller : MonoBehaviour
         
         mainNode.Run(context);
         RefreshAnimState();
-        //context.distractionTarget = GameManager.OnlyInstance.currentDistraction;
+
     }
 
     public void SetState(EnemyStates newState)
@@ -73,7 +73,7 @@ public class EnemyAIContoller : MonoBehaviour
             ActivateAnims(EnemyStates.Walking);
             return;
         }
-        else if(!chasingPlayer)
+        else if(!chasingPlayer && !gotDistraction)
         {
             ActivateAnims(EnemyStates.Idle);
             return;

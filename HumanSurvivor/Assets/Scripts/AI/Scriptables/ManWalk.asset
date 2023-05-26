@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: ManWalk
   m_EditorClassIdentifier: 
   state: 0
+  targetDetectionRange: {fileID: 11400000, guid: d7f9d81ef2304e4499918ee69948f05c, type: 2}

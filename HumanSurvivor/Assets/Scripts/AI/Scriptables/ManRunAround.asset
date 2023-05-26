@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 2
   targetDetectionRange: {fileID: 11400000, guid: d7f9d81ef2304e4499918ee69948f05c, type: 2}
+  underDistraction: {fileID: 11400000, guid: f63d0b7379bd21c46a9b7caecf8613d6, type: 2}
   runFor: 20

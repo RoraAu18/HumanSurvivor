@@ -29,7 +29,6 @@ public class SMContext
     public ColisionController collisionControler;
     public EnemyAIContoller enemy;
     public WaypointStm waypointSystem;
-    public Transform distractionTarget;
     public bool encounteredPlayer = false;
     public bool gotToDistraction = false;
     public EnemyAnimsStateInfo enemyAnimsStateInfo = new EnemyAnimsStateInfo();

@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
     public void OnDistractMode()
     {
         enemy.gotDistraction = true;
-        
+        soundManager.DistractingEnemySound();
     }
 
     public void PlayerChangeMood(PlayerStates statePlayer)
