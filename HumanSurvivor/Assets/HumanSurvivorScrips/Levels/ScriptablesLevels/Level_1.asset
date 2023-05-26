@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneNameToLoad: LevelTest_2
   idxLevel: 1
-  spriteLevel: {fileID: 21300000, guid: d84346e2be9643d469b17948c61d55ee, type: 3}
+  spriteLevel: {fileID: 21300000, guid: 1b7b60e39e24b9140911553faa76e191, type: 3}
   nameLevel: 'Remote Ruckus: Interrupting the Workday'
   objectsToCollect: 3
   maxTimeToCollect: 30
