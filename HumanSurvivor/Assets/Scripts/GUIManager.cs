@@ -43,9 +43,9 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
     {
         winLoseMenuParent.SetActive(false);
         reset.onClick.AddListener(ResetGame);
-        backMenu.onClick.AddListener(BackGame);
+        backMenu.onClick.AddListener(BackGame2);
         pauseMenuContainer.SetActive(false);
-        backToMenuButton.onClick.AddListener(BackGame);
+        backToMenuButton.onClick.AddListener(BackGame2);
         pauseButton.onClick.AddListener(PauseGame);
         resumeGameButton.onClick.AddListener(ResumeGame);
         Time.timeScale = 1;
@@ -63,6 +63,11 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
+    }   
+    private void BackGame2()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("MainMenu 1");
     }
 
     void PauseGame()
