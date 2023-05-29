@@ -38,9 +38,17 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
     {
        GameManager.OnlyInstance.gameEventUsers.Add(this);
        GameManager.OnlyInstance.winLoseStateUser.Add(this);
+
+
     }
     void Start()
     {
+        iconPlayer.sprite = GameManager.OnlyInstance.player.characterFeatures.iconPlayer.sprite;
+        happyPlayerSprite = GameManager.OnlyInstance.player.characterFeatures.happyPlayerSprite;
+        fearPlayerSprite = GameManager.OnlyInstance.player.characterFeatures.fearPlayerSprite;
+        stealthPlayerSprite = GameManager.OnlyInstance.player.characterFeatures.stealthPlayerSprite;
+        distractPlayerSprite = GameManager.OnlyInstance.player.characterFeatures.distractPlayerSprite;
+
         winLoseMenuParent.SetActive(false);
         reset.onClick.AddListener(ResetGame);
         backMenu.onClick.AddListener(BackGame2);
@@ -82,6 +90,8 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
     }
     public void OnMoodChanged(PlayerStates newState)
     {
+        //iconPlayer.sprite = moodSprites[((int)newState)];
+
         if (GameManager.OnlyInstance.player.amAfraid)
         {
             iconPlayer.sprite = fearPlayerSprite;
@@ -106,7 +116,6 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
         }
     }
 
-
     public void OnObjectsCollected(ObjectsType typeObjectCollected)
     {
         for (int i = 0; i < objectsToCollect.Count; i++)
@@ -121,7 +130,11 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
         
     }
 
-    
+    IEnumerator OnGameOver()
+    {
+        yield return new WaitForSeconds(1);
+        winLoseMenuParent.SetActive(true);
+    }
     public void WinLoseEvent(bool youWin)
     {
         gamePlayUI.SetActive(false);
@@ -145,11 +158,12 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
         else
         {
             winLoseImage.sprite = loseSprite;
-
         }
-        winLoseMenuParent.SetActive(true);
+        StartCoroutine(OnGameOver());
 
     }
+
+
 
     [Serializable]
     public class ObjectImagePerType

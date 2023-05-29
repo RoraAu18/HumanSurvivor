@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public interface IGameEventsUser
 {   
-    public void OnMoodChanged(PlayerStates statePlayer);
+    public void OnMoodChanged(PlayerStates states);
     public void OnObjectsCollected(ObjectsType typeObjectCollected); 
 }
 
@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     public bool wasntDetected=true;
     public bool onTime = true;
     public bool allItemsCollected = false;
+    public bool crossedFinalLine = false;
     
 
     public Transform currentDistraction;
@@ -70,13 +71,20 @@ public class GameManager : MonoBehaviour
         player.transform.rotation = placeToBornPlayer.transform.rotation;
         player.TryGetComponent<AudioSource>(out AudioSource playerAudio);
         soundManager.player = playerAudio;
-        
+        crossedFinalLine = false;
     }
 
     private void Update()
     {
         time += Time.deltaTime;
         player.amAfraid = (enemy.chasingPlayer);
+        if (allItemsCollected)
+        {
+            if (crossedFinalLine)
+            {
+                OnWinLoseState(true);
+            }
+        }
     }
 
     public void AddScore(int amount)
@@ -93,7 +101,7 @@ public class GameManager : MonoBehaviour
         enemy.gotDistraction = true;
         soundManager.DistractingEnemySound();
     }
-
+    
     public void PlayerChangeMood(PlayerStates statePlayer)
     {
         currPlayerState = statePlayer;
@@ -118,7 +126,7 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < gameEventUsers.Count; i++)
         {
-           // gameEventUsers[i].OnMoodChanged(statePlayer);
+           //gameEventUsers[i].OnMoodChanged(stateEnemy);
         }
     }     
 
@@ -133,7 +141,6 @@ public class GameManager : MonoBehaviour
         if (currItemsCollected==itemsToCollect)
         {
             allItemsCollected = true;
-            OnWinLoseState(true);
         }
         soundManager.playSoundAddCollectable();
 
@@ -148,10 +155,8 @@ public class GameManager : MonoBehaviour
         }
         gameStates = GameStates.GameOver;
     }
-
     public bool CheckTime()
     {
-        Debug.Log(time + " " + maxTime);
         if (time < maxTime)
         {
             return true;
@@ -163,14 +168,7 @@ public class GameManager : MonoBehaviour
     }
 
 }
-public enum iconPlayerStates
-{
-    Happy,
-    Sad,
-    Stealth,
-    Distract,
-    Death
-}
+
 public enum GameStates
 {
     GameStart,

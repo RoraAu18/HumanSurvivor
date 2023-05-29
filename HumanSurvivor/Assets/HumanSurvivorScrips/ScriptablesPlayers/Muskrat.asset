@@ -16,3 +16,9 @@ MonoBehaviour:
   nameCharacter: Muskrat
   descriptionCharacter: Affectionately known as "Murray the Mischief Maker," is the
     ultimate sneaky snack snatcher in the forest.
+  iconPlayer: {fileID: 391489583284035862, guid: 95c0325dcfa89d84a97941f12f938a51, type: 3}
+  expressions: []
+  happyPlayerSprite: {fileID: 21300000, guid: d06530cf667ec864caac6f1658f1df03, type: 3}
+  fearPlayerSprite: {fileID: 21300000, guid: 1ea023dfaa884b3418e287fdca0ac5b1, type: 3}
+  stealthPlayerSprite: {fileID: 21300000, guid: 134bed2567f7ab242a75d081c31872c8, type: 3}
+  distractPlayerSprite: {fileID: 21300000, guid: 9aa394c2855fcbf4b84f126283e20813, type: 3}

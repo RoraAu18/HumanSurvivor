@@ -16,7 +16,12 @@ public class TiggerBehaviour : MonoBehaviour
 
     private void NextStep(Collider _)
     {
+        if(tutorialManager.currentStepIndex == 6) { GameManager.OnlyInstance.crossedFinalLine = true; };
         tutorialManager.currentStepIndex += 1;
+        if(tutorialManager.currentStepIndex == 5)
+        {
+            tutorialManager.triggerForSteps[6].enabled = true;
+        }
         tutorialManager.ActivateTutorialUI();
         gameObject.SetActive(false);
 

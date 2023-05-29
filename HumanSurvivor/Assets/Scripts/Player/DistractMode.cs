@@ -21,7 +21,7 @@ public class DistractMode : MonoBehaviour
     {
         if (GameManager.OnlyInstance.gameStates == GameStates.GameOver) return;
 
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             distract = true;
             GameManager.OnlyInstance.OnDistractMode();

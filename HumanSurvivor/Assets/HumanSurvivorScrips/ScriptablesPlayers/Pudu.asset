@@ -16,3 +16,9 @@ MonoBehaviour:
   nameCharacter: Pudu
   descriptionCharacter: Introducing Percy the Pudu, the forest's tiny troublemaker.
     With a voice that could rival a megaphone.
+  iconPlayer: {fileID: 304839362035131846, guid: 71dac3be7802e9f41b903e98250157d2, type: 3}
+  expressions: []
+  happyPlayerSprite: {fileID: 21300000, guid: 7831df5b08258d346a8d0c35d6ee5177, type: 3}
+  fearPlayerSprite: {fileID: 21300000, guid: d05fefe60a5a2c34fb8c9bf33a2b366f, type: 3}
+  stealthPlayerSprite: {fileID: 21300000, guid: 69f1f3f0144860e45bc376ca1d251073, type: 3}
+  distractPlayerSprite: {fileID: 21300000, guid: f552b205342858447aeb3ea229b4bec9, type: 3}

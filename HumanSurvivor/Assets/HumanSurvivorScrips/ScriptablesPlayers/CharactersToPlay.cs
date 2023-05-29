@@ -11,4 +11,13 @@ public class CharactersToPlay : ScriptableObject
     public GameObject characterSelected;
     public string nameCharacter;
     public string descriptionCharacter;
+
+    //Expressions
+    public Image iconPlayer;
+
+    public Sprite happyPlayerSprite;
+    public Sprite fearPlayerSprite;
+    public Sprite stealthPlayerSprite;
+    public Sprite distractPlayerSprite;
+    
 }

@@ -71,12 +71,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onStealhMode: 0
   amAfraid: 0
+  characterFeatures: {fileID: 11400000, guid: 6159d2e93df9db8458de2b152e13ef1f, type: 2}
   movement: {fileID: 255633450656682500}
   stealthMode: {fileID: 255633450656682505}
   distractMode: {fileID: 255633450656682504}
   jump: {fileID: 255633450656682506}
   mesh: {fileID: 0}
   playerState: 0
+  iconPlayerStates: 0
   configOnPlayerSatate:
   - speed: 0
     onStealthMode: 0
@@ -86,6 +88,8 @@ MonoBehaviour:
     onStealthMode: 0
   - speed: 3
     onStealthMode: 1
+  - speed: 0
+    onStealthMode: 0
   - speed: 0
     onStealthMode: 0
 --- !u!114 &255633450656682505

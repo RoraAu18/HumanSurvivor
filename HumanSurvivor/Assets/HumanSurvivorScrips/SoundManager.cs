@@ -5,7 +5,10 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     public AudioClip soundAddCollectable;
+    public AudioSource bkMusic;
     public AudioSource player;
+
+    //EnemySounds
     [SerializeField]
     EnemyAIContoller enemy;
     [SerializeField]
@@ -17,12 +20,20 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     AudioSource confusedSound;    
     [SerializeField]
-    AudioSource ahaSound;    
+    AudioSource ahaSound;
+
+    //PlayerSounds
     [SerializeField]
-    AudioSource distractionCall;
+    AIPlayerController playerSts;
+    [SerializeField]
+    AudioSource distractionCall;    
+    [SerializeField]
+    AudioSource playerJumpSound;
 
     private void Start()
     {
+        playerSts = GameManager.OnlyInstance.player;
+        playerSts.OnStatePlayerChange += PlayerSoundsChange;
         enemy.onEnemyStateChange += EnemySoundsChange;
     }
     public void playSoundAddCollectable()
@@ -30,7 +41,33 @@ public class SoundManager : MonoBehaviour
         player.clip = soundAddCollectable;
         player.Play();
     }
-
+    public void PlayerSoundsChange(PlayerStates states)
+    {
+        switch (states)
+        {
+            case PlayerStates.idle:
+                bkMusic.pitch = 1;
+                bkMusic.volume = 0.7f;
+                break;
+            case PlayerStates.jump:
+                playerJumpSound.PlayOneShot(playerJumpSound.clip);
+                bkMusic.pitch = 1;
+                bkMusic.volume = 0.7f;
+                break;
+            case PlayerStates.stealthIdle:
+                bkMusic.pitch = 0.9f;
+                bkMusic.volume = 0.4f;
+                break;
+            case PlayerStates.stealthMove:
+                bkMusic.pitch = 0.9f;
+                bkMusic.volume = 0.4f;
+                break;
+            case PlayerStates.run:
+                bkMusic.pitch = 1;
+                bkMusic.volume = 0.7f;
+                break;
+        }
+    }
     public void EnemySoundsChange(EnemyStates states)
     {
         switch (states)

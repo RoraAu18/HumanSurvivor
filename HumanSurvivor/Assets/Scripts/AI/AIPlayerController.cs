@@ -7,7 +7,7 @@ public class AIPlayerController : MonoBehaviour
 {
     public bool onStealhMode;
     public bool amAfraid;
-    
+    public CharactersToPlay characterFeatures;
    
     public ThirdPersonMovement movement;
     public StealthMode stealthMode;
@@ -19,6 +19,7 @@ public class AIPlayerController : MonoBehaviour
 
     public MeshRenderer mesh;
     public PlayerStates playerState;
+    public iconPlayerStates iconPlayerStates;
     public ConfigurationsPerPlayerState[] configOnPlayerSatate = new ConfigurationsPerPlayerState[(int) PlayerStates.count];
    
     private void OnValidate()
@@ -67,6 +68,7 @@ public class AIPlayerController : MonoBehaviour
             if (oldPlayerState != PlayerStates.stealthIdle)
             {
                 SetState(PlayerStates.stealthIdle);
+
             }
         }
 
@@ -117,6 +119,16 @@ public enum PlayerStates
     distract = 4,
     stealthIdle=5,
     count = 6
+}
+
+public enum iconPlayerStates
+{
+    Happy,
+    Sad,
+    Stealth,
+    Distract,
+    Afraid,
+    Death
 }
 
 [Serializable]

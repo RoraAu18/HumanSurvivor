@@ -29,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4914312036853949816}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.2696462, y: 0.047927715, z: 10.102835}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -95,7 +95,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4914312036853949816}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.22854537, y: 0.7825538, z: 0.22854453}
@@ -114,7 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myRender: {fileID: 6860064919093806253}
   transitionDuration: 0.35
-  particle: {fileID: 1461709078888383221, guid: 7376c1b726ba28341b6050f17421ed33, type: 3}
+  particle: {fileID: 2761098038352393328}
   waitTime: 1.5
 --- !u!114 &5296115224540067176
 MonoBehaviour:
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentFrameCollissions: []
   lastFrameCollissions: []
-  theCollider: {fileID: 0}
+  theCollider: {fileID: 5296115224540067179}
   foundOnCurrentCollision: 0
   layerMask:
     serializedVersion: 2
@@ -210,5 +210,10 @@ PrefabInstance:
 --- !u!4 &2630542507106560416 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4801701898539756, guid: 8a7eff82d5211844591f2c46f6a7a82e, type: 3}
+  m_PrefabInstance: {fileID: 2634781043543784268}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2761098038352393328 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198716313669570364, guid: 8a7eff82d5211844591f2c46f6a7a82e, type: 3}
   m_PrefabInstance: {fileID: 2634781043543784268}
   m_PrefabAsset: {fileID: 0}

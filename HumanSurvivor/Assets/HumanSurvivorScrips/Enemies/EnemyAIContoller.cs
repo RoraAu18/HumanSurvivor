@@ -42,7 +42,7 @@ public class EnemyAIContoller : MonoBehaviour
 
     public void SetState(EnemyStates newState)
     {
-        if (enemyStates == newState) { Debug.Log("going through " + enemyStates); return; }
+        if (enemyStates == newState) return;
         enemyStates = newState;
         GameManager.OnlyInstance.EnemyChangeMood(newState);
     }
@@ -51,7 +51,6 @@ public class EnemyAIContoller : MonoBehaviour
         if (context.enemyAnimsStateInfo.isConfused)
         {
             ActivateAnims(EnemyStates.Confused);
-            Debug.Log("entering anim conf");
             return;
         }
         if (context.enemyAnimsStateInfo.isAttacking)
@@ -82,7 +81,6 @@ public class EnemyAIContoller : MonoBehaviour
     void ActivateAnims(EnemyStates newState)
     {
         if (currentAnimsState == newState) return;
-        Debug.Log(newState + " new anim state ");
         onEnemyStateChange?.Invoke(newState);
         currentAnimsState = newState;
     }
