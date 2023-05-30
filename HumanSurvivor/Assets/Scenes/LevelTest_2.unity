@@ -51140,6 +51140,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5528063107972811676, guid: e8283e5e73c1e49479df6922a84b094d, type: 3}
   m_PrefabInstance: {fileID: 163218173}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &1833175726 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2833574775503256518, guid: ee72f33d7cb50d64080ebf81b764af59, type: 3}
+  m_PrefabInstance: {fileID: 2833574775841507181}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1835553988
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -68473,6 +68478,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5756328884275861111, guid: 1a4a77c9e7306934f8d82543eba0e77f, type: 3}
+      propertyPath: bkMusic
+      value: 
+      objectReference: {fileID: 1833175726}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a4a77c9e7306934f8d82543eba0e77f, type: 3}
 --- !u!4 &5762452500819280077

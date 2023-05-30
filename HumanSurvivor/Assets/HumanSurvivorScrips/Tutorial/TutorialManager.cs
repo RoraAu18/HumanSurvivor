@@ -21,7 +21,8 @@ public class TutorialManager : MonoBehaviour, IWinLoseStateUser
     void Start()
     {
         currentStepIndex = 0;
-        triggerForSteps[6].enabled = false;
+        triggerForSteps[5].enabled = false;
+        triggerForSteps[7].enabled = false;
 
         for (int i = 1; i < triggerForSteps.Count; i++)
         {

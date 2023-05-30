@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Step_5
   m_EditorClassIdentifier: 
   idxStep: 5
-  nameStep: NowRUNAWAY
-  descriptionStepForUI: Awesome!, now that you have acomplished your goal, Run away
-    as fast as you can! Use the main entrance to leave the house.
-  isComplete: 0
+  nameStep: Picksecond Coke
+  descriptionStepForUI: Look! There's  another Coke left to grab, go ahead and collect
+    it
+  isComplete: 1

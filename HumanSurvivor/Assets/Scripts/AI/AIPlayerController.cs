@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class AIPlayerController : MonoBehaviour 
+public class AIPlayerController : MonoBehaviour
 {
     public bool onStealhMode;
     public bool amAfraid;
     public CharactersToPlay characterFeatures;
-   
+
     public ThirdPersonMovement movement;
     public StealthMode stealthMode;
     public DistractMode distractMode;
@@ -20,12 +20,12 @@ public class AIPlayerController : MonoBehaviour
     public MeshRenderer mesh;
     public PlayerStates playerState;
     public iconPlayerStates iconPlayerStates;
-    public ConfigurationsPerPlayerState[] configOnPlayerSatate = new ConfigurationsPerPlayerState[(int) PlayerStates.count];
-   
+    public ConfigurationsPerPlayerState[] configOnPlayerSatate = new ConfigurationsPerPlayerState[(int)PlayerStates.count];
+
     private void OnValidate()
     {
         var statesCount = (int)PlayerStates.count;
-        if(configOnPlayerSatate.Length != statesCount)
+        if (configOnPlayerSatate.Length != statesCount)
         {
             Array.Resize(ref configOnPlayerSatate, statesCount);
         }
@@ -47,22 +47,28 @@ public class AIPlayerController : MonoBehaviour
 
     private void RefreshState()
     {
-        if (jump.isGrounded == false)
+        if (!jump.isGrounded && !stealthMode.stealth)
         {
             if (oldPlayerState != PlayerStates.jump)
             {
-                SetState(PlayerStates.jump);                
+                SetState(PlayerStates.jump);
             }
         }
 
         else if (stealthMode.stealth && movement.dir.magnitude != 0)
-       {
+        {
             if (oldPlayerState != PlayerStates.stealthMove)
             {
                 SetState(PlayerStates.stealthMove);
             }
         }
-        
+        else if (stealthMode.stealth && !jump.isGrounded)
+        {
+            if (oldPlayerState != PlayerStates.stealthJump)
+            {
+                SetState(PlayerStates.stealthJump);
+            }
+        }
         else if (stealthMode.stealth)
         {
             if (oldPlayerState != PlayerStates.stealthIdle)
@@ -79,7 +85,7 @@ public class AIPlayerController : MonoBehaviour
                 SetState(PlayerStates.distract);
             }
         }
-
+        
         else if (movement.dir.magnitude != 0)
         {
             if (oldPlayerState != PlayerStates.run)
@@ -87,7 +93,13 @@ public class AIPlayerController : MonoBehaviour
                 SetState(PlayerStates.run);
             }
         }
-
+        else if (amAfraid)
+        {
+            if (oldPlayerState != PlayerStates.afraid)
+            {
+                SetState(PlayerStates.afraid);
+            }
+        }
         else
         {
             if (oldPlayerState != PlayerStates.idle)
@@ -117,8 +129,10 @@ public enum PlayerStates
     jump = 2,
     stealthMove = 3,
     distract = 4,
-    stealthIdle=5,
-    count = 6
+    stealthIdle = 5,
+    stealthJump = 6,
+    afraid = 7,
+    count = 8
 }
 
 public enum iconPlayerStates
