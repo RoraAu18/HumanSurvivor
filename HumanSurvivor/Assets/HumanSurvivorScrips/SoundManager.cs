@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour
+public class SoundManager : MonoBehaviour, IGameEventsUser
 {
     public AudioClip soundAddCollectable;
     public AudioSource bkMusic;
@@ -12,13 +12,13 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     EnemyAIContoller enemy;
     [SerializeField]
-    AudioSource surprisedSound;    
+    AudioSource surprisedSound;
     [SerializeField]
-    AudioSource walkSound;    
+    AudioSource walkSound;
     [SerializeField]
-    AudioSource runSound;    
+    AudioSource runSound;
     [SerializeField]
-    AudioSource confusedSound;    
+    AudioSource confusedSound;
     [SerializeField]
     AudioSource ahaSound;
 
@@ -26,9 +26,11 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     AIPlayerController playerSts;
     [SerializeField]
-    AudioSource distractionCall;    
+    AudioSource distractionCall;
     [SerializeField]
-    AudioSource playerJumpSound;
+    AudioSource playerJumpSound;    
+    [SerializeField]
+    AudioSource endangeredSound;
 
     private void Start()
     {
@@ -38,11 +40,16 @@ public class SoundManager : MonoBehaviour
     }
     public void playSoundAddCollectable()
     {
+        
         player.clip = soundAddCollectable;
         player.Play();
     }
     public void PlayerSoundsChange(PlayerStates states)
     {
+        if (GameManager.OnlyInstance.player.amAfraid)
+        {
+            endangeredSound.PlayOneShot(endangeredSound.clip);
+        }
         switch (states)
         {
             case PlayerStates.idle:
@@ -67,6 +74,7 @@ public class SoundManager : MonoBehaviour
                 bkMusic.volume = 0.7f;
                 break;
         }
+
     }
     public void EnemySoundsChange(EnemyStates states)
     {
@@ -99,5 +107,16 @@ public class SoundManager : MonoBehaviour
     public void DistractingEnemySound()
     {
         distractionCall.PlayOneShot(distractionCall.clip);
+    }
+
+    public void OnMoodChanged(PlayerStates states)
+    {
+
+    }
+
+    public void OnObjectsCollected(ObjectsType typeObjectCollected)
+    {
+        player.clip = soundAddCollectable;
+        player.Play();
     }
 }

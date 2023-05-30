@@ -3542,6 +3542,10 @@ PrefabInstance:
       propertyPath: bkMusic
       value: 
       objectReference: {fileID: 192411481}
+    - target: {fileID: 7658400451184151312, guid: 1a4a77c9e7306934f8d82543eba0e77f, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a4a77c9e7306934f8d82543eba0e77f, type: 3}
 --- !u!4 &966036337 stripped
