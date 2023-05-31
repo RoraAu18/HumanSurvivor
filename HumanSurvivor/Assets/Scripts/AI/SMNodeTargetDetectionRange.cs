@@ -48,10 +48,20 @@ public class SMNodeTargetDetectionRange : SMNode
         if (player.onStealhMode)
         {
             selectedDetectionRadius = sneakerDetectionRadius;
+            if(dir.magnitude < sneakerDetectionRadius)
+            {
+                context.movingTarget = player.transform;
+            }
+            else
+            {
+                return state;
+            }
         }
 
         var angle = Vector3.Angle(dir, context.agentToMove.transform.forward);
-        if (angle > limitAngle && dir.magnitude > selectedDetectionRadius) return state;
+
+        //if (angle > limitAngle && dir.magnitude > selectedDetectionRadius) Debug.Log("unable to"); 
+        //return state;
 
         //avoid walls blinding when encountering walls
         var hitCount = Physics.RaycastNonAlloc(context.agentToMove.transform.position, dir, hits, dir.magnitude, maskLayer);
@@ -60,7 +70,7 @@ public class SMNodeTargetDetectionRange : SMNode
         context.movingTarget = player.transform;
         context.enemy.chasingPlayer = true;
         context.enemy.gotDistraction = false;
-        Debug.Log("dectect at " + dir.magnitude);
+        Debug.Log("dectect at " + dir.magnitude + " " + selectedDetectionRadius);
         state = SMNodeStates.Succeed;
         return state;
     }

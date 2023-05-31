@@ -148,7 +148,7 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
 
     IEnumerator OnGameOver()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         winLoseMenuParent.SetActive(true);
     }
     public void WinLoseEvent(bool youWin)
@@ -176,7 +176,6 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
             winLoseImage.sprite = loseSprite;
         }
         StartCoroutine(OnGameOver());
-
     }
 
 
