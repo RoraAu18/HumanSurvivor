@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 784c494ebecaf634c955b6e3e445436f, type: 3}
-  m_Name: Step_4
+  m_Name: Step_6
   m_EditorClassIdentifier: 
-  idxStep: 4
-  nameStep: DistractMode2
-  descriptionStepForUI: Press the left Ctrl to distract the human, he will walk towards
-    the room so make sure you stay away!
+  idxStep: 6
+  nameStep: NowRUNAWAY
+  descriptionStepForUI: Awesome!, now that you have acomplished your goal, Run away
+    as fast as you can! Use the main entrance to leave the house.
   isComplete: 1

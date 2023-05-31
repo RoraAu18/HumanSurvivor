@@ -40,16 +40,11 @@ public class SoundManager : MonoBehaviour, IGameEventsUser
     }
     public void playSoundAddCollectable()
     {
-        
         player.clip = soundAddCollectable;
         player.Play();
     }
     public void PlayerSoundsChange(PlayerStates states)
     {
-        if (GameManager.OnlyInstance.player.amAfraid)
-        {
-            endangeredSound.PlayOneShot(endangeredSound.clip);
-        }
         switch (states)
         {
             case PlayerStates.idle:
@@ -58,6 +53,7 @@ public class SoundManager : MonoBehaviour, IGameEventsUser
                 break;
             case PlayerStates.jump:
                 playerJumpSound.PlayOneShot(playerJumpSound.clip);
+                Debug.Log("jump sound");
                 bkMusic.pitch = 1;
                 bkMusic.volume = 0.7f;
                 break;
@@ -68,6 +64,15 @@ public class SoundManager : MonoBehaviour, IGameEventsUser
             case PlayerStates.stealthMove:
                 bkMusic.pitch = 0.9f;
                 bkMusic.volume = 0.4f;
+                break;
+            case PlayerStates.stealthJump:
+                playerJumpSound.PlayOneShot(playerJumpSound.clip);
+                Debug.Log("stealth jump sound");
+                bkMusic.pitch = 0.9f;
+                bkMusic.volume = 0.4f;
+                break;
+            case PlayerStates.afraid:
+                endangeredSound.PlayOneShot(endangeredSound.clip);
                 break;
             case PlayerStates.run:
                 bkMusic.pitch = 1;
