@@ -641,6 +641,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 972190642}
     - target: {fileID: 6459196821575839092, guid: cf6a8ffc4f92ca741bd88836bfcdda28, type: 3}
+      propertyPath: finalCheckpoint
+      value: 
+      objectReference: {fileID: 1239447685}
+    - target: {fileID: 6459196821575839092, guid: cf6a8ffc4f92ca741bd88836bfcdda28, type: 3}
       propertyPath: placeToBornPlayer
       value: 
       objectReference: {fileID: 19397707}
@@ -5341,6 +5345,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 9083152857122101523, guid: d6f422665c0533e4aa28ae0771ec1f53, type: 3}
+      propertyPath: isATutorial
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9083152857122101523, guid: d6f422665c0533e4aa28ae0771ec1f53, type: 3}
+      propertyPath: tutorialContainer
+      value: 
+      objectReference: {fileID: 132831152}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6f422665c0533e4aa28ae0771ec1f53, type: 3}
 --- !u!4 &1419747236 stripped

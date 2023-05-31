@@ -142,6 +142,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < gameEventUsers.Count; i++)
         {
             gameEventUsers[i].OnObjectsCollected(objectType);
+            StartCoroutine(CollectEffect());
         }
         if (currItemsCollected==itemsToCollect)
         {
@@ -181,6 +182,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    IEnumerator CollectEffect()
+    {
+        player.collectionEffect.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.4f);
+        player.collectionEffect.gameObject.SetActive(false);
+
+    }
 }
 
 public enum GameStates

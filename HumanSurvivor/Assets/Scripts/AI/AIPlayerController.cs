@@ -8,6 +8,7 @@ public class AIPlayerController : MonoBehaviour
     public bool onStealhMode;
     public bool amAfraid;
     public CharactersToPlay characterFeatures;
+    public GameObject collectionEffect;
 
     public ThirdPersonMovement movement;
     public StealthMode stealthMode;
@@ -40,6 +41,7 @@ public class AIPlayerController : MonoBehaviour
         TryGetComponent<DistractMode>(out DistractMode distractMode);
         colisionController.collisionEnter += CrossedFinalLine; 
         playerState = PlayerStates.idle;
+        collectionEffect.gameObject.SetActive(false);
     }
     void Update()
     {

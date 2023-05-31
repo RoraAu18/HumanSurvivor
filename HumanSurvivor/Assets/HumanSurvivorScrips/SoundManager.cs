@@ -77,7 +77,7 @@ public class SoundManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
                 bkMusic.volume = 0.4f;
                 break;
             case PlayerStates.afraid:
-                endangeredSound.PlayOneShot(endangeredSound.clip);
+                //endangeredSound.PlayOneShot(endangeredSound.clip);
                 break;
             case PlayerStates.run:
                 bkMusic.pitch = 1;

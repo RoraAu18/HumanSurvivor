@@ -36,7 +36,6 @@ public class SMNodeConfused : SMNode
             state = SMNodeStates.Succeed;
         }
         
-        Debug.Log("Confused and should go back to idle");
         return state;
     }
 

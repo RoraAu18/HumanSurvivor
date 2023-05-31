@@ -74045,6 +74045,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6963143714233382580, guid: d6f422665c0533e4aa28ae0771ec1f53, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9083152857122101523, guid: d6f422665c0533e4aa28ae0771ec1f53, type: 3}
       propertyPath: tutorialContainer
       value: 
