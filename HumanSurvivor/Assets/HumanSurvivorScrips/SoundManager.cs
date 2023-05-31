@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour, IGameEventsUser
+public class SoundManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
 {
     public AudioClip soundAddCollectable;
     public AudioSource bkMusic;
@@ -32,11 +32,18 @@ public class SoundManager : MonoBehaviour, IGameEventsUser
     [SerializeField]
     AudioSource endangeredSound;
 
+    //Winlose
+    [SerializeField]
+    AudioSource winSound;
+    [SerializeField]
+    AudioSource failSound;
     private void Start()
     {
         playerSts = GameManager.OnlyInstance.player;
+        GameManager.OnlyInstance.winLoseStateUser.Add(this);
         playerSts.OnStatePlayerChange += PlayerSoundsChange;
         enemy.onEnemyStateChange += EnemySoundsChange;
+        bkMusic.pitch = 1;
     }
     public void playSoundAddCollectable()
     {
@@ -53,7 +60,6 @@ public class SoundManager : MonoBehaviour, IGameEventsUser
                 break;
             case PlayerStates.jump:
                 playerJumpSound.PlayOneShot(playerJumpSound.clip);
-                Debug.Log("jump sound");
                 bkMusic.pitch = 1;
                 bkMusic.volume = 0.7f;
                 break;
@@ -67,7 +73,6 @@ public class SoundManager : MonoBehaviour, IGameEventsUser
                 break;
             case PlayerStates.stealthJump:
                 playerJumpSound.PlayOneShot(playerJumpSound.clip);
-                Debug.Log("stealth jump sound");
                 bkMusic.pitch = 0.9f;
                 bkMusic.volume = 0.4f;
                 break;
@@ -82,7 +87,8 @@ public class SoundManager : MonoBehaviour, IGameEventsUser
 
     }
     public void EnemySoundsChange(EnemyStates states)
-    {
+    {           
+        if(GameManager.OnlyInstance.gameStates == GameStates.GameOver) { walkSound.Stop(); runSound.Stop(); }
         switch (states)
         {
             case EnemyStates.Idle:
@@ -123,5 +129,19 @@ public class SoundManager : MonoBehaviour, IGameEventsUser
     {
         player.clip = soundAddCollectable;
         player.Play();
+    }
+
+    public void WinLoseEvent(bool youWin)
+    {
+        bkMusic.pitch = 0;
+        if (youWin)
+        {
+            winSound.PlayOneShot(winSound.clip);
+        }
+        else
+        {
+            failSound.PlayOneShot(failSound.clip);
+            Debug.Log("fail sound");
+        }
     }
 }

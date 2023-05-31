@@ -15,25 +15,44 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
     [SerializeField] Button backMenu;
     public List<ObjectImagePerType> objectsToCollect;
    
+    [HideInInspector]
     public Image iconPlayer;
+    [HideInInspector]
     public Sprite happyPlayerSprite;
+    [HideInInspector]
     public Sprite fearPlayerSprite;
+    [HideInInspector]
     public Sprite stealthPlayerSprite;
+    [HideInInspector]
     public Sprite distractPlayerSprite;
 
     public GameObject winLoseMenuParent;
+    [HideInInspector]
     public Image winLoseImage;
+    [HideInInspector]
     public Sprite winSprite;
+    [HideInInspector]
     public Sprite loseSprite;
     public TextMeshProUGUI winLoseText;
+    [HideInInspector]
     public Image firstStarPos;
+    [HideInInspector]
     public Image secondStarPos;
+    [HideInInspector]
     public Image thirdStarPos;
+    [HideInInspector]
     public Sprite startIcon;
+
     public GameObject pauseMenuContainer;
     public Button resumeGameButton;
     public Button backToMenuButton;
     public Button pauseButton;
+
+    [SerializeField]
+    bool isATutorial = false;
+    [SerializeField]
+    GameObject tutorialContainer;
+
     public void Awake()
     {
        GameManager.OnlyInstance.gameEventUsers.Add(this);
@@ -56,6 +75,10 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
         backToMenuButton.onClick.AddListener(BackGame2);
         pauseButton.onClick.AddListener(PauseGame);
         resumeGameButton.onClick.AddListener(ResumeGame);
+
+        if (isATutorial) { tutorialContainer.gameObject.SetActive(true); }
+        else { tutorialContainer.gameObject.SetActive(false); }
+
         Time.timeScale = 1;
     }
 
@@ -66,12 +89,7 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
         SceneManager.LoadScene(currentSceneIndex);
       
     }
-
-    private void BackGame()
-    {
-        Time.timeScale = 1;
-        SceneManager.LoadScene("MainMenu");
-    }   
+       
     private void BackGame2()
     {
         Time.timeScale = 1;
@@ -90,8 +108,6 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
     }
     public void OnMoodChanged(PlayerStates newState)
     {
-        //iconPlayer.sprite = moodSprites[((int)newState)];
-
         if (GameManager.OnlyInstance.player.amAfraid)
         {
             iconPlayer.sprite = fearPlayerSprite;
@@ -132,7 +148,7 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
 
     IEnumerator OnGameOver()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.5f);
         winLoseMenuParent.SetActive(true);
     }
     public void WinLoseEvent(bool youWin)

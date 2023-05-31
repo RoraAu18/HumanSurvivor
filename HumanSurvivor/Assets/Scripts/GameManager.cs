@@ -74,6 +74,7 @@ public class GameManager : MonoBehaviour
         soundManager.player = playerAudio;
         finalCheckpoint.gameObject.SetActive(false);
         crossedFinalLine = false;
+        //winLoseStateUser = GetComponents<IWinLoseStateUser>();
     }
 
     private void Update()
@@ -85,6 +86,8 @@ public class GameManager : MonoBehaviour
             if (crossedFinalLine)
             {
                 OnWinLoseState(true);
+                crossedFinalLine = false;
+                return;
             }
         }
     }
@@ -162,6 +165,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < winLoseStateUser.Count; i++)
         {
             winLoseStateUser[i].WinLoseEvent(youWin);
+            Debug.Log(winLoseStateUser.Count);
         }
         gameStates = GameStates.GameOver;
     }

@@ -48250,6 +48250,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5528063107972811676, guid: e8283e5e73c1e49479df6922a84b094d, type: 3}
   m_PrefabInstance: {fileID: 444815966}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1699685116 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 132831152, guid: d6f422665c0533e4aa28ae0771ec1f53, type: 3}
+  m_PrefabInstance: {fileID: 9083152858171277530}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1699819172
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -68458,14 +68463,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1199698954526465779, guid: 1a4a77c9e7306934f8d82543eba0e77f, type: 3}
+    - target: {fileID: 1143912940, guid: 1a4a77c9e7306934f8d82543eba0e77f, type: 3}
       propertyPath: m_Volume
-      value: 1
+      value: 0.95
       objectReference: {fileID: 0}
-    - target: {fileID: 1199698954526465779, guid: 1a4a77c9e7306934f8d82543eba0e77f, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 0038cee695db0184694f50927480d708, type: 3}
+    - target: {fileID: 1352922939, guid: 1a4a77c9e7306934f8d82543eba0e77f, type: 3}
+      propertyPath: m_Volume
+      value: 0.64
+      objectReference: {fileID: 0}
     - target: {fileID: 5756328884275861104, guid: 1a4a77c9e7306934f8d82543eba0e77f, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -68518,10 +68523,6 @@ PrefabInstance:
       propertyPath: enemy
       value: 
       objectReference: {fileID: 1164069270}
-    - target: {fileID: 5756328884275861111, guid: 1a4a77c9e7306934f8d82543eba0e77f, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5756328884275861111, guid: 1a4a77c9e7306934f8d82543eba0e77f, type: 3}
       propertyPath: bkMusic
       value: 
@@ -73952,6 +73953,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 132831152, guid: d6f422665c0533e4aa28ae0771ec1f53, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6963143713672731187, guid: d6f422665c0533e4aa28ae0771ec1f53, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -74040,6 +74045,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 9083152857122101523, guid: d6f422665c0533e4aa28ae0771ec1f53, type: 3}
+      propertyPath: tutorialContainer
+      value: 
+      objectReference: {fileID: 1699685116}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6f422665c0533e4aa28ae0771ec1f53, type: 3}
 --- !u!23 &9084175115089047122
