@@ -20,17 +20,9 @@ public class TiggerBehaviour : MonoBehaviour
     {
         if (tutorialManager.currentStepIndex == 7) { GameManager.OnlyInstance.crossedFinalLine = true; };
         tutorialManager.currentStepIndex += 1;
-        if(tutorialManager.currentStepIndex == 5)
-        {
-            tutorialManager.triggerForSteps[5].enabled = true;
-        }
-        if (tutorialManager.currentStepIndex == 5)
-        {
-            tutorialManager.triggerForSteps[6].enabled = true;
-        }
+        if(tutorialManager.currentStepIndex == 6) { tutorialManager.finalItemQuest.gameObject.SetActive(true); }
         tutorialManager.ActivateTutorialUI();
         gameObject.SetActive(false);
-
     }
 
     bool Tasks(int step)

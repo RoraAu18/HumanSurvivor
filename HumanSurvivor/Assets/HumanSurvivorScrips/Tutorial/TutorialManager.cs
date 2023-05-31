@@ -12,6 +12,7 @@ public class TutorialManager : MonoBehaviour, IWinLoseStateUser
     public TextMeshProUGUI stepText;
     public int currentStepIndex;
     public GameObject tutoriaUIParent;
+    public GameObject finalItemQuest;
 
     private void Awake()
     {
@@ -23,7 +24,7 @@ public class TutorialManager : MonoBehaviour, IWinLoseStateUser
         currentStepIndex = 0;
         triggerForSteps[5].enabled = false;
         triggerForSteps[7].enabled = false;
-
+        finalItemQuest.gameObject.SetActive(false);
         for (int i = 1; i < triggerForSteps.Count; i++)
         {
             triggerForSteps[i].gameObject.SetActive(false);

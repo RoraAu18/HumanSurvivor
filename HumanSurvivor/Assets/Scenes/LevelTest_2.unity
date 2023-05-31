@@ -7750,6 +7750,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4470861824277358, guid: 8436d7ae09cab4044be3b54f62027f31, type: 3}
   m_PrefabInstance: {fileID: 1341353644}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &227421989
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 227421991}
+  - component: {fileID: 227421990}
+  m_Layer: 0
+  m_Name: FinalCheckpoint
+  m_TagString: FinalLine
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &227421990
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227421989}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 4, z: 1.4}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &227421991
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227421989}
+  m_LocalRotation: {x: -0, y: 0.17046134, z: -0, w: 0.9853644}
+  m_LocalPosition: {x: 20.09, y: 1.591, z: 0.27}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 19.629, z: 0}
 --- !u!4 &229988395 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1825600446845946724, guid: e0afa3e7c3f32d94a83974947c2c975d, type: 3}
@@ -69286,6 +69330,10 @@ PrefabInstance:
       propertyPath: itemsToCollect
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6459196821575839092, guid: cf6a8ffc4f92ca741bd88836bfcdda28, type: 3}
+      propertyPath: finalCheckpoint
+      value: 
+      objectReference: {fileID: 227421989}
     - target: {fileID: 6459196821575839092, guid: cf6a8ffc4f92ca741bd88836bfcdda28, type: 3}
       propertyPath: allItemsCollected
       value: 0

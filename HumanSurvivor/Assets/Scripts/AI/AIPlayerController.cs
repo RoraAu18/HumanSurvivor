@@ -13,6 +13,7 @@ public class AIPlayerController : MonoBehaviour
     public StealthMode stealthMode;
     public DistractMode distractMode;
     public Jump jump;
+    public ColisionController colisionController;
     private PlayerStates oldPlayerState;
 
     public Action<PlayerStates> OnStatePlayerChange;
@@ -37,6 +38,7 @@ public class AIPlayerController : MonoBehaviour
         TryGetComponent<ThirdPersonMovement>(out ThirdPersonMovement movement);
         TryGetComponent<StealthMode>(out StealthMode stealthMode);
         TryGetComponent<DistractMode>(out DistractMode distractMode);
+        colisionController.collisionEnter += CrossedFinalLine; 
         playerState = PlayerStates.idle;
     }
     void Update()
@@ -119,6 +121,14 @@ public class AIPlayerController : MonoBehaviour
         playerState = newState;
         OnStatePlayerChange?.Invoke(newState);
         GameManager.OnlyInstance.PlayerChangeMood(newState);
+    }
+
+    public void CrossedFinalLine(Collider coll)
+    {
+        if (coll.CompareTag("FinalLine"))
+        {
+            GameManager.OnlyInstance.crossedFinalLine = true;
+        }
     }
 
 }

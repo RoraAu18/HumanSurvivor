@@ -8,6 +8,7 @@ TagManager:
   - RedRoom
   - GreenRoom
   - WhiteRoom
+  - FinalLine
   layers:
   - Default
   - TransparentFX

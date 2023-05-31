@@ -33,7 +33,8 @@ public class GameManager : MonoBehaviour
     public bool onTime = true;
     public bool allItemsCollected = false;
     public bool crossedFinalLine = false;
-    
+    [SerializeField]
+    GameObject finalCheckpoint;
 
     public Transform currentDistraction;
     public GameStates gameStates;
@@ -71,6 +72,7 @@ public class GameManager : MonoBehaviour
         player.transform.rotation = placeToBornPlayer.transform.rotation;
         player.TryGetComponent<AudioSource>(out AudioSource playerAudio);
         soundManager.player = playerAudio;
+        finalCheckpoint.gameObject.SetActive(false);
         crossedFinalLine = false;
     }
 
@@ -141,11 +143,19 @@ public class GameManager : MonoBehaviour
         if (currItemsCollected==itemsToCollect)
         {
             allItemsCollected = true;
+            ActivateFinalCheckpoint();
         }
         soundManager.playSoundAddCollectable();
 
     }
 
+    void ActivateFinalCheckpoint()
+    {
+        if (allItemsCollected)
+        {
+            finalCheckpoint.gameObject.SetActive(true);
+        }
+    }
     public void OnWinLoseState(bool youWin)
     {      
         onTime = CheckTime();

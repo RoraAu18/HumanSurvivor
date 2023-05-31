@@ -15,5 +15,5 @@ MonoBehaviour:
   idxStep: 4
   nameStep: DistractMode2
   descriptionStepForUI: Press the left Ctrl to distract the human, he will walk towards
-    the room so make sure you stay away!
+    the room so make sure you stay away!, go ahead and go back to the living room
   isComplete: 1
