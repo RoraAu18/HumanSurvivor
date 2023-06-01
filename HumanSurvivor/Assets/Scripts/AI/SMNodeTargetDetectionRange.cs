@@ -68,6 +68,7 @@ public class SMNodeTargetDetectionRange : SMNode
         if (hitCount > 0) return state;
 
         context.movingTarget = player.transform;
+        context.enemyAnimsStateInfo.isConfused = false;
         context.enemy.chasingPlayer = true;
         context.enemy.gotDistraction = false;
         Debug.Log("dectect at " + dir.magnitude + " " + selectedDetectionRadius);
