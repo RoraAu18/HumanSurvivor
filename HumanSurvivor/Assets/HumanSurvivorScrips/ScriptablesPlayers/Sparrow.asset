@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac99d9f9a81b1ce47b1221636d3c25f3, type: 3}
+  m_Name: Sparrow
+  m_EditorClassIdentifier: 
+  characterSelected: {fileID: 2919116957122212826, guid: 0c98f994f7df1f849858fd2d6de9b731, type: 3}
+  nameCharacter: Sparrow
+  descriptionCharacter: Sparrow the Skydancer, the mischievous master of the skies
+    with lightning-fast wings and a knack for shiny prizes.
+  iconPlayer: {fileID: 391489583284035862, guid: 95c0325dcfa89d84a97941f12f938a51, type: 3}
+  happyPlayerSprite: {fileID: 0}
+  fearPlayerSprite: {fileID: 0}
+  stealthPlayerSprite: {fileID: 0}
+  distractPlayerSprite: {fileID: 0}

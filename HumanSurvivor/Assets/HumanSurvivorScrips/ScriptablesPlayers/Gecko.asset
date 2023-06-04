@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac99d9f9a81b1ce47b1221636d3c25f3, type: 3}
+  m_Name: Gecko
+  m_EditorClassIdentifier: 
+  characterSelected: {fileID: 7423538165256316451, guid: 91a4f0f34294be14fa741fc1d9973a18, type: 3}
+  nameCharacter: Gecko
+  descriptionCharacter: 'Gecko the Stealthy Shadow, the nimble ninja of the forest
+    floor with their incredible ability to blend seamlessly into their surroundings. '
+  iconPlayer: {fileID: 0}
+  happyPlayerSprite: {fileID: 0}
+  fearPlayerSprite: {fileID: 0}
+  stealthPlayerSprite: {fileID: 0}
+  distractPlayerSprite: {fileID: 0}
