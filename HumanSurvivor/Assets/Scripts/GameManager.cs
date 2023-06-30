@@ -172,14 +172,7 @@ public class GameManager : MonoBehaviour
     }
     public bool CheckTime()
     {
-        if (time < maxTime)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return time < maxTime;
     }
 
     IEnumerator CollectEffect()

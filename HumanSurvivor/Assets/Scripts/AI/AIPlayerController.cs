@@ -161,6 +161,18 @@ public enum iconPlayerStates
 public class ConfigurationsPerPlayerState
 {
     public float speed;
-    public bool onStealthMode;    
+    public bool onStealthMode;
+    public Operations operations;
 }
+public enum Operations
+{
+    Sum,
+    Multiply,
+    PercentageMultiply,
+    Set
+}
+/*
+ * Métodos de extesión, sin estar dentro de la clase, añadir funcionalidad a la clase.
+ * desde una clase externa ponerle más métodos sin tener que escribirlos. :0
+ */
 
