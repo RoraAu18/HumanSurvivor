@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public interface IGameEventsUser
 {   
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
        
     private static GameManager instance;
 
+    [SerializeField] LevelsToPlayData myLevelData;
     public int itemsToCollect;
     public int currItemsCollected;
     public float maxTime;
@@ -44,7 +46,9 @@ public class GameManager : MonoBehaviour
 
     public List<IGameEventsUser> gameEventUsers = new List<IGameEventsUser>();
     public List<IWinLoseStateUser> winLoseStateUser = new List<IWinLoseStateUser>();
-   
+
+    private List<Collectable> collectablesInScene = new List<Collectable>();
+
     public static GameManager OnlyInstance
     {        
         get
@@ -75,6 +79,14 @@ public class GameManager : MonoBehaviour
         finalCheckpoint.gameObject.SetActive(false);
         crossedFinalLine = false;
         //winLoseStateUser = GetComponents<IWinLoseStateUser>();
+    }
+
+    [MenuItem ("HumanSurvivor/ConfigScriptableFromSceneData")]
+    private static void ConfigScriptableFromSceneData()
+    {
+        Utilities.GetRooTObjects();
+        Utilities.GetComponentsOfType(OnlyInstance.collectablesInScene);
+        OnlyInstance.myLevelData.objectsToCollect = OnlyInstance.collectablesInScene.Count;
     }
 
     private void Update()

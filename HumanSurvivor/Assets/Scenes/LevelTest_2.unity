@@ -69324,6 +69324,10 @@ PrefabInstance:
       value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6459196821575839092, guid: cf6a8ffc4f92ca741bd88836bfcdda28, type: 3}
+      propertyPath: myLevelData
+      value: 
+      objectReference: {fileID: 11400000, guid: 4d8db00b7aa335a42baa544d640ccf7d, type: 2}
+    - target: {fileID: 6459196821575839092, guid: cf6a8ffc4f92ca741bd88836bfcdda28, type: 3}
       propertyPath: soundManager
       value: 
       objectReference: {fileID: 367063179}
@@ -73955,7 +73959,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 132831152, guid: d6f422665c0533e4aa28ae0771ec1f53, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6963143713672731187, guid: d6f422665c0533e4aa28ae0771ec1f53, type: 3}
       propertyPath: m_Pivot.x

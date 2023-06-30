@@ -7,6 +7,8 @@ public class AnimationController : MonoBehaviour
     public Animator animator;
     public AIPlayerController player;
 
+    int runAnim = Animator.StringToHash("Run");
+    
     void Start()
     {
         TryGetComponent(out animator);
@@ -23,7 +25,7 @@ public class AnimationController : MonoBehaviour
 
     private void ChangePlayerAnims(PlayerStates states)
     {
-        animator.SetBool("Run", false);
+        animator.SetBool(runAnim, false);
 
         switch (states)
         {
@@ -31,7 +33,7 @@ public class AnimationController : MonoBehaviour
                 animator.SetTrigger("Idle");
                 break;
             case PlayerStates.run:
-                animator.SetBool("Run", true);
+                animator.SetBool(runAnim, true);
                 break;
             case PlayerStates.jump:
                 animator.SetTrigger("Jump");
