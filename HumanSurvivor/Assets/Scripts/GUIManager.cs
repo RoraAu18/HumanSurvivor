@@ -6,10 +6,11 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using System;
 
-public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
+public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser, IGameDataStorer
 {
     public GameObject gamePlayUI;
     public ObjectsToCollectDataList objectsToCollectDataList;
+    GameData gameUIdata;
 
     [SerializeField] Button reset;
     [SerializeField] Button backMenu;
@@ -42,6 +43,8 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
     public Image thirdStarPos;
     [HideInInspector]
     public Sprite startIcon;
+    [SerializeField]
+    BestMatchsGameData bestMatchData;
 
     public GameObject pauseMenuContainer;
     public Button resumeGameButton;
@@ -52,6 +55,9 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
     bool isATutorial = false;
     [SerializeField]
     GameObject tutorialContainer;
+    public DataManager dataMan => GameManager.OnlyInstance.dataManager;
+
+    public GameData id => bestMatchData;
 
     public void Awake()
     {
@@ -76,9 +82,10 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
         pauseButton.onClick.AddListener(PauseGame);
         resumeGameButton.onClick.AddListener(ResumeGame);
 
+        dataMan.AddUser(this, id.id);
         if (isATutorial) { tutorialContainer.gameObject.SetActive(true); }
         else { tutorialContainer.gameObject.SetActive(false); }
-
+        //restart teh starts of the level
         Time.timeScale = 1;
     }
 
@@ -143,7 +150,7 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
             }
         }
 
-        
+       
     }
 
     IEnumerator OnGameOver()
@@ -151,33 +158,58 @@ public class GUIManager : MonoBehaviour, IGameEventsUser, IWinLoseStateUser
         yield return new WaitForSeconds(1f);
         winLoseMenuParent.SetActive(true);
     }
+
+
+    //Best scores system should be added to the Game manager instead. 
     public void WinLoseEvent(bool youWin)
     {
         gamePlayUI.SetActive(false);
-               
+        var currentData = new BestMatchsGameData();
         if (youWin)
         {
             winLoseImage.sprite=winSprite;
             if (GameManager.OnlyInstance.allItemsCollected)
             {
                 firstStarPos.color = Color.white;
+                currentData.allItemsCollected = true;
             }
             if (GameManager.OnlyInstance.onTime)
             {
                 secondStarPos.color = Color.white;
+                currentData.onTime = true;
+
             }
             if (GameManager.OnlyInstance.wasntDetected)
             {
                 thirdStarPos.color = Color.white;
+                currentData.wasNotDetected = true;
             }
         }        
         else
         {
             winLoseImage.sprite = loseSprite;
         }
+
+        if (GameManager.OnlyInstance.GetBestScore(bestMatchData, currentData, out BestMatchsGameData newBest))
+        {
+            bestMatchData = newBest;
+            dataMan.SaveData(bestMatchData);
+        }
         StartCoroutine(OnGameOver());
     }
 
+    public GameData StoreData()
+    {
+        return bestMatchData;
+    }
+
+    public void RestoreData(GameData restoreData)
+    {
+        if(restoreData is BestMatchsGameData bestData)
+        {
+            bestMatchData = bestData;
+        }
+    }
 
 
     [Serializable]

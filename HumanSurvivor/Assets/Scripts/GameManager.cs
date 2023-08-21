@@ -15,7 +15,7 @@ public interface IWinLoseStateUser
     public void WinLoseEvent(bool youWin);
 }
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour//, IGameDataStorer
 {
     public List<AIPlayerController> players;
     public Transform placeToBornPlayer;
@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     public EnemyAIContoller enemy;
     public AIPlayerController player;
     public SoundManager soundManager;
+    [SerializeField] GameData bestTime;
+    public DataManager dataManager;
        
     private static GameManager instance;
 
@@ -35,8 +37,8 @@ public class GameManager : MonoBehaviour
     public bool onTime = true;
     public bool allItemsCollected = false;
     public bool crossedFinalLine = false;
-    [SerializeField]
-    GameObject finalCheckpoint;
+    [SerializeField] GameObject finalCheckpoint;
+
 
     public Transform currentDistraction;
     public GameStates gameStates;
@@ -57,6 +59,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public DataManager dataMan => dataManager;
+
+    public GameData id { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
     private void Awake()
     {
         if(instance != this)
@@ -71,6 +77,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+
         int idxPlayer = PlayerPrefs.GetInt("idxPlayer",0);
         player = Instantiate(players[idxPlayer], placeToBornPlayer);
         player.transform.rotation = placeToBornPlayer.transform.rotation;
@@ -78,6 +85,8 @@ public class GameManager : MonoBehaviour
         soundManager.player = playerAudio;
         finalCheckpoint.gameObject.SetActive(false);
         crossedFinalLine = false;
+        TryGetComponent(out dataManager);
+        //dataManager.AddUser(this);
         //winLoseStateUser = GetComponents<IWinLoseStateUser>();
     }
 
@@ -193,6 +202,30 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         player.collectionEffect.gameObject.SetActive(false);
 
+
+    }
+    public bool GetBestScore(BestMatchsGameData intialData, BestMatchsGameData currentData, out BestMatchsGameData newBestData)
+    {
+        newBestData = new BestMatchsGameData();
+        newBestData.allItemsCollected = (intialData.allItemsCollected || currentData.allItemsCollected);
+        newBestData.onTime = (intialData.onTime || currentData.onTime);
+        newBestData.wasNotDetected = (intialData.wasNotDetected || currentData.wasNotDetected);
+        newBestData.bestTime = Mathf.Min(intialData.bestTime, currentData.bestTime);
+        bool didScoreChange = (intialData.allItemsCollected != newBestData.allItemsCollected);
+        didScoreChange |= intialData.onTime != newBestData.onTime;
+        didScoreChange |= intialData.wasNotDetected != newBestData.wasNotDetected;
+        didScoreChange |= intialData.bestTime > newBestData.bestTime;
+        return didScoreChange;
+    }
+
+    public GameData StoreData()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void RestoreData(GameData restoreData)
+    {
+        throw new System.NotImplementedException();
     }
 }
 

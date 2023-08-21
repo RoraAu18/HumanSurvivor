@@ -118,11 +118,16 @@ public class AIPlayerController : MonoBehaviour
 
     public void SetState(PlayerStates newState)
     {
-        movement.speed = configOnPlayerSatate[(int)newState].speed;
-        onStealhMode = configOnPlayerSatate[(int)newState].onStealthMode;
-        playerState = newState;
-        OnStatePlayerChange?.Invoke(newState);
-        GameManager.OnlyInstance.PlayerChangeMood(newState);
+        //it'll never be the same because of where this is called, check if it works;
+        if(newState != playerState)
+        {
+            movement.AddModifier(configOnPlayerSatate[(int)newState].floatModifier);
+            movement.RemoveModifier(configOnPlayerSatate[(int)playerState].floatModifier);
+            onStealhMode = configOnPlayerSatate[(int)newState].onStealthMode;
+            playerState = newState;
+            OnStatePlayerChange?.Invoke(newState);
+            GameManager.OnlyInstance.PlayerChangeMood(newState);
+        }
     }
 
     public void CrossedFinalLine(Collider coll)
@@ -160,19 +165,8 @@ public enum iconPlayerStates
 [Serializable]
 public class ConfigurationsPerPlayerState
 {
-    public float speed;
     public bool onStealthMode;
-    public Operations operations;
+    public FloatModifier floatModifier;
 }
-public enum Operations
-{
-    Sum,
-    Multiply,
-    PercentageMultiply,
-    Set
-}
-/*
- * Métodos de extesión, sin estar dentro de la clase, añadir funcionalidad a la clase.
- * desde una clase externa ponerle más métodos sin tener que escribirlos. :0
- */
+
 

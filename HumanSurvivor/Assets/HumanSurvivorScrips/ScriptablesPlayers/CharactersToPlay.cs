@@ -11,6 +11,10 @@ public class CharactersToPlay : ScriptableObject
     public GameObject characterSelected;
     public string nameCharacter;
     public string descriptionCharacter;
+    [SerializeField]
+    float speed;
+    public float Speed => speed;
+    public float stealthModeRadius;
 
     //Expressions
     public Image iconPlayer;

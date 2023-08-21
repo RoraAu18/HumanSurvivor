@@ -14,4 +14,5 @@ public class LevelsToPlayData : ScriptableObject
     public int objectsToCollect;
     public int maxTimeToCollect;
     public bool isBlocked;
+    public int starsAwarded;
 }

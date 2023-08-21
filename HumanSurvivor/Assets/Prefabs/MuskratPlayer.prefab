@@ -57,6 +57,7 @@ MonoBehaviour:
   cam: {fileID: 0}
   dir: {x: 0, y: 0, z: 0}
   speed: 6
+  speedModifiers: []
   smoothAmount: 0.1
   stealth: 0
 --- !u!114 &7090740072757718069
@@ -84,22 +85,46 @@ MonoBehaviour:
   playerState: 0
   iconPlayerStates: 0
   configOnPlayerSatate:
-  - speed: 0
-    onStealthMode: 0
-  - speed: 5
-    onStealthMode: 0
-  - speed: 3.5
-    onStealthMode: 0
-  - speed: 3
-    onStealthMode: 1
-  - speed: 0
-    onStealthMode: 0
-  - speed: 0
-    onStealthMode: 0
-  - speed: 0
-    onStealthMode: 0
-  - speed: 0
-    onStealthMode: 0
+  - onStealthMode: 0
+    floatModifier:
+      id: Idle
+      operation: 0
+      value: 0
+  - onStealthMode: 0
+    floatModifier:
+      id: Run
+      operation: 0
+      value: 0
+  - onStealthMode: 1
+    floatModifier:
+      id: Jump
+      operation: 0
+      value: 0
+  - onStealthMode: 1
+    floatModifier:
+      id: StealthMove
+      operation: 0
+      value: -4
+  - onStealthMode: 0
+    floatModifier:
+      id: Distract
+      operation: 0
+      value: 0
+  - onStealthMode: 0
+    floatModifier:
+      id: Stealth idle
+      operation: 0
+      value: 0
+  - onStealthMode: 0
+    floatModifier:
+      id: Stealth jump
+      operation: 0
+      value: 0
+  - onStealthMode: 0
+    floatModifier:
+      id: Afraid
+      operation: 0
+      value: 0
 --- !u!114 &7090740072757718073
 MonoBehaviour:
   m_ObjectHideFlags: 0

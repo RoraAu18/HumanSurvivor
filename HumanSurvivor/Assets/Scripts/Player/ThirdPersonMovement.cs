@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class ThirdPersonMovement : MonoBehaviour
 {
+    AIPlayerController playerController;
     public CharacterController controller;
     public Transform cam;
     public Vector3 dir;
-    public float speed = 6f;
+    public List<FloatModifier> speedModifiers = new List<FloatModifier>();
+    public float speed => playerController.characterFeatures.Speed;
+
     private float rotVelocity;
     public float smoothAmount = 0.1f;
     public bool stealth = false;
@@ -15,6 +19,27 @@ public class ThirdPersonMovement : MonoBehaviour
     public void Start()
     {
         TryGetComponent(out controller);
+        TryGetComponent(out playerController);
+    }
+
+    public float GetSpeed()
+    {
+        float totalValue = speed;
+        for (int i = 0; i < speedModifiers.Count; i++)
+        {
+            totalValue = speedModifiers[i].Operate(totalValue);
+
+        }
+        return totalValue;
+    }
+    public void AddModifier(FloatModifier id)
+    {
+        speedModifiers.Add(id);
+    }
+
+    public void RemoveModifier(FloatModifier id)
+    {
+        speedModifiers.Remove(id);
     }
 
     public void Update()
@@ -42,19 +67,21 @@ public class ThirdPersonMovement : MonoBehaviour
 
             Vector3 anglesForMov = Vector3.up * targetAngle;
             var movDir = Quaternion.Euler(anglesForMov) * Vector3.forward;
-            controller.Move(movDir.normalized * speed * Time.deltaTime);
+            //Changed
+            controller.Move(movDir.normalized * GetSpeed() * Time.deltaTime);
         }
-        if (Input.GetKey(KeyCode.Q))
-        {
-            Vector3 newScale = Vector3.one + Vector3.up * -0.5f;
-            //transform.localScale = newScale;
-            stealth = true;
-        }
-        else
-        {
-            transform.localScale = Vector3.one;
-            stealth = false;
-        }
+    }
 
+}
+[Serializable]
+public class FloatModifier
+{
+    public string id;
+    public Operations operation;
+    public float value;
+
+    public float Operate(float baseValue)
+    {
+        return operation.Operate(baseValue, value);
     }
 }

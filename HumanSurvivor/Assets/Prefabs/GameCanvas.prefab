@@ -772,6 +772,7 @@ GameObject:
   - component: {fileID: 6963143713672731185}
   - component: {fileID: 6963143713672731190}
   - component: {fileID: 9083152857122101523}
+  - component: {fileID: 1666576756467050219}
   m_Layer: 5
   m_Name: GameCanvas
   m_TagString: Untagged
@@ -901,10 +902,52 @@ MonoBehaviour:
   secondStarPos: {fileID: 9083152858684200940}
   thirdStarPos: {fileID: 9083152856799810642}
   startIcon: {fileID: 21300000, guid: 8ecc501b18526ba4cbd052b45b8f678c, type: 3}
+  starsData:
+    id: 
+    toSave: 0
+    description: 
+    saveValues: 
+    dataManager: {fileID: 0}
   pauseMenuContainer: {fileID: 3001922258211343265}
   resumeGameButton: {fileID: 8741213954240140795}
   backToMenuButton: {fileID: 1662413557796463227}
   pauseButton: {fileID: 717786065633167616}
+  isATutorial: 0
+  tutorialContainer: {fileID: 0}
+--- !u!114 &1666576756467050219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6963143713672731191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 457e9f23ff880854faa2eb69f0752393, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bestScores:
+  - id: 
+    toSave: 0
+    description: 
+    saveValues: 
+    dataManager: {fileID: 0}
+  - id: 
+    toSave: 0
+    description: 
+    saveValues: 
+    dataManager: {fileID: 0}
+  - id: 
+    toSave: 0
+    description: 
+    saveValues: 
+    dataManager: {fileID: 0}
+  scores:
+    id: 
+    toSave: 0
+    description: 
+    saveValues: 
+    dataManager: {fileID: 0}
 --- !u!1 &6963143713898398868
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,8 @@ TagManager:
   - GreenRoom
   - WhiteRoom
   - FinalLine
+  - Water
+  - Air
   layers:
   - Default
   - TransparentFX

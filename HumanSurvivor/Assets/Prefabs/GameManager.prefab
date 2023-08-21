@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6459196821575839099}
   - component: {fileID: 6459196821575839092}
+  - component: {fileID: 1799932945}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -43,15 +44,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 954e4961006c1e745ad9d4a8779f278b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  players:
+  - {fileID: 7090740072757718069, guid: 4b495e4207d0edd4e85f88049ea7e4bb, type: 3}
+  - {fileID: 255633450656682501, guid: 12b51097d9d76fa48a9511dfc175b92b, type: 3}
+  placeToBornPlayer: {fileID: 0}
   enemy: {fileID: 0}
   player: {fileID: 0}
   soundManager: {fileID: 0}
-  itemsToCollect: 2
+  gameData:
+    id: 
+    toSave: 0
+    description: winlose
+    saveValues: 0900000009000000
+    dataManager: {fileID: 1799932945}
+  myLevelData: {fileID: 11400000, guid: 4d8db00b7aa335a42baa544d640ccf7d, type: 2}
+  itemsToCollect: 3
   currItemsCollected: 0
-  maxTime: 30
+  maxTime: 60
   wasntDetected: 1
   onTime: 0
-  allItemsCollected: 1
+  allItemsCollected: 0
+  crossedFinalLine: 0
+  finalCheckpoint: {fileID: 0}
   currentDistraction: {fileID: 0}
   gameStates: 0
   iconPlayerStates: 0
+--- !u!114 &1799932945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6459196821575839093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1f969ff55886bf4587471e4d39d2361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
